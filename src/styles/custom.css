@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.nav-link.active {
+  background-color: #b090e0d6 !important;
+}
+
+.nav-link:hover {
+  background-color: #d0bfff;
+  color: #ffffff;
+  cursor: pointer;
+}
+.exit {
+  margin-left: -150px;
+}
+.exit:hover {
+  background-color: #beadfa;
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+.navbar-vertical.navbar-light .navbar-nav > .nav-item > .nav-link:hover {
+  background-color: #57acc6;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.navbar-vertical.navbar-light .navbar-nav > .nav-item > .nav-link:hover i,
+.navbar-vertical.navbar-light .navbar-nav > .nav-item > .nav-link.active i {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.nav-link {
+  font-weight: bolder !important;
+}
+
+.minHeight {
+  min-height: 85vh;
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+  color: #beadfa !important;
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root {
+  color: #beadfa !important;
+}
+
+.linkPadding {
+  margin-right: 5px;
+}
+
+.circle {
+  width: 25px;
+  height: 25px;
+  border: none;
+  cursor: pointer;
+}
+.circle::-webkit-color-swatch {
+  border-radius: 50%;
+}
+/* Style for the checkbox container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the checkbox itself */
+.M-S {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+/* Style for the square mark */
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgb(230, 227, 227);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+/* Style for the square inside the square mark */
+.inner-square {
+  width: 7.5px;
+  height: 7.5px;
+  border: 1px solid white;
+  background-color: transparent;
+  display: none;
+}
+
+/* Style to show inner square when checkbox is checked */
+.M-S:checked + .custom-checkbox .inner-square {
+  display: block;
+  background-color: white;
+}
+.M-S:checked + .custom-checkbox {
+  background-color: green;
+  border: 1px solid white;
+  border-radius: 0px;
+}
+.Sunday {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+.Sunday:checked + .custom-checkbox .inner-square {
+  display: block;
+  background-color: white;
+}
+.Sunday:checked + .custom-checkbox {
+  background-color: orange;
+  border: 1px solid white;
+  border-radius: 0px;
+}
+
+.headingColor {
+  color: black;
+  font-size: x-large;
+}
+
+/* Loader Css  */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
+}
+.loading {
+  --speed-of-animation: 0.9s;
+  --gap: 6px;
+  --first-color: #4c86f9;
+  --second-color: #49a84c;
+  --third-color: #f6bb02;
+  --fourth-color: #f6bb02;
+  --fifth-color: #2196f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  gap: 6px;
+  height: 100px;
+}
+
+/* All save , update some buttons custom css */
+
+.btn-button {
+  color: #000 !important;
+  padding: 0.5rem 0.9rem;
+  font-weight: 600;
+  background-color: #beadfa !important;
+  border-color: #beadfa;
+}
+
+.btn-button i {
+  font-weight: 600;
+}
+.butn:hover {
+  color: #fff;
+  background-color: #57acc6;
+  border-color: #57acc6;
+}
+.btn-check:focus + .btn-button,
+.btn-button:focus {
+  color: #fff;
+  background-color: #57acc6;
+  border-color: #57acc6;
+  box-shadow: 0 0 0 0.25rem #57acc6a1;
+}
+.btn-check:checked + .btn-button,
+.btn-check:active + .btn-button,
+.btn-button:active,
+.btn-button.active,
+.show > .btn-button.dropdown-toggle {
+  color: #fff;
+  background-color: #57acc6;
+  border-color: #57acc6;
+}
+.btn-check:checked + .btn-button:focus,
+.btn-check:active + .btn-button:focus,
+.btn-button:active:focus,
+.btn-button.active:focus,
+.show > .btn-button.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem #57acc6a1;
+}
+.btn-button:disabled,
+.btn-button.disabled {
+  color: #fff;
+  background-color: #57acc6;
+  border-color: #006e8fdc;
+}
+
+.btn-button-check:checked + .btn-button,
+.btn-button.active,
+.btn-button.show,
+.btn-button:first-child:active,
+:not(.btn-button-check) + .btn-button:active {
+  background-color: #57acc6;
+  border-color: #006e8fdc;
+  color: #fff;
+}
+
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Table Css */
+
+#Table_Css table thead {
+  background: #e4e6eb;
+}
+#Table_Css table thead tr th {
+  outline: none !important;
+  font-size: 11px !important;
+}
+
+#Table_Css table tbody tr {
+  background-color: #ffffff !important;
+}
+#Table_Css table tbody tr td {
+  background: #ffffff !important;
+  padding: 20px 10px !important;
+}
+
+/* Filter Search input */
+div.dt-container .dt-search input {
+  outline: none !important;
+}
+
+/* Buttons in Page */
+
+div.dt-container .dt-paging .dt-paging-button {
+  padding: 0px !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button :hover {
+  padding: 2px !important;
+}
+
+/* entries per page */
+div.dt-container select.dt-input {
+  margin-right: 10px;
+  padding: 3px;
+}
+
+@media (min-width: 992px) {
+  .logo_ats {
+    position: sticky !important;
+    top: 0;
+    z-index: 20;
+    background: "#A5E5E5" !important;
+  }
+}
+
+.sortdown::after {
+  display: none;
+}
+
+.logutBtn :hover {
+  color: #ffffff !important;
+}
+
+.sendMail:hover {
+  background: white;
+  color: #57acc6;
+  border: 1px solid #48a6c2 !important;
+}
+
+.emailHeader {
+  width: 70% !important;
+}
+
+.emailHeader .offcanvas-header {
+  padding: 0px;
+  padding-left: 15px;
+  background-color: #57acc6;
+  color: #fff;
+  border-bottom: 1px solid #424242;
+}
+
+/* Required Skills */
+.tags-inp-container {
+  width: min(100vw, 100%);
+}
+
+.tag-item {
+  background-color: #57acc6;
+  color: white;
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border-radius: 20px;
+}
+
+.tags-input {
+  flex-grow: 1;
+  padding: 0.5em 0;
+  border: none !important;
+  outline: none !important;
+}
