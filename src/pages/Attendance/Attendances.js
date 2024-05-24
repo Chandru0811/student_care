@@ -159,7 +159,7 @@ function Attendances() {
               <div className="col-md-6 col-12 mb-2">
                 <label className="form-lable">Centre</label>
                 <select
-                  className="form-select "
+                  className="form-select form-select-sm"
                   aria-label="Default select example"
                   onChange={(e) => setSelectedCenter(e.target.value)}
                 >
@@ -174,7 +174,7 @@ function Attendances() {
               {/* <div className="col-md-6 col-12 mb-2">
             <label className="form-lable">Course</label>
             <select
-              className="form-select "
+              className="form-select form-select-sm"
               aria-label="Default select example"
               onChange={(e) => setSelectedCourse(e.target.value)}
             >
@@ -190,7 +190,7 @@ function Attendances() {
               <div className="col-md-6 col-12">
                 <label className="form-lable">Batch</label>
                 <select
-                  className="form-select "
+                  className="form-select form-select-sm"
                   aria-label="Default select example"
                   onChange={(e) => setSelectedBatch(e.target.value)}
                 >
@@ -444,7 +444,7 @@ function Attendances() {
                                                   <input
                                                     type="text"
                                                     value={student.remarks}
-                                                    className="form-control"
+                                                    className="form-control form-control-sm"
                                                     onChange={(e) =>
                                                       handleRemarksChange(
                                                         attendanceIndex,

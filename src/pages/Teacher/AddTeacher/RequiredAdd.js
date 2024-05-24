@@ -41,7 +41,7 @@ const RequiredAdd = forwardRef(
               <label>Resume / CV</label>
               <input
                 type="file"
-                class="form-control    mt-3"
+                class="form-control form-control-sm   mt-3"
                 accept=".pdf"
                 name="resume"
                 onChange={(event) => {
@@ -55,7 +55,7 @@ const RequiredAdd = forwardRef(
               <label>Education Certificate</label>
               <input
                 type="file"
-                class="form-control    mt-3"
+                class="form-control form-control-sm   mt-3"
                 accept=".pdf"
                 name="educationCertificate"
                 onChange={(event) => {

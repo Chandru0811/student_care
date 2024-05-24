@@ -24,44 +24,44 @@ const EditForm6 = forwardRef(
       validationSchema: validationSchema,
       onSubmit: async (values) => {
         setLoadIndicators(true);
-        try {
-          const response = await api.put(
-            `/updateLeadInfo/${formData.id}`,
-            values,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          if (response.status === 200) {
-            toast.success(response.data.message);
-            setFormData((prv) => ({ ...prv, ...values }));
-            navigate("/lead/lead");
-            handleNext();
-          } else {
-            toast.error(response.data.message);
-          }
-        } catch (error) {
-          toast.error(error);
-        } finally {
-          setLoadIndicators(false);
-        }
+        // try {
+        //   const response = await api.put(
+        //     `/updateLeadInfo/${formData.id}`,
+        //     values,
+        //     {
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //       },
+        //     }
+        //   );
+        //   if (response.status === 200) {
+        //     toast.success(response.data.message);
+        //     setFormData((prv) => ({ ...prv, ...values }));
+        //     navigate("/lead/lead");
+        //     handleNext();
+        //   } else {
+        //     toast.error(response.data.message);
+        //   }
+        // } catch (error) {
+        //   toast.error(error);
+        // } finally {
+        //   setLoadIndicators(false);
+        // }
       },
     });
 
-    useEffect(() => {
-      const getData = async () => {
-        const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
-        formik.setValues(response.data);
-      };
-      getData();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //   const getData = async () => {
+    //     const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
+    //     formik.setValues(response.data);
+    //   };
+    //   getData();
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
-    useImperativeHandle(ref, () => ({
-      editform6: formik.handleSubmit,
-    }));
+    // useImperativeHandle(ref, () => ({
+    //   editform6: formik.handleSubmit,
+    // }));
 
     return (
       <div className="Container py-4">

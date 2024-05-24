@@ -45,55 +45,55 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
     },
     validationSchema: validationSchema,
     onSubmit: async (data) => {
-      try {
-        const response = await api.put(`/updateLeadInfo/${formData.id}`, data, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        if (response.status === 200) {
-          toast.success(response.data.message);
-          setFormData((prv) => ({ ...prv, ...data }));
-          handleNext();
-        } else {
-          toast.error(response.data.message);
-        }
-      } catch (error) {
-        toast.error(error);
-      }
+      // try {
+      //   const response = await api.put(`/updateLeadInfo/${formData.id}`, data, {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
+      //   if (response.status === 200) {
+      //     toast.success(response.data.message);
+      //     setFormData((prv) => ({ ...prv, ...data }));
+      //     handleNext();
+      //   } else {
+      //     toast.error(response.data.message);
+      //   }
+      // } catch (error) {
+      //   toast.error(error);
+      // }
     },
   });
 
-  const fetchData = async () => {
-    // try {
-    //   const subjectData = await fetchAllSubjectsWithIds();
-    //   setSubjectData(subjectData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
-  };
+  // const fetchData = async () => {
+  // try {
+  //   const subjectData = await fetchAllSubjectsWithIds();
+  //   setSubjectData(subjectData);
+  // } catch (error) {
+  //   toast.error(error);
+  // }
+  // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  useEffect(() => {
-    const getData = async () => {
-      const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
-      const dateOfBirth =
-        response.data.dateOfBirth && response.data.dateOfBirth.substring(0, 10);
-      formik.setValues({
-        ...response.data,
-        dateOfBirth: dateOfBirth,
-      });
-    };
-    getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
+  //     const dateOfBirth =
+  //       response.data.dateOfBirth && response.data.dateOfBirth.substring(0, 10);
+  //     formik.setValues({
+  //       ...response.data,
+  //       dateOfBirth: dateOfBirth,
+  //     });
+  //   };
+  //   getData();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  useImperativeHandle(ref, () => ({
-    editForm1: formik.handleSubmit,
-  }));
+  // useImperativeHandle(ref, () => ({
+  //   editForm1: formik.handleSubmit,
+  // }));
 
   return (
     <form onSubmit={formik.handleSubmit}>

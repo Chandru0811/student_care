@@ -162,7 +162,7 @@ const AddEmergencyContactModel = forwardRef(
                     <lable className="form-lable">Name</lable>
                     <div className="input-group mb-3">
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm"
                         type="text"
                         name="name"
                         onChange={formik.handleChange}
@@ -174,7 +174,7 @@ const AddEmergencyContactModel = forwardRef(
                   <div className="col-md-6 col-12 mb-2">
                     <lable className="">Contact No</lable>
                     <input
-                      className="form-control "
+                      className="form-control form-control-sm"
                       type="text"
                       name="contactNo"
                       onChange={formik.handleChange}
@@ -190,7 +190,7 @@ const AddEmergencyContactModel = forwardRef(
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.authorizedRelation}
-                      className="form-select"
+                      className="form-select form-select-sm"
                     >
                       <option value=""></option>
                       <option value="Mother">Mother</option>
@@ -202,7 +202,7 @@ const AddEmergencyContactModel = forwardRef(
                   <div className="col-md-6 col-12 mb-2">
                     <lable className="">Postal Code</lable>
                     <input
-                      className="form-control "
+                      className="form-control form-control-sm"
                       type="text"
                       name="postalCode"
                       onChange={formik.handleChange}
@@ -215,7 +215,7 @@ const AddEmergencyContactModel = forwardRef(
                       Address<span className="text-danger">*</span>
                     </lable>
                     <textarea
-                      className="form-control "
+                      className="form-control form-control-sm"
                       type="text"
                       name="emergencyContactAddress"
                       onChange={formik.handleChange}

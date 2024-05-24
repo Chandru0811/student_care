@@ -72,26 +72,26 @@ const EditForm5 = forwardRef(
       // }
     };
 
-    const getData = async () => {
-      const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
-      const enquiryDate =
-        response.data.enquiryDate && response.data.enquiryDate.substring(0, 10);
+    // const getData = async () => {
+    //   const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
+    //   const enquiryDate =
+    //     response.data.enquiryDate && response.data.enquiryDate.substring(0, 10);
 
-      formik.setValues({
-        ...response.data,
-        enquiryDate: enquiryDate,
-      });
-    };
+    //   formik.setValues({
+    //     ...response.data,
+    //     enquiryDate: enquiryDate,
+    //   });
+    // };
 
-    useEffect(() => {
-      getData();
-      fetchData();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //   getData();
+    //   fetchData();
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
-    useImperativeHandle(ref, () => ({
-      editform5: formik.handleSubmit,
-    }));
+    // useImperativeHandle(ref, () => ({
+    //   editform5: formik.handleSubmit,
+    // }));
 
     return (
       <section>
@@ -289,14 +289,17 @@ const EditForm5 = forwardRef(
                 )}
               </div>
 
-              <div className="col-md-6 col-12 mb-3">
-                <label>Preferred Timeslot</label>
-                <div className="mt-2 d-flex">
-                  <div className="checkbox-container ">
+              <div className="col-md-6 col-12 mb-2 ps-3">
+                <lable>
+                  Preferrded Timeslot
+                  <span className="text-danger">*</span>
+                </lable>
+                <div className="gap-2">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox1"
+                      id="inlineCheckbox1"
                       name="preferredTimeSlot"
                       value="3PM - 6PM"
                       checked={
@@ -306,84 +309,81 @@ const EditForm5 = forwardRef(
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox1" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox1" className="mx-1">
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox1"
+                    >
                       3PM - 6PM
                     </label>
                   </div>
-                  <div className="checkbox-container mx-4">
+                  <div className="form-check form-check-inline ">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox2"
+                      id="inlineCheckbox1"
                       name="preferredTimeSlot"
-                      value="6PM - 9PM"
+                      value="6PM - 10PM"
                       checked={
                         formik.values.preferredTimeSlot &&
-                        formik.values.preferredTimeSlot.includes("6PM - 9PM")
+                        formik.values.preferredTimeSlot.includes("6PM - 10PM")
                       }
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox2" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox2" className="mx-1">
-                      6PM - 9PM
+                    <label
+                      className="form-check-label mx-1"
+                      for="inlineCheckbox1"
+                    >
+                      6PM - 10PM
                     </label>
                   </div>
-                </div>
-
-                <div className="d-flex">
-                  <div className="checkbox-container ">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox3"
+                      id="inlineCheckbox2"
                       name="preferredTimeSlot"
-                      value="9AM -12NN"
+                      value="9AM - 12PM"
                       checked={
                         formik.values.preferredTimeSlot &&
-                        formik.values.preferredTimeSlot.includes("9AM -12NN")
+                        formik.values.preferredTimeSlot.includes("9AM - 12PM")
                       }
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox3" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox3" className="mx-1">
-                      9AM -12NN
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox2"
+                    >
+                      9AM - 12PM
                     </label>
                   </div>
-                  <div className="checkbox-container mx-4">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox4"
+                      id="inlineCheckbox3"
                       name="preferredTimeSlot"
-                      value="12NN - 3PM"
+                      value="12PM - 3PM"
                       checked={
                         formik.values.preferredTimeSlot &&
-                        formik.values.preferredTimeSlot.includes("12NN - 3PM")
+                        formik.values.preferredTimeSlot.includes("12PM - 3PM")
                       }
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox4" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox4" className="mx-1">
-                      12NN - 3PM
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox3"
+                    >
+                      12PM - 3PM
                     </label>
                   </div>
-                  <div className="checkbox-container mx-4">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox5"
+                      id="inlineCheckbox2"
                       name="preferredTimeSlot"
                       value="3AM - 6AM"
                       checked={
@@ -393,14 +393,20 @@ const EditForm5 = forwardRef(
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox5" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox5" className="mx-1">
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox2"
+                    >
                       3AM - 6AM
                     </label>
                   </div>
                 </div>
+                {formik.touched.preferredTimeSlot &&
+                  formik.errors.preferredTimeSlot && (
+                    <div className="error text-danger ">
+                      <small>{formik.errors.preferredTimeSlot}</small>
+                    </div>
+                  )}
               </div>
 
               <div className="col-md-6 col-12 mb-2"></div>

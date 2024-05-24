@@ -140,7 +140,7 @@ const Attendance = () => {
                 <label className="form-label">Centre</label>
                 <select
                   {...formik.getFieldProps("centerId")}
-                  className={`form-select ${
+                  className={`form-select form-select-sm ${
                     formik.touched.centerId && formik.errors.centerId
                       ? "is-invalid"
                       : ""
@@ -165,7 +165,7 @@ const Attendance = () => {
                 <label className="form-label">Course</label>
                 <select
                   {...formik.getFieldProps("courseId")}
-                  className={`form-select ${
+                  className={`form-select  form-select-sm${
                     formik.touched.courseId && formik.errors.courseId
                       ? "is-invalid"
                       : ""
@@ -190,7 +190,7 @@ const Attendance = () => {
                 <input
                   {...formik.getFieldProps("attendanceDate")}
                   type="date"
-                  className={`form-control ${
+                  className={`form-control form-control-sm ${
                     formik.touched.attendanceDate &&
                     formik.errors.attendanceDate
                       ? "is-invalid"

@@ -31,7 +31,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const StaffAccountEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const [centerData, setCenterData] = useState(null);
 
     const fetchData = async () => {
@@ -137,7 +137,7 @@ const StaffAccountEdit = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally{
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -223,7 +223,7 @@ const StaffAccountEdit = forwardRef(
               </label>
               <input
                 type="date"
-                className="form-control"
+                className="form-control form-control-sm"
                 name="startDate"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -235,38 +235,39 @@ const StaffAccountEdit = forwardRef(
                 </div>
               )}
             </div>
-            <div class="col-md-6 col-12 mb-2 mt-3">
+            <div className="col-md-6 col-12 mb-2 mt-3">
               <label>
-                Color Code<span class="text-danger">*</span>
+                Color Code<span className="text-danger">*</span>
               </label>
-              <div class="input-group mb-3 courseAdd">
-                <div class="input-group-text inputGroup">
+              <div className="input-group mb-3 courseAdd">
+                <div className="input-group-text inputGroup">
                   <input
                     type="color"
                     {...formik.getFieldProps("colorCode")}
-                    className="form-control-color  circle"
+                    className="form-control form-control-sm form-control-color circle"
                   />
                 </div>
                 <input
                   type="text"
-                  className={`form-control form-control-sm iconInput `}
+                  className="form-control form-control-sm iconInput"
                   value={formik.values.colorCode}
                   placeholder=""
                 />
               </div>
               {formik.errors.colorCode ? (
-                <div className="error text-danger ">
+                <div className="error text-danger">
                   <small>{formik.errors.colorCode}</small>
                 </div>
               ) : null}
             </div>
+
             <div class="col-md-6 col-12 mb-2 mt-3">
               <label>
                 Staff ID<span class="text-danger">*</span>
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control form-control-sm"
                 name="teacherId"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -284,7 +285,7 @@ const StaffAccountEdit = forwardRef(
               </label>
               <select
                 type="text"
-                className="form-select"
+                className="form-select form-select-sm"
                 name="teacherType"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -307,7 +308,7 @@ const StaffAccountEdit = forwardRef(
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control form-control-sm"
                 name="shgType"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -325,7 +326,7 @@ const StaffAccountEdit = forwardRef(
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control form-control-sm"
                 name="shgAmount"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -343,7 +344,7 @@ const StaffAccountEdit = forwardRef(
                 Status<span class="text-danger">*</span>
               </lable>
               <select
-                class="form-select"
+                class="form-select form-select-sm"
                 name="status"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -365,7 +366,7 @@ const StaffAccountEdit = forwardRef(
               </label>
               <input
                 type="date"
-                className="form-control"
+                className="form-control form-control-sm"
                 name="endDate"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -435,9 +436,9 @@ const StaffAccountEdit = forwardRef(
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  <label for="myCheckbox1" class="custom-checkbox">
+                  {/* <label for="myCheckbox1" class="custom-checkbox">
                     <div class="inner-square"></div>
-                  </label>
+                  </label> */}
                   <label for="myCheckbox1" className="mx-1">
                     Mon
                   </label>
@@ -456,9 +457,9 @@ const StaffAccountEdit = forwardRef(
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  <label for="myCheckbox2" class="custom-checkbox">
+                  {/* <label for="myCheckbox2" class="custom-checkbox">
                     <div class="inner-square"></div>
-                  </label>
+                  </label> */}
                   <label for="myCheckbox2" className="mx-1">
                     Tue
                   </label>
@@ -477,9 +478,9 @@ const StaffAccountEdit = forwardRef(
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  <label for="myCheckbox3" class="custom-checkbox">
+                  {/* <label for="myCheckbox3" class="custom-checkbox">
                     <div class="inner-square"></div>
-                  </label>
+                  </label> */}
                   <label for="myCheckbox3" className="mx-1">
                     Wed
                   </label>
@@ -498,9 +499,9 @@ const StaffAccountEdit = forwardRef(
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  <label for="myCheckbox4" class="custom-checkbox">
+                  {/* <label for="myCheckbox4" class="custom-checkbox">
                     <div class="inner-square"></div>
-                  </label>
+                  </label> */}
                   <label for="myCheckbox4" className="mx-1">
                     Thu
                   </label>
@@ -519,9 +520,9 @@ const StaffAccountEdit = forwardRef(
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  <label for="myCheckbox5" class="custom-checkbox">
+                  {/* <label for="myCheckbox5" class="custom-checkbox">
                     <div class="inner-square"></div>
-                  </label>
+                  </label> */}
                   <label for="myCheckbox5" className="mx-1">
                     Fri
                   </label>
@@ -540,9 +541,9 @@ const StaffAccountEdit = forwardRef(
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  <label for="myCheckbox6" class="custom-checkbox">
+                  {/* <label for="myCheckbox6" class="custom-checkbox">
                     <div class="inner-square"></div>
-                  </label>
+                  </label> */}
                   <label for="myCheckbox6" className="mx-1">
                     Sat
                   </label>
@@ -561,9 +562,9 @@ const StaffAccountEdit = forwardRef(
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  <label for="myCheckbox7" class="custom-checkbox">
+                  {/* <label for="myCheckbox7" class="custom-checkbox">
                     <div class="inner-square"></div>
-                  </label>
+                  </label> */}
                   <label for="myCheckbox7" className="mx-1">
                     Sun
                   </label>
@@ -582,7 +583,7 @@ const StaffAccountEdit = forwardRef(
               <div className="input-group mb-3">
                 <select
                   {...formik.getFieldProps("centerId")}
-                  className={`form-select  ${
+                  className={`form-select form-select-sm  ${
                     formik.touched.centerId && formik.errors.centerId
                       ? "is-invalid"
                       : ""

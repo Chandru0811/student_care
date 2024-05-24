@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .required("*Postal Code is required!"),
 });
 const ContactEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         email: "",
@@ -50,7 +50,7 @@ const ContactEdit = forwardRef(
       //   }
       // },
       onSubmit: async (values) => {
-        setLoadIndicators(true)
+        setLoadIndicators(true);
         // console.log("Api Data:", values);
         try {
           if (values.contactId !== null) {
@@ -71,11 +71,15 @@ const ContactEdit = forwardRef(
               toast.error(response.data.message);
             }
           } else {
-            const response = await api.post(`/createUserContactInfo/${formData.staff_id}`, values, {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            });
+            const response = await api.post(
+              `/createUserContactInfo/${formData.staff_id}`,
+              values,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
             if (response.status === 201) {
               toast.success(response.data.message);
               setFormData((prv) => ({ ...prv, ...values }));
@@ -86,8 +90,8 @@ const ContactEdit = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally{
-          setLoadIndicators(false)
+        } finally {
+          setLoadIndicators(false);
         }
       },
     });
@@ -107,8 +111,10 @@ const ContactEdit = forwardRef(
 
     useEffect(() => {
       const getData = async () => {
-        try{
-          const response = await api.get(`/getAllUsersById/${formData.staff_id}`);
+        try {
+          const response = await api.get(
+            `/getAllUsersById/${formData.staff_id}`
+          );
           if (
             response.data.userContactInfo &&
             response.data.userContactInfo.length > 0
@@ -127,16 +133,15 @@ const ContactEdit = forwardRef(
             });
             // console.log("Contact ID:", formik.values.contactId);
           }
-          
-        }catch (error) {
+        } catch (error) {
           console.error("Error fetching data:", error);
         }
       };
       // console.log(formik.values);
       getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    
+
     useImperativeHandle(ref, () => ({
       contactEdit: formik.handleSubmit,
     }));
@@ -153,7 +158,7 @@ const ContactEdit = forwardRef(
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="email"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -171,7 +176,7 @@ const ContactEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="contactNumber"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -190,7 +195,7 @@ const ContactEdit = forwardRef(
                 </label>
                 <textarea
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="address"
                   rows="3"
                   onChange={formik.handleChange}
@@ -209,7 +214,7 @@ const ContactEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="postalCode"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

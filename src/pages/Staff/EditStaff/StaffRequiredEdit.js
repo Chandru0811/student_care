@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle } from "react";
 import { useFormik } from "formik";
 
 const StaffRequiredEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         resume: null || "",
@@ -39,7 +39,7 @@ const StaffRequiredEdit = forwardRef(
               <label>Resume / CV</label>
               <input
                 type="file"
-                class="form-control mt-3"
+                class="form-control form-control-sm mt-3"
                 accept=".pdf"
                 name="resume"
                 onChange={(event) => {
@@ -53,7 +53,7 @@ const StaffRequiredEdit = forwardRef(
               <label>Education Certificate</label>
               <input
                 type="file"
-                class="form-control mt-3"
+                class="form-control form-control-sm mt-3"
                 accept=".pdf"
                 name="educationCertificate"
                 onChange={(event) => {

@@ -6,18 +6,22 @@ import api from "../../../config/URL";
 import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
-  termsAndConditionSignatureDate: Yup.string().required("*Signature Date is required"),
-  agree: Yup.boolean().oneOf([true], "*Agree Terms and conditions is required").required(),
-  
+  termsAndConditionSignatureDate: Yup.string().required(
+    "*Signature Date is required"
+  ),
+  agree: Yup.boolean()
+    .oneOf([true], "*Agree Terms and conditions is required")
+    .required(),
 });
 
 const AddTermsAndCondition = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const navigate = useNavigate();
     const formik = useFormik({
       initialValues: {
         file: null || "",
-        termsAndConditionSignatureDate: formData.termsAndConditionSignatureDate || "",
+        termsAndConditionSignatureDate:
+          formData.termsAndConditionSignatureDate || "",
         agree: formData.agree || "",
       },
       validationSchema: validationSchema,
@@ -25,7 +29,10 @@ const AddTermsAndCondition = forwardRef(
         setLoadIndicators(true);
         const formDatas = new FormData();
         formDatas.append("file", data.file);
-        formDatas.append("termsAndConditionSignatureDate", data.termsAndConditionSignatureDate);
+        formDatas.append(
+          "termsAndConditionSignatureDate",
+          data.termsAndConditionSignatureDate
+        );
         formDatas.append("agree", data.agree);
         formDatas.append("studentDetailId", formData.student_id);
 
@@ -48,7 +55,7 @@ const AddTermsAndCondition = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -75,7 +82,7 @@ const AddTermsAndCondition = forwardRef(
                         <br />
                         <input
                           type="file"
-                          className="form-control"
+                          className="form-control form-control-sm"
                           name="file"
                           onChange={(event) => {
                             formik.setFieldValue(
@@ -90,7 +97,9 @@ const AddTermsAndCondition = forwardRef(
                     <div className="col-md-6 col-12">
                       <div className="text-start mt-2">
                         <label className="mb-1 fw-medium">
-                          <small>Signature Date<span className="text-danger">*</span></small>
+                          <small>
+                            Signature Date<span className="text-danger">*</span>
+                          </small>
                         </label>
                         <br />
                         <input
@@ -101,11 +110,14 @@ const AddTermsAndCondition = forwardRef(
                           onBlur={formik.handleBlur}
                           value={formik.values.termsAndConditionSignatureDate}
                         />
-                        {formik.touched.termsAndConditionSignatureDate && formik.errors.termsAndConditionSignatureDate && (
-                      <div className="text-danger">
-                        <small>{formik.errors.termsAndConditionSignatureDate}</small>
-                      </div>
-                    )}
+                        {formik.touched.termsAndConditionSignatureDate &&
+                          formik.errors.termsAndConditionSignatureDate && (
+                            <div className="text-danger">
+                              <small>
+                                {formik.errors.termsAndConditionSignatureDate}
+                              </small>
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>

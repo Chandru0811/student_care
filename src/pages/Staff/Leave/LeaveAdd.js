@@ -155,7 +155,7 @@ function LeaveAdd() {
             </div>
           </div>
         </div>
-        <div className="card shadow border-0 mb-2 top-header">
+        <div className="card shadow border-0 mb-2 top-header minHeight">
           <div className="container p-5">
             <div className="row">
               <div className="col-md-6 col-12 mb-3">
@@ -165,7 +165,7 @@ function LeaveAdd() {
                 <input
                   type="text"
                   name="employeeName"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   value={datas && datas.employeeName}
                   // {...formik.getFieldProps("employeeName")}
                   readOnly
@@ -183,7 +183,7 @@ function LeaveAdd() {
                   Leave Type<span className="text-danger">*</span>
                 </label>
                 <select
-                  className={`form-select  ${
+                  className={`form-select form-select-sm ${
                     formik.touched.leaveType && formik.errors.leaveType
                       ? "is-invalid"
                       : ""
@@ -208,7 +208,7 @@ function LeaveAdd() {
                 </label>
                 <input
                   type="date"
-                  className={`form-control  ${
+                  className={`form-control form-control-sm ${
                     formik.touched.fromDate && formik.errors.fromDate
                       ? "is-invalid"
                       : ""
@@ -236,7 +236,7 @@ function LeaveAdd() {
                 </label>
                 <input
                   type="date"
-                  className={`form-control  ${
+                  className={`form-control form-control-sm ${
                     formik.touched.toDate && formik.errors.toDate
                       ? "is-invalid"
                       : ""
@@ -262,7 +262,7 @@ function LeaveAdd() {
                 </label>
                 <input
                   type="text"
-                  className={`form-control  ${
+                  className={`form-control form-control-sm ${
                     formik.touched.noOfDays && formik.errors.noOfDays
                       ? "is-invalid"
                       : ""
@@ -284,7 +284,7 @@ function LeaveAdd() {
                 </label>
                 <input
                   type="text"
-                  className={`form-control  ${
+                  className={`form-control form-control-sm ${
                     formik.touched.dayType && formik.errors.dayType
                       ? "is-invalid"
                       : ""
@@ -301,7 +301,7 @@ function LeaveAdd() {
                 <label className="form-label">Attachment</label>
                 <input
                   type="file"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   {...formik.getFieldProps("attachment")}
                 />
               </div>
@@ -311,7 +311,7 @@ function LeaveAdd() {
                 </label>
                 <textarea
                   rows={5}
-                  className={`form-control  ${
+                  className={`form-control form-control-sm ${
                     formik.touched.leaveReason && formik.errors.leaveReason
                       ? "is-invalid"
                       : ""

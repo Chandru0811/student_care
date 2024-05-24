@@ -131,7 +131,7 @@ function DeductionEdit() {
                   <span className="text-danger">*</span>
                   <select
                     {...formik.getFieldProps("centerId")}
-                    className={`form-select ${
+                    className={`form-select form-select-sm ${
                       formik.touched.centerId && formik.errors.centerId
                         ? "is-invalid"
                         : ""
@@ -157,7 +157,7 @@ function DeductionEdit() {
                   <lable className="">Employee Name</lable>
                   <select
                     {...formik.getFieldProps("userId")}
-                    class={`form-select  ${
+                    class={`form-select form-select-sm  ${
                       formik.touched.userId && formik.errors.userId
                         ? "is-invalid"
                         : ""
@@ -182,7 +182,7 @@ function DeductionEdit() {
                   <span className="text-danger">*</span>
                   <select
                     {...formik.getFieldProps("deductionName")}
-                    className={`form-select ${
+                    className={`form-select form-select-sm ${
                       formik.touched.deductionName &&
                       formik.errors.deductionName
                         ? "is-invalid"
@@ -209,7 +209,7 @@ function DeductionEdit() {
                     </lable>
                     <input
                       type="month"
-                      className={`form-control  ${
+                      className={`form-control form-control-sm ${
                         formik.touched.deductionMonth &&
                         formik.errors.deductionMonth
                           ? "is-invalid"
@@ -232,7 +232,7 @@ function DeductionEdit() {
                     </lable>
                     <input
                       type="text"
-                      className={`form-control  ${
+                      className={`form-control form-control-sm ${
                         formik.touched.deductionAmount &&
                         formik.errors.deductionAmount
                           ? "is-invalid"

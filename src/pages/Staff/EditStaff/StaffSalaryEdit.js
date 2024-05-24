@@ -5,13 +5,11 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
-  salary: Yup.number()
-    .typeError("*Salary Must be numbers")
-    .notRequired()
+  salary: Yup.number().typeError("*Salary Must be numbers").notRequired(),
 });
 
 const StaffSalaryEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         salary: "",
@@ -83,7 +81,7 @@ const StaffSalaryEdit = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally{
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -139,7 +137,7 @@ const StaffSalaryEdit = forwardRef(
                 <label>Salary</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="salary"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -155,7 +153,7 @@ const StaffSalaryEdit = forwardRef(
                 <label>Effective Date</label>
                 <input
                   type="date"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="effectiveDate"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -166,7 +164,7 @@ const StaffSalaryEdit = forwardRef(
                 <label>Salary Type</label>
                 <select
                   type="text"
-                  className="form-select"
+                  className="form-select form-select-sm"
                   name="salaryType"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

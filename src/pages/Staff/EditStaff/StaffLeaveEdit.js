@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
     .required("*Carry Forward Leave is required!"),
 });
 const StaffLeaveEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         year: "",
@@ -94,7 +94,7 @@ const StaffLeaveEdit = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally{
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -168,7 +168,7 @@ const StaffLeaveEdit = forwardRef(
                 </label>
                 <input
                   type="date"
-                  class="form-control mt-3"
+                  class="form-control form-control-sm mt-3"
                   name="year"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -186,7 +186,7 @@ const StaffLeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control mt-3"
+                  class="form-control form-control-sm mt-3"
                   name="annualLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -204,7 +204,7 @@ const StaffLeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control mt-3 "
+                  class="form-control form-control-sm mt-3 "
                   name="medicalLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -222,7 +222,7 @@ const StaffLeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control mt-3"
+                  class="form-control form-control-sm mt-3"
                   name="otherLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -240,7 +240,7 @@ const StaffLeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control    mt-3"
+                  class="form-control form-control-sm    mt-3"
                   name="carryForwardLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

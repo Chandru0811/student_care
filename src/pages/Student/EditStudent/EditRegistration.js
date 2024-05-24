@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddEmergencyContact = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const navigate = useNavigate();
     const formik = useFormik({
       initialValues: {
@@ -113,49 +113,48 @@ const AddEmergencyContact = forwardRef(
         setLoadIndicators(true);
         console.log("Api Data:", data);
         try {
-            if (formData.emergencyContactId !== null) {
-                console.log("Emergency Contact ID:", formData.emergencyContactId);
-                const response = await api.put(
-                    `/updateStudentEmergencyContact/${formData.emergencyContactId}`,
-                    data,
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                if (response.status === 200) {
-                    toast.success(response.data.message);
-                    setFormData((prv) => ({ ...prv, ...data }));
-                    navigate("/student");
-                } else {
-                    toast.error(response.data.message);
-                }
+          if (formData.emergencyContactId !== null) {
+            console.log("Emergency Contact ID:", formData.emergencyContactId);
+            const response = await api.put(
+              `/updateStudentEmergencyContact/${formData.emergencyContactId}`,
+              data,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            if (response.status === 200) {
+              toast.success(response.data.message);
+              setFormData((prv) => ({ ...prv, ...data }));
+              navigate("/student");
             } else {
-                const response = await api.post(
-                    `/createStudentEmergencyContacts/${formData.id}`,
-                    data,
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                if (response.status === 201) {
-                    toast.success(response.data.message);
-                    setFormData((prv) => ({ ...prv, ...data }));
-                    navigate("/student");
-                } else {
-                    toast.error(response.data.message);
-                }
+              toast.error(response.data.message);
             }
+          } else {
+            const response = await api.post(
+              `/createStudentEmergencyContacts/${formData.id}`,
+              data,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            if (response.status === 201) {
+              toast.success(response.data.message);
+              setFormData((prv) => ({ ...prv, ...data }));
+              navigate("/student");
+            } else {
+              toast.error(response.data.message);
+            }
+          }
         } catch (error) {
-            toast.error(error);
-        }finally {
+          toast.error(error);
+        } finally {
           setLoadIndicators(false);
         }
-    },
-    
+      },
     });
 
     useEffect(() => {
@@ -224,7 +223,7 @@ const AddEmergencyContact = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="text"
                           name="emergencyContactName"
                           onChange={formik.handleChange}
@@ -242,7 +241,7 @@ const AddEmergencyContact = forwardRef(
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.authorizedRelation}
-                          className="form-select "
+                          className="form-select form-select-sm"
                           aria-label=" example"
                         >
                           <option value=""></option>
@@ -259,7 +258,7 @@ const AddEmergencyContact = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="text"
                           name="emergencyContactNo"
                           onChange={formik.handleChange}
@@ -288,7 +287,7 @@ const AddEmergencyContact = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="text"
                           name="name"
                           onChange={formik.handleChange}
@@ -306,7 +305,7 @@ const AddEmergencyContact = forwardRef(
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.emergencyRelation}
-                          className="form-select "
+                          className="form-select form-select-sm"
                           aria-label=" example"
                         >
                           <option value=""></option>
@@ -325,7 +324,7 @@ const AddEmergencyContact = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="text"
                           name="contactNo"
                           onChange={formik.handleChange}
@@ -339,7 +338,7 @@ const AddEmergencyContact = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="text"
                           name="studentEmergencyContactPostalCode"
                           onChange={formik.handleChange}
@@ -358,7 +357,7 @@ const AddEmergencyContact = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="text"
                           name="studentEmergencyContactAddress"
                           onChange={formik.handleChange}

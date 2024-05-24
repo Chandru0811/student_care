@@ -235,7 +235,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
                   </label>
                   <select
                     {...formik.getFieldProps("centerId")}
-                    className={`form-select ${
+                    className={`form-select form-select-sm ${
                       formik.touched.centerId && formik.errors.centerId
                         ? "is-invalid"
                         : ""
@@ -263,7 +263,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
                   </label>
                   <select
                     {...formik.getFieldProps("courseId")}
-                    class={`form-select  ${
+                    class={`form-select form-select-sm  ${
                       formik.touched.courseId && formik.errors.courseId
                         ? "is-invalid"
                         : ""
@@ -290,7 +290,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
                   </label>
                   <select
                     {...formik.getFieldProps("classId")}
-                    class={`form-select  ${
+                    class={`form-select form-select-sm  ${
                       formik.touched.classId && formik.errors.classId
                         ? "is-invalid"
                         : ""
@@ -338,7 +338,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
                   </label>
                   <select
                     {...formik.getFieldProps("days")}
-                    class={`form-select  ${
+                    class={`form-select form-select-sm  ${
                       formik.touched.days && formik.errors.days
                         ? "is-invalid"
                         : ""
@@ -363,7 +363,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
                   </label>
                   <select
                     {...formik.getFieldProps("userId")}
-                    class={`form-select  ${
+                    class={`form-select form-select-sm  ${
                       formik.touched.userId && formik.errors.userId
                         ? "is-invalid"
                         : ""

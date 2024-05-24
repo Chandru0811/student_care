@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddParentGuardian = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const [rows, setRows] = useState(
       formData.parentInformation ? formData.parentInformation.length : 1
     ); // Initially one row for one parent
@@ -70,7 +70,10 @@ const AddParentGuardian = forwardRef(
             formDatas.append(`postalCodes`, parent.postalCodes);
             formDatas.append(`addresses`, parent.addresses);
             // formDatas.append(`primaryContact`, parent.primaryContact);
-            formDatas.append(`primaryContacts`, parent.primaryContacts ? true : false );
+            formDatas.append(
+              `primaryContacts`,
+              parent.primaryContacts ? true : false
+            );
           });
 
           const response = await api.post(
@@ -95,7 +98,7 @@ const AddParentGuardian = forwardRef(
           } else {
             toast.error(error?.response?.data?.message);
           }
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -117,9 +120,7 @@ const AddParentGuardian = forwardRef(
                     <div className="row mt-2">
                       <div className="col-lg-6 col-md-6 col-12">
                         <div className="text-end mt-4">
-                          <label>
-                            {/* Primary Contact */}
-                          </label>
+                          <label>{/* Primary Contact */}</label>
                         </div>
                         <div className="text-start">
                           <label htmlFor="" className="mb-1 fw-medium">
@@ -128,7 +129,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control "
+                            className="form-control form-control-sm"
                             type="text"
                             name={`parentInformation[${index}].parentNames`}
                             onChange={formik.handleChange}
@@ -191,7 +192,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control "
+                            className="form-control form-control-sm"
                             type="emails"
                             name={`parentInformation[${index}].emails`}
                             onChange={formik.handleChange}
@@ -221,7 +222,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <select
-                            className="form-select "
+                            className="form-select form-select-sm"
                             type="text"
                             name={`parentInformation[${index}].relations`}
                             onChange={formik.handleChange}
@@ -254,7 +255,10 @@ const AddParentGuardian = forwardRef(
                       </div>
                       <div className="col-lg-6 col-md-6 col-12">
                         <div className="text-end mb-3">
-                          <label htmlFor="" className="my-1 fw-bold text-primary">
+                          <label
+                            htmlFor=""
+                            className="my-1 fw-bold text-primary"
+                          >
                             Primary Contact
                           </label>
                           <input
@@ -295,7 +299,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control "
+                            className="form-control form-control-sm"
                             type="text"
                             name={`parentInformation[${index}].occupations`}
                             onChange={formik.handleChange}
@@ -350,7 +354,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control "
+                            className="form-control form-control-sm"
                             type="tel"
                             name={`parentInformation[${index}].mobileNumbers`}
                             onChange={formik.handleChange}
@@ -381,7 +385,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control "
+                            className="form-control form-control-sm"
                             type="tel"
                             name={`parentInformation[${index}].postalCodes`}
                             onChange={formik.handleChange}
@@ -414,7 +418,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <textarea
-                            className="form-control "
+                            className="form-control form-control-sm"
                             type="text"
                             style={{
                               height: "7rem",

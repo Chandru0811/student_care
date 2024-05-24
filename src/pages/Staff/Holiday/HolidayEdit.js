@@ -138,7 +138,7 @@ function HolidayEdit() {
                   <select
                     {...formik.getFieldProps("centerId")}
                     name="centerId"
-                    className={`form-select ${
+                    className={`form-select form-select-sm ${
                       formik.touched.centerId && formik.errors.centerId
                         ? "is-invalid"
                         : ""
@@ -166,7 +166,7 @@ function HolidayEdit() {
                   </lable>
                   <input
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm ${
                       formik.touched.holidayName && formik.errors.holidayName
                         ? "is-invalid"
                         : ""
@@ -187,7 +187,7 @@ function HolidayEdit() {
                   </lable>
                   <input
                     type="date"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm ${
                       formik.touched.startDate && formik.errors.startDate
                         ? "is-invalid"
                         : ""
@@ -208,7 +208,7 @@ function HolidayEdit() {
                   </lable>
                   <input
                     type="date"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm ${
                       formik.touched.endDate && formik.errors.endDate
                         ? "is-invalid"
                         : ""
@@ -230,7 +230,7 @@ function HolidayEdit() {
                   <textarea
                     type="text"
                     rows={5}
-                    className={`form-control  ${
+                    className={`form-control form-control-sm ${
                       formik.touched.holidayDescription &&
                       formik.errors.holidayDescription
                         ? "is-invalid"

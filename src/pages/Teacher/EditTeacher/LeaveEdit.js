@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
     .required("*Carry Forward Leave is required!"),
 });
 const LeaveEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         year: "",
@@ -55,7 +55,7 @@ const LeaveEdit = forwardRef(
       // },
 
       onSubmit: async (values) => {
-        setLoadIndicators(true)
+        setLoadIndicators(true);
         // console.log("Api Data:", values);
         try {
           if (values.leaveId !== null) {
@@ -95,16 +95,18 @@ const LeaveEdit = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally{
-          setLoadIndicators(false)
+        } finally {
+          setLoadIndicators(false);
         }
       },
     });
 
     useEffect(() => {
       const getData = async () => {
-        try{
-          const response = await api.get(`/getAllUsersById/${formData.staff_id}`);
+        try {
+          const response = await api.get(
+            `/getAllUsersById/${formData.staff_id}`
+          );
           if (
             response.data.userLeaveCreationModels &&
             response.data.userLeaveCreationModels.length > 0
@@ -112,7 +114,10 @@ const LeaveEdit = forwardRef(
             formik.setValues({
               ...response.data.userLeaveCreationModels[0],
               leaveId: response.data.userLeaveCreationModels[0].id,
-              year: response.data.userLeaveCreationModels[0].year.substring(0,10)
+              year: response.data.userLeaveCreationModels[0].year.substring(
+                0,
+                10
+              ),
             });
           } else {
             formik.setValues({
@@ -125,15 +130,15 @@ const LeaveEdit = forwardRef(
             });
             // console.log("Leave ID:", formik.values.leaveId);
           }
-        }catch (error) {
+        } catch (error) {
           console.error("Error fetching data:", error);
         }
       };
       // console.log(formik.values);
       getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    
+
     useImperativeHandle(ref, () => ({
       leaveEdit: formik.handleSubmit,
     }));
@@ -150,7 +155,7 @@ const LeaveEdit = forwardRef(
                 </label>
                 <input
                   type="date"
-                  class="form-control    mt-3 "
+                  class="form-control form-control-sm  mt-3 "
                   name="year"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -168,7 +173,7 @@ const LeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control    mt-3"
+                  class="form-control form-control-sm  mt-3"
                   name="annualLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -186,7 +191,7 @@ const LeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control    mt-3 "
+                  class="form-control form-control-sm  mt-3 "
                   name="medicalLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -204,7 +209,7 @@ const LeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control    mt-3"
+                  class="form-control form-control-sm  mt-3"
                   name="otherLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -222,7 +227,7 @@ const LeaveEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  class="form-control    mt-3"
+                  class="form-control form-control-sm  mt-3"
                   name="carryForwardLeave"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

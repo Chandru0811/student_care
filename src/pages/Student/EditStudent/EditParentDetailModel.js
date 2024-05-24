@@ -141,7 +141,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   </lable>
                   <div className="input-group mb-3">
                     <input
-                      className="form-control "
+                      className="form-control form-control-sm "
                       type="text"
                       name="parentName"
                       onChange={formik.handleChange}
@@ -161,7 +161,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   </lable>
                   <input
                     type="text"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.occupation && formik.errors.occupation
                         ? "is-invalid"
                         : ""
@@ -181,7 +181,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   <input
                     type="date"
                     name="parentDateOfBirth"
-                    className={`form-control ${
+                    className={`form-control form-control-sm ${
                       formik.touched.parentDateOfBirth &&
                       formik.errors.parentDateOfBirth
                         ? "is-invalid"
@@ -201,7 +201,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   <input
                     type="file"
                     name="file"
-                    className="form-control"
+                    className="form-control form-control-sm"
                     onChange={(event) => {
                       formik.setFieldValue("file", event.target.files[0]);
                     }}
@@ -223,7 +223,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   <input
                     type="email"
                     name="Email"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.email && formik.errors.email
                         ? "is-invalid"
                         : ""
@@ -243,7 +243,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   <input
                     type="text"
                     name="mobileNumber"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.mobileNumber && formik.errors.mobileNumber
                         ? "is-invalid"
                         : ""
@@ -262,7 +262,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                     Relation<span class="text-danger">*</span>
                   </lable>
                   <select
-                    className={`form-select ${
+                    className={`form-select form-select-sm ${
                       formik.touched.relation && formik.errors.relation
                         ? "is-invalid"
                         : ""
@@ -289,7 +289,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   <input
                     type="text"
                     name="postalCode"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.postalCode && formik.errors.postalCode
                         ? "is-invalid"
                         : ""
@@ -309,7 +309,7 @@ const EditParentDetailModel = forwardRef(({ id, getData }) => {
                   <textarea
                     type="text"
                     name="address"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.address && formik.errors.address
                         ? "is-invalid"
                         : ""

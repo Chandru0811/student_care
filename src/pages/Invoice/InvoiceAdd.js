@@ -246,7 +246,7 @@ export default function InvoiceAdd() {
                 <select
                   {...formik.getFieldProps("center")}
                   name="center"
-                  className={`form-select ${
+                  className={`form-select form-select-sm ${
                     formik.touched.center && formik.errors.center
                       ? "is-invalid"
                       : ""
@@ -272,7 +272,7 @@ export default function InvoiceAdd() {
                 <br />
                 <input
                   {...formik.getFieldProps("parent")}
-                  className={`form-control  ${
+                  className={`form-control form-control-sm  ${
                     formik.touched.parent && formik.errors.parent
                       ? "is-invalid"
                       : ""
@@ -290,7 +290,7 @@ export default function InvoiceAdd() {
                 <br />
                 <select
                   {...formik.getFieldProps("student")}
-                  className={`form-select ${
+                  className={`form-select form-select-sm ${
                     formik.touched.student && formik.errors.student
                       ? "is-invalid"
                       : ""
@@ -317,7 +317,7 @@ export default function InvoiceAdd() {
                 <br />
                 <select
                   {...formik.getFieldProps("course")}
-                  className={`form-select ${
+                  className={`form-select form-select-sm ${
                     formik.touched.course && formik.errors.course
                       ? "is-invalid"
                       : ""
@@ -342,7 +342,7 @@ export default function InvoiceAdd() {
                 <br />
                 <select
                   {...formik.getFieldProps("schedule")}
-                  className={`form-select ${
+                  className={`form-select form-select-sm ${
                     formik.touched.schedule && formik.errors.schedule
                       ? "is-invalid"
                       : ""
@@ -368,7 +368,7 @@ export default function InvoiceAdd() {
                 <select
                   name="noOfLessons"
                   {...formik.getFieldProps("noOfLessons")}
-                  class="form-select "
+                  class="form-select form-select-sm "
                   aria-label="Default select example"
                 >
                   <option selected></option>
@@ -383,7 +383,7 @@ export default function InvoiceAdd() {
                 <br />
                 <textarea
                   {...formik.getFieldProps("remarks")}
-                  className="form-control "
+                  className="form-control form-control-sm "
                   type="text"
                   placeholder="Remarks"
                   style={{
@@ -400,7 +400,7 @@ export default function InvoiceAdd() {
                 <br />
                 <input
                   {...formik.getFieldProps("invoiceDate")}
-                  className={`form-control  ${
+                  className={`form-control form-control-sm  ${
                     formik.touched.invoiceDate && formik.errors.invoiceDate
                       ? "is-invalid"
                       : ""
@@ -420,7 +420,7 @@ export default function InvoiceAdd() {
                 <br />
                 <input
                   {...formik.getFieldProps("dueDate")}
-                  className={`form-control  ${
+                  className={`form-control form-control-sm  ${
                     formik.touched.dueDate && formik.errors.dueDate
                       ? "is-invalid"
                       : ""
@@ -440,7 +440,7 @@ export default function InvoiceAdd() {
                 <br />
                 <select
                   {...formik.getFieldProps("packageId")}
-                  className={`form-select ${
+                  className={`form-select form-select-sm ${
                     formik.touched.packageId && formik.errors.packageId
                       ? "is-invalid"
                       : ""
@@ -468,7 +468,7 @@ export default function InvoiceAdd() {
                 <input
                   {...formik.getFieldProps("invoicePeriodFrom")}
                   {...formik.getFieldProps("invoicePeriodFrom")}
-                  className={`form-control  ${
+                  className={`form-control form-control-sm  ${
                     formik.touched.invoicePeriodFrom &&
                     formik.errors.invoicePeriodFrom
                       ? "is-invalid"
@@ -490,7 +490,7 @@ export default function InvoiceAdd() {
                 <br />
                 <input
                   {...formik.getFieldProps("invoicePeriodTo")}
-                  className={`form-control  ${
+                  className={`form-control form-control-sm  ${
                     formik.touched.invoicePeriodTo &&
                     formik.errors.invoicePeriodTo
                       ? "is-invalid"
@@ -513,7 +513,7 @@ export default function InvoiceAdd() {
                 <br />
                 <input
                   {...formik.getFieldProps("receiptAmount")}
-                  className={`form-control  ${
+                  className={`form-control form-control-sm  ${
                     formik.touched.receiptAmount && formik.errors.receiptAmount
                       ? "is-invalid"
                       : ""
@@ -532,34 +532,7 @@ export default function InvoiceAdd() {
           </div>
 
           <div className="row mt-5 pt-5 flex-nowrap">
-            <div className="col-1 text-end d-flex justify-content-center align-items-end ">
-              {rows.length > 1 && (
-                <button
-                  type="button"
-                  className="btn mt-3"
-                  style={{ marginBottom: "1.0rem" }}
-                  onClick={() => {
-                    // Remove the last row from the state
-                    setRows((pr) => pr.slice(0, -1));
-
-                    // Remove the last item from the invoiceItems array in formik values
-                    formik.setFieldValue(
-                      "invoiceItems",
-                      formik.values.invoiceItems.slice(0, -1)
-                    );
-                  }}
-                >
-                  <IoIosCloseCircleOutline
-                    style={{
-                      fontSize: "2rem",
-                      color: "red",
-                      background: "none",
-                    }}
-                  />
-                </button>
-              )}
-            </div>
-            <div className="col-11">
+            <div className="col-12">
               <div className="table-responsive table-bordered">
                 <table class="table table-light table-nowrap">
                   <thead className="thead-light">
@@ -590,7 +563,7 @@ export default function InvoiceAdd() {
                             {...formik.getFieldProps(
                               `invoiceItems[${index}].item`
                             )}
-                            className="form-control"
+                            className="form-control form-control-sm"
                             type="text"
                             style={{ width: "80%" }}
                           />
@@ -600,7 +573,7 @@ export default function InvoiceAdd() {
                             {...formik.getFieldProps(
                               `invoiceItems[${index}].itemAmount`
                             )}
-                            className="form-control"
+                            className="form-control form-control-sm"
                             type="text"
                             style={{ width: "80%" }}
                             onChange={(e) => {
@@ -629,7 +602,7 @@ export default function InvoiceAdd() {
                             {...formik.getFieldProps(
                               `invoiceItems[${index}].taxType`
                             )}
-                            className="form-control"
+                            className="form-control form-control-sm"
                             type="text"
                             style={{ width: "80%" }}
                           />
@@ -639,7 +612,7 @@ export default function InvoiceAdd() {
                             {...formik.getFieldProps(
                               `invoiceItems[${index}].gstAmount`
                             )}
-                            className="form-control"
+                            className="form-control form-control-sm"
                             type="text"
                             style={{ width: "80%" }}
                             onChange={(e) => {
@@ -668,7 +641,7 @@ export default function InvoiceAdd() {
                             {...formik.getFieldProps(
                               `invoiceItems[${index}].totalAmount`
                             )}
-                            className="form-control"
+                            className="form-control form-control-sm"
                             type="text"
                             style={{ width: "80%" }}
                             readOnly
@@ -683,6 +656,23 @@ export default function InvoiceAdd() {
           </div>
           <div className="row mt-3">
             <div className="col-12 text-end">
+              {rows.length > 1 && (
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger me-2"
+                  onClick={() => {
+                    // Remove the last row from the state
+                    setRows((pr) => pr.slice(0, -1));
+                    // Remove the last item from the invoiceItems array in formik values
+                    formik.setFieldValue(
+                      "invoiceItems",
+                      formik.values.invoiceItems.slice(0, -1)
+                    );
+                  }}
+                >
+                  Delete
+                </button>
+              )}
               <button
                 className="btn btn-sm btn-button me-2"
                 type="button"
@@ -703,7 +693,7 @@ export default function InvoiceAdd() {
                   <br />
                   <input
                     {...formik.getFieldProps("creditAdviceOffset")}
-                    className="form-control"
+                    className="form-control form-control-sm"
                     type="text"
                     placeholder=""
                     readOnly
@@ -716,7 +706,7 @@ export default function InvoiceAdd() {
                   <br />
                   <input
                     {...formik.getFieldProps("gst")}
-                    className="form-control  "
+                    className="form-control form-control-sm  "
                     type="text"
                     placeholder=""
                     readOnly
@@ -729,7 +719,7 @@ export default function InvoiceAdd() {
                   <br />
                   <input
                     {...formik.getFieldProps("totalAmount")}
-                    className="form-control  "
+                    className="form-control form-control-sm  "
                     type="text"
                     placeholder=""
                     readOnly

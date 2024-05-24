@@ -45,7 +45,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddStudentDetails = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const [centerData, setCenterData] = useState(null);
     const fetchData = async () => {
       try {
@@ -114,7 +114,7 @@ const AddStudentDetails = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -167,7 +167,7 @@ const AddStudentDetails = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.centerId}
-                        className="form-select"
+                        className="form-select form-select-sm"
                       >
                         <option selected></option>
                         {centerData &&
@@ -193,7 +193,7 @@ const AddStudentDetails = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm"
                         type="text"
                         name="studentChineseName"
                         onChange={formik.handleChange}
@@ -316,7 +316,7 @@ const AddStudentDetails = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm"
                         type="text"
                         name="preAssessmentResult"
                         onChange={formik.handleChange}
@@ -390,7 +390,7 @@ const AddStudentDetails = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.studentName}
-                        className="form-control "
+                        className="form-control form-control-sm"
                         type="text"
                       />
                       {formik.touched.studentName &&
@@ -432,7 +432,7 @@ const AddStudentDetails = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm"
                         type="text"
                         name="age"
                         onChange={formik.handleChange}
@@ -452,7 +452,7 @@ const AddStudentDetails = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm"
                         type="text"
                         name="medicalCondition"
                         onChange={formik.handleChange}
@@ -477,7 +477,7 @@ const AddStudentDetails = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.schoolName}
-                        className="form-control "
+                        className="form-control form-control-sm"
                         type="text"
                       />
                       {formik.touched.schoolName &&
@@ -566,7 +566,7 @@ const AddStudentDetails = forwardRef(
                   <br />
                   <textarea
                     name="remark"
-                    className="form-control "
+                    className="form-control form-control-sm"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.remark}

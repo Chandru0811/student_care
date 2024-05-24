@@ -196,7 +196,7 @@ function Payslip() {
             <lable className="form-lable fw-medium">PAYSLIP MONTH</lable>
             <input
               type="month"
-              className="form-control"
+              className="form-control form-control-sm"
               value={selectedMonth}
               onChange={handleMonthChange}
             />

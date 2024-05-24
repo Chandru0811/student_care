@@ -11,11 +11,11 @@ import { toast } from "react-toastify";
 import fetchAllCoursesWithIds from "../../List/CourseList";
 
 const validationSchema = Yup.object().shape({
-  signatureDate: Yup.string().required("*Signature Date is required")
+  signatureDate: Yup.string().required("*Signature Date is required"),
 });
 
 const AddcourseDetail = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const [courseData, setCourseData] = useState(null);
 
     const formik = useFormik({
@@ -27,7 +27,7 @@ const AddcourseDetail = forwardRef(
         courseDay: formData.courseDay || "",
         endDate: formData.endDate || "",
         endTime: formData.endTime || "",
-        signatureDate:formData.signatureDate || ""
+        signatureDate: formData.signatureDate || "",
       },
       validationSchema: validationSchema,
       onSubmit: async (data) => {
@@ -63,7 +63,7 @@ const AddcourseDetail = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -106,7 +106,7 @@ const AddcourseDetail = forwardRef(
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.courseId}
-                          className="form-select"
+                          className="form-select form-select-sm"
                         >
                           <option selected></option>
                           {courseData &&
@@ -137,7 +137,7 @@ const AddcourseDetail = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="time"
                           name="startTime"
                           onChange={formik.handleChange}
@@ -175,7 +175,7 @@ const AddcourseDetail = forwardRef(
                           onBlur={formik.handleBlur}
                           value={formik.values.courseDay}
                           name="courseDay"
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="date"
                         />
                       </div>
@@ -199,7 +199,7 @@ const AddcourseDetail = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control "
+                          className="form-control form-control-sm"
                           type="time"
                           name="endTime"
                           onChange={formik.handleChange}
@@ -209,7 +209,9 @@ const AddcourseDetail = forwardRef(
                       </div>
                       <div className="text-start mt-2">
                         <label htmlFor="" className="mb-1 fw-medium">
-                          <small>Signature Date<span className="text-danger">*</span></small>
+                          <small>
+                            Signature Date<span className="text-danger">*</span>
+                          </small>
                         </label>
                         <br />
                         <input
@@ -220,11 +222,12 @@ const AddcourseDetail = forwardRef(
                           onBlur={formik.handleBlur}
                           value={formik.values.signatureDate}
                         />
-                        {formik.touched.signatureDate && formik.errors.signatureDate && (
-                      <div className="text-danger">
-                        <small>{formik.errors.signatureDate}</small>
-                      </div>
-                    )}
+                        {formik.touched.signatureDate &&
+                          formik.errors.signatureDate && (
+                            <div className="text-danger">
+                              <small>{formik.errors.signatureDate}</small>
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>

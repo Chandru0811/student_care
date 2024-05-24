@@ -160,7 +160,7 @@ const StaffLoginEdit = forwardRef(
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter password"
-                    className={`form-control ${
+                    className={`form-control form-control-sm ${
                       formik.touched.password && formik.errors.password
                         ? "is-invalid"
                         : ""
@@ -199,7 +199,7 @@ const StaffLoginEdit = forwardRef(
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Enter confirm password"
-                    className={`form-control ${
+                    className={`form-control form-control-sm ${
                       formik.touched.confirmPassword &&
                       formik.errors.confirmPassword
                         ? "is-invalid"

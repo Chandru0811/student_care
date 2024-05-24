@@ -169,7 +169,7 @@ const AddEmergencyContact = forwardRef(
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.authorizedRelation}
-                      className="form-select"
+                      className="form-select form-select-sm"
                     >
                       <option value=""></option>
                       <option value="Mother">Mother</option>

@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const EditEmergencyContact = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const [rows, setRows] = useState([{}]);
     const [data, setData] = useState([]);
     console.log("Data is", rows);
@@ -154,7 +154,7 @@ const EditEmergencyContact = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -267,7 +267,7 @@ const EditEmergencyContact = forwardRef(
                               </label>
                               <br />
                               <input
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="text"
                                 name="emergencyContactName"
                                 onChange={formik.handleChange}
@@ -285,7 +285,7 @@ const EditEmergencyContact = forwardRef(
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.emergencyRelation}
-                                className="form-select "
+                                className="form-select form-select-sm"
                                 aria-label="example"
                               >
                                 <option value=""></option>
@@ -302,7 +302,7 @@ const EditEmergencyContact = forwardRef(
                               </label>
                               <br />
                               <input
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="text"
                                 name="emergencyContactNo"
                                 onChange={formik.handleChange}
@@ -344,7 +344,7 @@ const EditEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control "
+                              className="form-control form-control-sm"
                               type="text"
                               name={`emergencyAuthorizedContactModels[${index}].name`}
                               onChange={formik.handleChange}
@@ -365,7 +365,7 @@ const EditEmergencyContact = forwardRef(
                               name={`emergencyAuthorizedContactModels[${index}].authorizedRelation`}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
-                              className="form-select "
+                              className="form-select form-select-sm"
                               aria-label=" example"
                               value={
                                 formik.values.emergencyAuthorizedContactModels[
@@ -386,7 +386,7 @@ const EditEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control "
+                              className="form-control form-control-sm"
                               type="text"
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -406,7 +406,7 @@ const EditEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control "
+                              className="form-control form-control-sm"
                               type="text"
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -424,7 +424,7 @@ const EditEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control "
+                              className="form-control form-control-sm"
                               type="text"
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}

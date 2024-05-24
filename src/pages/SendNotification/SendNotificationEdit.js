@@ -87,7 +87,7 @@ function SendNotificationEdit({ id, onSuccess }) {
                   </label>
                   <input
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm ${
                       formik.touched.messageTitle && formik.errors.messageTitle
                         ? "is-invalid"
                         : ""
@@ -108,7 +108,7 @@ function SendNotificationEdit({ id, onSuccess }) {
                   <textarea
                     type="text"
                     rows={5}
-                    className={`form-control  ${
+                    className={`form-control form-control-sm ${
                       formik.touched.messageDescription &&
                       formik.errors.messageDescription
                         ? "is-invalid"

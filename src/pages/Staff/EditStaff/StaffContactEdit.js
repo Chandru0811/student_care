@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .required("*Postal Code is required!"),
 });
 const StaffContactEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         email: "",
@@ -90,7 +90,7 @@ const StaffContactEdit = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally{
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -159,7 +159,7 @@ const StaffContactEdit = forwardRef(
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="email"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -177,7 +177,7 @@ const StaffContactEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="contactNumber"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -196,7 +196,7 @@ const StaffContactEdit = forwardRef(
                 </label>
                 <textarea
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="address"
                   rows="3"
                   onChange={formik.handleChange}
@@ -215,7 +215,7 @@ const StaffContactEdit = forwardRef(
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="postalCode"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

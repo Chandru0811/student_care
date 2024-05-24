@@ -13,13 +13,13 @@ import { useParams } from "react-router-dom";
 // import BlockImg from "../.././../assets/images/Block_Img1.jpg";
 
 const validationSchema = Yup.object().shape({
-  signatureDate: Yup.string().required("*Signature Date is required")
+  signatureDate: Yup.string().required("*Signature Date is required"),
 });
 
 const EditCourseDetail = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const [courseData, setCourseData] = useState(null);
-    
+
     const [data, setData] = useState([]);
     const { id } = useParams();
 
@@ -32,7 +32,7 @@ const EditCourseDetail = forwardRef(
         courseDay: formData.courseDay || "",
         endDate: formData.endDate || "",
         endTime: formData.endTime || "",
-        signatureDate: formData.signatureDate || ""
+        signatureDate: formData.signatureDate || "",
       },
       validationSchema: validationSchema,
       onSubmit: async (data) => {
@@ -100,7 +100,7 @@ const EditCourseDetail = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -191,7 +191,7 @@ const EditCourseDetail = forwardRef(
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.courseId}
-                          className="form-select"
+                          className="form-select form-select-sm"
                         >
                           <option selected></option>
                           {courseData &&
@@ -222,7 +222,7 @@ const EditCourseDetail = forwardRef(
                         </label>
                         <br />
                         <input
-                          className="form-control"
+                          className="form-control form-control-sm"
                           type="time"
                           name="startTime"
                           onChange={formik.handleChange}
@@ -237,7 +237,7 @@ const EditCourseDetail = forwardRef(
                         <br />
                         <input
                           type="file"
-                          className="form-control"
+                          className="form-control form-control-sm"
                           name="file"
                           onChange={(event) => {
                             formik.setFieldValue("file", event.target.files[0]);
@@ -272,17 +272,17 @@ const EditCourseDetail = forwardRef(
                           ))}
                         {(!data.studentCourseDetailModels ||
                           data.studentCourseDetailModels.length === 0) && (
-                            <div
-                              id="panelsStayOpen-collapseThree"
-                              class="accordion-collapse collapse"
-                            >
-                              <div class="accordion-body">
-                                <div className="text-muted">
-                                  Parent Signature / not available !
-                                </div>
+                          <div
+                            id="panelsStayOpen-collapseThree"
+                            class="accordion-collapse collapse"
+                          >
+                            <div class="accordion-body">
+                              <div className="text-muted">
+                                Parent Signature / not available !
                               </div>
                             </div>
-                          )}
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-12 px-5">
@@ -330,7 +330,9 @@ const EditCourseDetail = forwardRef(
                       </div>
                       <div className="text-start mt-2">
                         <label htmlFor="" className="mb-1 fw-medium">
-                          <small>Signature Date<span className="text-danger">*</span></small>
+                          <small>
+                            Signature Date<span className="text-danger">*</span>
+                          </small>
                         </label>
                         <br />
                         <input
@@ -341,11 +343,12 @@ const EditCourseDetail = forwardRef(
                           onBlur={formik.handleBlur}
                           value={formik.values.signatureDate}
                         />
-                        {formik.touched.signatureDate && formik.errors.signatureDate && (
-                          <div className="text-danger">
-                            <small>{formik.errors.signatureDate}</small>
-                          </div>
-                        )}
+                        {formik.touched.signatureDate &&
+                          formik.errors.signatureDate && (
+                            <div className="text-danger">
+                              <small>{formik.errors.signatureDate}</small>
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>

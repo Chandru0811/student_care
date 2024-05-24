@@ -12,18 +12,23 @@ import { toast } from "react-toastify";
 // import BlockImg from "../.././../assets/images/Block_Img1.jpg";
 
 const validationSchema = Yup.object().shape({
-  termsAndConditionSignatureDate: Yup.string().required("*Signature Date is required"),
-  agree: Yup.boolean().oneOf([true], "*Agree Terms and conditions is required").required(),
+  termsAndConditionSignatureDate: Yup.string().required(
+    "*Signature Date is required"
+  ),
+  agree: Yup.boolean()
+    .oneOf([true], "*Agree Terms and conditions is required")
+    .required(),
 });
 
 const EditTermsAndCondition = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const formik = useFormik({
       initialValues: {
         file: null || "",
-        termsAndConditionSignatureDate: formData.termsAndConditionSignatureDate || "",
+        termsAndConditionSignatureDate:
+          formData.termsAndConditionSignatureDate || "",
         agree: formData.agree || "",
       },
       validationSchema: validationSchema,
@@ -33,7 +38,10 @@ const EditTermsAndCondition = forwardRef(
           if (data.stdTermsAndConditionId !== null) {
             const formDatas = new FormData();
             formDatas.append("file", data.file);
-            formDatas.append("termsAndConditionSignatureDate", data.termsAndConditionSignatureDate);
+            formDatas.append(
+              "termsAndConditionSignatureDate",
+              data.termsAndConditionSignatureDate
+            );
             formDatas.append("agree", data.agree);
             formDatas.append(
               "studentTermsAndConditionId",
@@ -77,7 +85,7 @@ const EditTermsAndCondition = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -146,7 +154,7 @@ const EditTermsAndCondition = forwardRef(
                         <br />
                         <input
                           type="file"
-                          className="form-control"
+                          className="form-control form-control-sm "
                           name="file"
                           onChange={(event) => {
                             formik.setFieldValue("file", event.target.files[0]);
@@ -197,22 +205,27 @@ const EditTermsAndCondition = forwardRef(
                     <div className="col-md-6 col-12">
                       <div className="text-start mt-2">
                         <label className="mb-1 fw-medium">
-                          <small>Signature Date<span className="text-danger">*</span></small>
+                          <small>
+                            Signature Date<span className="text-danger">*</span>
+                          </small>
                         </label>
                         <br />
                         <input
-                          className="form-control  form-contorl-sm"
+                          className="form-control form-control-sm   form-contorl-sm"
                           name="termsAndConditionSignatureDate"
                           type="date"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.termsAndConditionSignatureDate}
                         />
-                        {formik.touched.termsAndConditionSignatureDate && formik.errors.termsAndConditionSignatureDate && (
-                      <div className="text-danger">
-                        <small>{formik.errors.termsAndConditionSignatureDate}</small>
-                      </div>
-                    )}
+                        {formik.touched.termsAndConditionSignatureDate &&
+                          formik.errors.termsAndConditionSignatureDate && (
+                            <div className="text-danger">
+                              <small>
+                                {formik.errors.termsAndConditionSignatureDate}
+                              </small>
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>

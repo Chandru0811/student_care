@@ -13,60 +13,61 @@ const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "*Passwords must match")
     .required("*Confirm Password is required"),
 });
-const LoginAdd = forwardRef(({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
-  const formik = useFormik({
-    initialValues: {
-      password: formData.password,
-      confirmPassword: formData.confirmPassword,
-    },
-    validationSchema: validationSchema,
-    onSubmit: async (values) => {
-      setLoadIndicators(true);
-      try {
-        const response = await api.post(
-          `/createUserLoginInfo/${formData.user_id}`,
-          values,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
+const LoginAdd = forwardRef(
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
+    const formik = useFormik({
+      initialValues: {
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+      },
+      validationSchema: validationSchema,
+      onSubmit: async (values) => {
+        setLoadIndicators(true);
+        try {
+          const response = await api.post(
+            `/createUserLoginInfo/${formData.user_id}`,
+            values,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.status === 201) {
+            toast.success(response.data.message);
+            setFormData((prv) => ({ ...prv, ...values }));
+            handleNext();
+          } else {
+            toast.error(response.data.message);
           }
-        );
-        if (response.status === 201) {
-          toast.success(response.data.message);
-          setFormData((prv) => ({ ...prv, ...values }));
-          handleNext();
-        } else {
-          toast.error(response.data.message);
+        } catch (error) {
+          toast.error(error);
+        } finally {
+          setLoadIndicators(false);
         }
-      } catch (error) {
-        toast.error(error);
-      }finally {
-        setLoadIndicators(false);
-      }
-    },
-  });
+      },
+    });
 
-  useImperativeHandle(ref, () => ({
-    loginAdd: formik.handleSubmit,
-  }));
+    useImperativeHandle(ref, () => ({
+      loginAdd: formik.handleSubmit,
+    }));
 
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+    const [showPassword, setShowPassword] = React.useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
 
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
+    const toggleConfirmPasswordVisibility = () => {
+      setShowConfirmPassword(!showConfirmPassword);
+    };
 
-  return (
-    <form onSubmit={formik.handleSubmit}>
-      <div className="container" style={{ minHeight: "60vh" }}>
-        <p className="headColor my-4">Login Information</p>
-        <div class="row">
+    return (
+      <form onSubmit={formik.handleSubmit}>
+        <div className="container" style={{ minHeight: "60vh" }}>
+          <p className="headColor my-4">Login Information</p>
+          <div class="row">
             <div class="col-md-6 col-12 mb-2">
               <div className="mb-3">
                 <label>
@@ -76,7 +77,7 @@ const LoginAdd = forwardRef(({ formData,setLoadIndicators, setFormData, handleNe
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter password"
-                    className={`form-control ${
+                    className={`form-control form-control-sm ${
                       formik.touched.password && formik.errors.password
                         ? "is-invalid"
                         : ""
@@ -106,7 +107,7 @@ const LoginAdd = forwardRef(({ formData,setLoadIndicators, setFormData, handleNe
                 </div>
               </div>
             </div>
-             <div class="col-md-6 col-12 mb-2">
+            <div class="col-md-6 col-12 mb-2">
               <div className="mb-3">
                 <label>
                   Confirm Password<span class="text-danger">*</span>
@@ -115,8 +116,9 @@ const LoginAdd = forwardRef(({ formData,setLoadIndicators, setFormData, handleNe
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Enter confirm password"
-                    className={`form-control ${
-                      formik.touched.confirmPassword && formik.errors.confirmPassword
+                    className={`form-control form-control-sm ${
+                      formik.touched.confirmPassword &&
+                      formik.errors.confirmPassword
                         ? "is-invalid"
                         : ""
                     }`}
@@ -135,20 +137,26 @@ const LoginAdd = forwardRef(({ formData,setLoadIndicators, setFormData, handleNe
                     onClick={toggleConfirmPasswordVisibility}
                     style={{ cursor: "pointer", borderRadius: "3px" }}
                   >
-                    {showConfirmPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                    {showConfirmPassword ? (
+                      <IoEyeOffOutline />
+                    ) : (
+                      <IoEyeOutline />
+                    )}
                   </span>
-                  {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                    <div className="invalid-feedback">
-                      {formik.errors.confirmPassword}
-                    </div>
-                  )}
+                  {formik.touched.confirmPassword &&
+                    formik.errors.confirmPassword && (
+                      <div className="invalid-feedback">
+                        {formik.errors.confirmPassword}
+                      </div>
+                    )}
                 </div>
               </div>
             </div>
           </div>
-      </div>
-    </form>
-  );
-});
+        </div>
+      </form>
+    );
+  }
+);
 
 export default LoginAdd;

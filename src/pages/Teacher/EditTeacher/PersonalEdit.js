@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
   citizenship: Yup.string().required("*CitizenShip is required!"),
 });
 const PersonalEdit = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         teacherName: formData.teacherName || "",
@@ -28,7 +28,7 @@ const PersonalEdit = forwardRef(
       },
       validationSchema: validationSchema,
       onSubmit: async (data) => {
-        setLoadIndicators(true)
+        setLoadIndicators(true);
         setFormData((prv) => ({ ...prv, ...data }));
         // console.log("Api Data:", data);
         data.photo = null;
@@ -61,8 +61,8 @@ const PersonalEdit = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally{
-          setLoadIndicators(false)
+        } finally {
+          setLoadIndicators(false);
         }
       },
     });
@@ -101,7 +101,7 @@ const PersonalEdit = forwardRef(
               <span className="text-danger">*</span>
               <input
                 type="text"
-                class="form-control "
+                class="form-control form-control-sm"
                 name="teacherName"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -118,7 +118,7 @@ const PersonalEdit = forwardRef(
               <span className="text-danger">*</span>
               <input
                 type="date"
-                class="form-control "
+                class="form-control form-control-sm"
                 name="dateOfBirth"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -155,7 +155,7 @@ const PersonalEdit = forwardRef(
               <span className="text-danger">*</span>
               <input
                 type="text"
-                class="form-control "
+                class="form-control form-control-sm"
                 name="idNo"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -190,7 +190,7 @@ const PersonalEdit = forwardRef(
               <label>Photo</label>
               <input
                 type="file"
-                class="form-control "
+                class="form-control form-control-sm"
                 name="photo"
                 onChange={(event) => {
                   formik.setFieldValue("photo", event.currentTarget.files[0]);
@@ -240,7 +240,7 @@ const PersonalEdit = forwardRef(
                 Short Introduction
               </label>
               <textarea
-                class="form-control "
+                class="form-control form-control-sm"
                 id="exampleFormControlTextarea1"
                 rows="4"
                 name="shortIntroduction"

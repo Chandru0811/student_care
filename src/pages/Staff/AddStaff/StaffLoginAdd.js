@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
     .required("*Confirm Password is required"),
 });
 const StaffLoginAdd = forwardRef(
-  ({formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         password: formData.password,
@@ -42,7 +42,7 @@ const StaffLoginAdd = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -77,7 +77,7 @@ const StaffLoginAdd = forwardRef(
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter password"
-                    className={`form-control ${
+                    className={`form-control form-control-sm ${
                       formik.touched.password && formik.errors.password
                         ? "is-invalid"
                         : ""
@@ -107,7 +107,7 @@ const StaffLoginAdd = forwardRef(
                 </div>
               </div>
             </div>
-             <div class="col-md-6 col-12 mb-2">
+            <div class="col-md-6 col-12 mb-2">
               <div className="mb-3">
                 <label>
                   Confirm Password<span class="text-danger">*</span>
@@ -116,8 +116,9 @@ const StaffLoginAdd = forwardRef(
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Enter confirm password"
-                    className={`form-control ${
-                      formik.touched.confirmPassword && formik.errors.confirmPassword
+                    className={`form-control form-control-sm ${
+                      formik.touched.confirmPassword &&
+                      formik.errors.confirmPassword
                         ? "is-invalid"
                         : ""
                     }`}
@@ -136,13 +137,18 @@ const StaffLoginAdd = forwardRef(
                     onClick={toggleConfirmPasswordVisibility}
                     style={{ cursor: "pointer", borderRadius: "3px" }}
                   >
-                    {showConfirmPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                    {showConfirmPassword ? (
+                      <IoEyeOffOutline />
+                    ) : (
+                      <IoEyeOutline />
+                    )}
                   </span>
-                  {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                    <div className="invalid-feedback">
-                      {formik.errors.confirmPassword}
-                    </div>
-                  )}
+                  {formik.touched.confirmPassword &&
+                    formik.errors.confirmPassword && (
+                      <div className="invalid-feedback">
+                        {formik.errors.confirmPassword}
+                      </div>
+                    )}
                 </div>
               </div>
             </div>

@@ -67,56 +67,56 @@ const EditForm3 = forwardRef(
         // data.primaryContactFather = primarycontactFather ? true : false;
         // data.primaryContactMother = primarycontactMother ? true : false;
         console.log(data);
-        try {
-          const response = await api.put(
-            `/updateLeadInfo/${formData.id}`,
-            data,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          if (response.status === 200) {
-            toast.success(response.data.message);
-            setFormData((prv) => ({ ...prv, ...data }));
-            handleNext();
-          } else {
-            toast.error(response.data.message);
-          }
-        } catch (error) {
-          toast.error(error);
-        } finally {
-          setLoadIndicators(false);
-        }
+        // try {
+        //   const response = await api.put(
+        //     `/updateLeadInfo/${formData.id}`,
+        //     data,
+        //     {
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //       },
+        //     }
+        //   );
+        //   if (response.status === 200) {
+        //     toast.success(response.data.message);
+        //     setFormData((prv) => ({ ...prv, ...data }));
+        //     handleNext();
+        //   } else {
+        //     toast.error(response.data.message);
+        //   }
+        // } catch (error) {
+        //   toast.error(error);
+        // } finally {
+        //   setLoadIndicators(false);
+        // }
       },
     });
 
-    useEffect(() => {
-      const getData = async () => {
-        const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
+    // useEffect(() => {
+    //   const getData = async () => {
+    //     const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
 
-        const fathersDateOfBirth =
-          response.data.fathersDateOfBirth &&
-          response.data.fathersDateOfBirth.substring(0, 10);
-        const mothersDateOfBirth =
-          response.data.mothersDateOfBirth &&
-          response.data.mothersDateOfBirth.substring(0, 10);
-        console.log(response.data);
-        formik.setValues({
-          ...response.data,
-          fathersDateOfBirth: fathersDateOfBirth,
-          mothersDateOfBirth: mothersDateOfBirth,
-          primaryContact: response.data.primaryContact === true || false,
-        });
-      };
-      getData();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    //     const fathersDateOfBirth =
+    //       response.data.fathersDateOfBirth &&
+    //       response.data.fathersDateOfBirth.substring(0, 10);
+    //     const mothersDateOfBirth =
+    //       response.data.mothersDateOfBirth &&
+    //       response.data.mothersDateOfBirth.substring(0, 10);
+    //     console.log(response.data);
+    //     formik.setValues({
+    //       ...response.data,
+    //       fathersDateOfBirth: fathersDateOfBirth,
+    //       mothersDateOfBirth: mothersDateOfBirth,
+    //       primaryContact: response.data.primaryContact === true || false,
+    //     });
+    //   };
+    //   getData();
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
-    useImperativeHandle(ref, () => ({
-      editForm3: formik.handleSubmit,
-    }));
+    // useImperativeHandle(ref, () => ({
+    //   editForm3: formik.handleSubmit,
+    // }));
 
     return (
       <form onSubmit={formik.handleSubmit}>

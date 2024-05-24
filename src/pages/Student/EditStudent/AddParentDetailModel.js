@@ -207,7 +207,7 @@ const AddParentDetailModel = forwardRef(({ formData }) => {
                               </label>
                               <br />
                               <input
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="text"
                                 name={`parentInformation[${index}].parentNames`}
                                 onChange={formik.handleChange}
@@ -270,7 +270,7 @@ const AddParentDetailModel = forwardRef(({ formData }) => {
                               </label>
                               <br />
                               <input
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="emails"
                                 name={`parentInformation[${index}].emails`}
                                 onChange={formik.handleChange}
@@ -301,7 +301,7 @@ const AddParentDetailModel = forwardRef(({ formData }) => {
                               </label>
                               <br />
                               <select
-                                className="form-select "
+                                className="form-select form-select-sm"
                                 type="text"
                                 name={`parentInformation[${index}].relations`}
                                 onChange={formik.handleChange}
@@ -339,7 +339,7 @@ const AddParentDetailModel = forwardRef(({ formData }) => {
                               </label>
                               <br />
                               <input
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="text"
                                 name={`parentInformation[${index}].occupations`}
                                 onChange={formik.handleChange}
@@ -394,7 +394,7 @@ const AddParentDetailModel = forwardRef(({ formData }) => {
                               </label>
                               <br />
                               <input
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="tel"
                                 name={`parentInformation[${index}].mobileNumbers`}
                                 onChange={formik.handleChange}
@@ -425,7 +425,7 @@ const AddParentDetailModel = forwardRef(({ formData }) => {
                               </label>
                               <br />
                               <input
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="tel"
                                 name={`parentInformation[${index}].postalCodes`}
                                 onChange={formik.handleChange}
@@ -458,7 +458,7 @@ const AddParentDetailModel = forwardRef(({ formData }) => {
                               </label>
                               <br />
                               <textarea
-                                className="form-control "
+                                className="form-control form-control-sm"
                                 type="text"
                                 style={{
                                   height: "7rem",

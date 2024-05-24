@@ -44,7 +44,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const Edi = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const [centerData, setCenterData] = useState(null);
     const fetchData = async () => {
       try {
@@ -113,7 +113,7 @@ const Edi = forwardRef(
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -166,7 +166,7 @@ const Edi = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.centerId}
-                        className="form-select"
+                        className="form-select form-select-sm"
                       >
                         <option selected></option>
                         {centerData &&
@@ -192,7 +192,7 @@ const Edi = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm "
                         type="text"
                         name="studentChineseName"
                         onChange={formik.handleChange}
@@ -213,7 +213,7 @@ const Edi = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control  form-contorl-sm"
+                        className="form-control form-control-sm  form-contorl-sm"
                         name="dateOfBirth"
                         type="date"
                         onChange={formik.handleChange}
@@ -315,7 +315,7 @@ const Edi = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm "
                         type="text"
                         name="preAssessmentResult"
                         onChange={formik.handleChange}
@@ -340,7 +340,7 @@ const Edi = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.nationality}
-                        className="form-select "
+                        className="form-select form-select-sm "
                         aria-label=". example"
                       >
                         <option value=""></option>
@@ -363,7 +363,7 @@ const Edi = forwardRef(
                       <br />
                       <input
                         name="referByParent"
-                        className="form-control"
+                        className="form-control form-control-sm"
                         type="text"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -389,7 +389,7 @@ const Edi = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.studentName}
-                        className="form-control "
+                        className="form-control form-control-sm "
                         type="text"
                       />
                       {formik.touched.studentName &&
@@ -408,7 +408,7 @@ const Edi = forwardRef(
                       <input
                         type="file"
                         name="profileImage"
-                        className="form-control"
+                        className="form-control form-control-sm"
                         onChange={(event) => {
                           formik.setFieldValue(
                             "profileImage",
@@ -425,7 +425,7 @@ const Edi = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm "
                         type="text"
                         name="age"
                         onChange={formik.handleChange}
@@ -445,7 +445,7 @@ const Edi = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control "
+                        className="form-control form-control-sm "
                         type="text"
                         name="medicalCondition"
                         onChange={formik.handleChange}
@@ -470,7 +470,7 @@ const Edi = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.schoolName}
-                        className="form-control "
+                        className="form-control form-control-sm "
                         type="text"
                       />
                       {formik.touched.schoolName &&
@@ -491,7 +491,7 @@ const Edi = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.race}
-                        className="form-select "
+                        className="form-select form-select-sm "
                         aria-label=". example"
                       >
                         <option selected></option>
@@ -513,7 +513,7 @@ const Edi = forwardRef(
                       </label>
                       <br />
                       <input
-                        className="form-control"
+                        className="form-control form-control-sm"
                         type="text"
                         name="primaryLanguageSpokenEnglish"
                         onChange={formik.handleChange}
@@ -540,7 +540,7 @@ const Edi = forwardRef(
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.referByStudent}
-                        className="form-control"
+                        className="form-control form-control-sm"
                       />
                       {formik.touched.referByStudent &&
                         formik.errors.referByStudent && (
@@ -558,7 +558,7 @@ const Edi = forwardRef(
                   <br />
                   <textarea
                     name="remark"
-                    className="form-control "
+                    className="form-control form-control-sm "
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.remark}
