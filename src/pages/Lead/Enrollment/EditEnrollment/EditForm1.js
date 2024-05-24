@@ -107,7 +107,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
               </label>
               <input
                 type="text"
-                className="form-control "
+                className="form-control form-control-sm "
                 name="studentName"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -124,7 +124,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
             <label className="form-label">Subject</label>
             <span className="text-danger">*</span>
             <select
-              className="form-select"
+              className="form-select form-select-sm"
               name="subject"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -194,7 +194,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
               <input
                 type="date"
                 name="dateOfBirth"
-                className="form-control"
+                className="form-control form-control-sm"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.dateOfBirth}
@@ -218,7 +218,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
                 <textarea
                   type="text"
                   name="medicalCondition"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.medicalCondition}
@@ -321,7 +321,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
               Status<span class="text-danger">*</span>
             </label>
             <select
-              className={`form-select  ${
+              className={`form-select form-select-sm  ${
                 formik.touched.status && formik.errors.status
                   ? "is-invalid"
                   : ""
@@ -407,7 +407,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
               <input
                 type="text"
                 name="nameOfSchool"
-                className="form-control"
+                className="form-control form-control-sm"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.nameOfSchool}
@@ -428,7 +428,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
               <input
                 type="text"
                 name="nameOfChildrenInTotal"
-                className="form-control"
+                className="form-control form-control-sm"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.nameOfChildrenInTotal}
@@ -449,7 +449,7 @@ const EditForm1 = forwardRef(({ formData, setFormData, handleNext }, ref) => {
               <input
                 type="text"
                 name="fathersFullName"
-                className="form-control"
+                className="form-control form-control-sm"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.fathersFullName}

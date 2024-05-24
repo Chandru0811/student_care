@@ -53,7 +53,7 @@ function HolidayView() {
           </div>
         </div>
       </div>
-      <div className="card shadow border-0 mb-2 top-header">
+      <div className="card shadow border-0 mb-2 top-header minHeight">
         <div className="container p-5">
           <div className="row mt-5 pb-3">
             <div className="col-md-6 col-12">

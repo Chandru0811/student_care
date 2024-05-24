@@ -146,7 +146,7 @@ function CourseEdit() {
                   <div class="input-group mb-3">
                     <select
                       {...formik.getFieldProps("centerId")}
-                      class={`form-select  ${
+                      class={`form-select form-select-sm ${
                         formik.touched.centerId && formik.errors.centerId
                           ? "is-invalid"
                           : ""
@@ -174,7 +174,7 @@ function CourseEdit() {
                   </lable>
                   <input
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.courseName && formik.errors.courseName
                         ? "is-invalid"
                         : ""
@@ -196,7 +196,7 @@ function CourseEdit() {
                   <div class="input-group mb-3">
                     <input
                       type="text"
-                      className={`form-control  ${
+                      className={`form-control form-control-sm  ${
                         formik.touched.courseCode && formik.errors.courseCode
                           ? "is-invalid"
                           : ""
@@ -215,7 +215,7 @@ function CourseEdit() {
                     Subject<span class="text-danger">*</span>
                   </lable>
                   <select
-                    class={`form-select  ${
+                    class={`form-select form-select-sm ${
                       formik.touched.subjectId && formik.errors.subjectId
                         ? "is-invalid"
                         : ""
@@ -246,7 +246,7 @@ function CourseEdit() {
                   <div class="input-group mb-3">
                     <select
                       {...formik.getFieldProps("levelId")}
-                      class={`form-select  ${
+                      class={`form-select form-select-sm ${
                         formik.touched.levelId && formik.errors.levelId
                           ? "is-invalid"
                           : ""
@@ -272,7 +272,7 @@ function CourseEdit() {
                   <lable class="form-lable">Min Class Size</lable>
                   <input
                     type="text"
-                    className={`form-control iconInput  `}
+                    className={`form-control form-control-sm iconInput  `}
                     {...formik.getFieldProps("minClassSize")}
                     placeholder=""
                   />
@@ -292,7 +292,7 @@ function CourseEdit() {
                   <lable class="form-lable">Max Class Size</lable>
                   <input
                     type="text"
-                    className={`form-control iconInput  `}
+                    className={`form-control form-control-sm iconInput  `}
                     {...formik.getFieldProps("maxClassSize")}
                     placeholder=""
                   />
@@ -310,7 +310,7 @@ function CourseEdit() {
                   <lable className="">Replacement Lesson Student Buffer</lable>
                   <input
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.replacementLessonStudentBuffer &&
                       formik.errors.replacementLessonStudentBuffer
                         ? "is-invalid"
@@ -328,12 +328,12 @@ function CourseEdit() {
                       <input
                         type="color"
                         {...formik.getFieldProps("colorCode")}
-                        className="form-control-color circle"
+                        className="form-control form-control-sm  form-control form-control-sm-color circle"
                       />
                     </div>
                     <input
                       type="text"
-                      className={`form-control iconInput `}
+                      className={`form-control form-control-sm iconInput `}
                       value={formik.values.colorCode}
                     />
                   </div>
@@ -381,7 +381,7 @@ function CourseEdit() {
                   <div class="input-group mb-3">
                     <select
                       {...formik.getFieldProps("durationInHrs")}
-                      class="form-select iconInput "
+                      class="form-select form-select-smiconInput "
                       aria-label="Default select example"
                     >
                       <option selected></option>
@@ -398,7 +398,7 @@ function CourseEdit() {
                   <div class="input-group mb-3">
                     <select
                       {...formik.getFieldProps("durationInMins")}
-                      class="form-select iconInput "
+                      class="form-select form-select-smiconInput "
                       aria-label="Default select example"
                     >
                       <option selected></option>
@@ -418,7 +418,7 @@ function CourseEdit() {
                   <div class="input-group mb-3">
                     <select
                       {...formik.getFieldProps("status")}
-                      class={`form-select  ${
+                      class={`form-select form-select-sm ${
                         formik.touched.status && formik.errors.status
                           ? "is-invalid"
                           : ""
@@ -480,7 +480,7 @@ function CourseEdit() {
                   <lable className="">Description</lable>
                   <textarea
                     type="text"
-                    className={`form-control pb-5`}
+                    className={`form-control form-control-sm pb-5`}
                     {...formik.getFieldProps("description")}
                     placeholder=""
                   ></textarea>

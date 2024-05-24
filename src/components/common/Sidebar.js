@@ -347,7 +347,9 @@ function Sidebar({ onLogout }) {
                   className="bx bx-grid-alt me-3"
                   style={{ color: "#303030" }}
                 ></i>
-                <span className="links_name">Home</span>
+                <span className="links_name" style={{ color: "#6a5b7a" }}>
+                  Home
+                </span>
               </li>
             </NavLink>
 
@@ -413,7 +415,9 @@ function Sidebar({ onLogout }) {
             >
               <li className="py-2 px-4 nav-link">
                 <i className="bx bx-send me-3" style={{ color: "#303030" }}></i>
-                <span className="links_name">Send Notification</span>
+                <span className="links_name" style={{ color: "#6a5b7a" }}>
+                  Send Notification
+                </span>
               </li>
             </NavLink>
           </ul>
@@ -425,10 +429,14 @@ function Sidebar({ onLogout }) {
             />
           </div>
 
-          <button className="nav-link exit" to="#">
+          <button className="nav-link exit ps-2" to="#">
             <i className="bi bi-person-square me-2"></i> Account
           </button>
-          <button to="#" className="nav-link exit" onClick={handleLogOutClick}>
+          <button
+            to="#"
+            className="nav-link exit ps-1"
+            onClick={handleLogOutClick}
+          >
             <i className="bi bi-box-arrow-left me-2"></i> Logout
           </button>
         </div>

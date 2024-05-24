@@ -66,7 +66,7 @@ const Deduction = () => {
   };
 
   return (
-    <div className="minHeight container-fluid  center">
+    <div className="container-fluid  center">
       <div className="card shadow border-0 mb-2 top-header">
         <div className="container-fluid px-0">
           <div className="my-3 px-4 d-flex justify-content-between mb-5">
@@ -92,7 +92,7 @@ const Deduction = () => {
             </div>
           ) : (
             <div className="table-response px-4">
-              <table ref={tableRef} className="display">
+              <table ref={tableRef} className="display minHeight">
                 <thead>
                   <tr>
                     <th scope="col">S No</th>

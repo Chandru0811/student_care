@@ -80,7 +80,7 @@ function LevelAdd({ onSuccess }) {
                   </label>
                   <input
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.level && formik.errors.level
                         ? "is-invalid"
                         : ""
@@ -99,7 +99,7 @@ function LevelAdd({ onSuccess }) {
                   </label>
                   <input
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.levelCode && formik.errors.levelCode
                         ? "is-invalid"
                         : ""
@@ -118,7 +118,7 @@ function LevelAdd({ onSuccess }) {
                   </label>
                   <select
                     {...formik.getFieldProps("status")}
-                    class={`form-select  ${
+                    class={`form-select form-select-sm ${
                       formik.touched.status && formik.errors.status
                         ? "is-invalid"
                         : ""
@@ -156,7 +156,7 @@ function LevelAdd({ onSuccess }) {
                     aria-hidden="true"
                   ></span>
                 )}
-                Submit
+                Save
               </Button>
               {/* <Button variant="danger" type="submit">
                 Submit

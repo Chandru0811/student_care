@@ -127,7 +127,7 @@ function HolidayEdit() {
             </div>
           </div>
         </div>
-        <div className="card shadow border-0 mb-2 top-header">
+        <div className="card shadow border-0 mb-2 top-header minHeight">
           <div className="container p-5">
             <div className="row">
               <div className="col-lg-6 col-md-6 col-12">

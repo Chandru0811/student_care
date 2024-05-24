@@ -124,7 +124,7 @@ const SendNotification = () => {
           </div>
         </div>
       ) : (
-        <div className="minHeight center">
+        <div className="center">
           <div className="card shadow border-0  top-header">
             <div className="d-flex justify-content-between m-2 pt-2">
               <div>
@@ -133,7 +133,7 @@ const SendNotification = () => {
               <SendNotificationAdd />
             </div>
             <hr />
-            <div className="table-response px-4">
+            <div className="table-response px-4 minHeight">
               <table ref={tableRef} className="display ">
                 <thead>
                   <tr>

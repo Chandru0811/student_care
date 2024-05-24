@@ -60,14 +60,14 @@ const Payment = () => {
   }, []);
 
   return (
-    <div className="minHeight container-fluid  center">
+    <div className="container-fluid  center">
       <div className="card shadow border-0 mb-2 top-header">
         <div className="container-fluid px-0">
           <div className="d-flex justify-content-between px-4 mb-5 my-3">
             <h2>Payment</h2>
           </div>
           <hr />
-          <div className="table-response px-4">
+          <div className="table-response px-4 minHeight">
             <table ref={tableRef} className="display">
               <thead>
                 <tr>

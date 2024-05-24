@@ -100,7 +100,7 @@ function DeductionEdit() {
     <section className="HolidayAdd p-3">
       <div className="minHeight container-fluid  center">
         <div className="card shadow border-0 mb-2 top-header">
-          <div className="container">
+          <div className="container minHeight">
             <form onSubmit={formik.handleSubmit}>
               <div className="row">
                 <div className="col-12 text-end mt-2">

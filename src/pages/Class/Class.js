@@ -82,7 +82,7 @@ const Class = () => {
           </div>
         </div>
       ) : (
-        <div className="minHeight container-fluid  center">
+        <div className="container-fluid  center">
           <div className="card shadow border-0  mb-2 top-header">
             <div className="container-fluid px-0">
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
@@ -97,7 +97,7 @@ const Class = () => {
               </div>
               <hr />
               <div className="table-responsive px-4">
-                <table ref={tableRef} className="display">
+                <table ref={tableRef} className="display minHeight">
                   <thead>
                     <tr>
                       <th scope="col">S No</th>

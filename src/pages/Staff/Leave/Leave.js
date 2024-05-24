@@ -71,7 +71,7 @@ const Leave = () => {
   };
 
   return (
-    <div className="minHeight container-fluid  center">
+    <div className="container-fluid  center">
       <div className="card shadow border-0 mb-2 top-header">
         <div className="container-fluid px-0">
           <div className="my-5 px-4 d-flex justify-content-between">
@@ -96,7 +96,7 @@ const Leave = () => {
               </div>
             </div>
           ) : (
-            <div className="px-4">
+            <div className="px-4 minHeight">
               <div className="row pb-3 ">
                 <div className="col-md-6 col-12">
                   <div className="row mt-3 mb-2">

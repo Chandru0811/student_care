@@ -92,7 +92,7 @@ function Edit({ id, onSuccess }) {
                   <input
                     type="text"
                     placeholder=""
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.level && formik.errors.level
                         ? "is-invalid"
                         : ""
@@ -112,7 +112,7 @@ function Edit({ id, onSuccess }) {
                   <input
                     type="text"
                     placeholder=""
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.levelCode && formik.errors.levelCode
                         ? "is-invalid"
                         : ""
@@ -131,7 +131,7 @@ function Edit({ id, onSuccess }) {
                   </label>
                   <select
                     {...formik.getFieldProps("status")}
-                    class={`form-select  ${
+                    class={`form-select form-select-sm ${
                       formik.touched.status && formik.errors.status
                         ? "is-invalid"
                         : ""

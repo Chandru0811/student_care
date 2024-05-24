@@ -171,7 +171,7 @@ function CenterEdit() {
                   <input
                     type="text"
                     name="centerName"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.centerName && formik.errors.centerName
                         ? "is-invalid"
                         : ""
@@ -195,7 +195,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("code")}
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.code && formik.errors.code
                         ? "is-invalid"
                         : ""
@@ -214,7 +214,7 @@ function CenterEdit() {
                   </label>
                   <select
                     {...formik.getFieldProps("centerManager")}
-                    className={`form-select    ${
+                    className={`form-select form-select-sm   ${
                       formik.touched.centerManager &&
                       formik.errors.centerManager
                         ? "is-invalid"
@@ -241,7 +241,7 @@ function CenterEdit() {
                     Address
                   </label>
                   <textarea
-                    className="form-control"
+                    className="form-control form-control-sm"
                     {...formik.getFieldProps("address")}
                     id="exampleFormControlTextarea1"
                     rows="3"
@@ -256,7 +256,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("zipCode")}
                     type="text"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.zipCode && formik.errors.zipCode
                         ? "is-invalid"
                         : ""
@@ -277,7 +277,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("mobile")}
                     type="text"
-                    className={`form-control   ${
+                    className={`form-control form-control-sm   ${
                       formik.touched.mobile && formik.errors.mobile
                         ? "is-invalid"
                         : ""
@@ -298,7 +298,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("email")}
                     type="text"
-                    className={`form-control   ${
+                    className={`form-control form-control-sm   ${
                       formik.touched.email && formik.errors.email
                         ? "is-invalid"
                         : ""
@@ -321,7 +321,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("openingDate")}
                     type="date"
-                    className={`form-control   ${
+                    className={`form-control form-control-sm   ${
                       formik.touched.openingDate && formik.errors.openingDate
                         ? "is-invalid"
                         : ""
@@ -392,7 +392,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("uenNumber")}
                     type="text"
-                    className={`form-control  ${
+                    className={`form-control form-control-sm  ${
                       formik.touched.uenNumber && formik.errors.uenNumber
                         ? "is-invalid"
                         : ""
@@ -414,7 +414,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("taxRegistrationNumber")}
                     type="text"
-                    className={`form-control   ${
+                    className={`form-control form-control-sm   ${
                       formik.touched.taxRegistrationNumber &&
                       formik.errors.taxRegistrationNumber
                         ? "is-invalid"
@@ -437,7 +437,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("bankName")}
                     type="text"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.bankName && formik.errors.bankName
                         ? "is-invalid"
                         : ""
@@ -458,7 +458,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("bankBranch")}
                     type="text"
-                    className={`form-control   ${
+                    className={`form-control form-control-sm   ${
                       formik.touched.bankBranch && formik.errors.bankBranch
                         ? "is-invalid"
                         : ""
@@ -479,7 +479,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("bankAccountName")}
                     type="text"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.bankAccountName &&
                       formik.errors.bankAccountName
                         ? "is-invalid"
@@ -502,7 +502,7 @@ function CenterEdit() {
                   <input
                     {...formik.getFieldProps("bankAccountNumber")}
                     type="text"
-                    className={`form-control    ${
+                    className={`form-control form-control-sm    ${
                       formik.touched.bankAccountNumber &&
                       formik.errors.bankAccountNumber
                         ? "is-invalid"
@@ -523,7 +523,7 @@ function CenterEdit() {
                 </label>
                 <div class="input-group mb-3">
                   <textarea
-                    class="form-control"
+                    class="form-control form-control-sm"
                     {...formik.getFieldProps("invoiceNotes")}
                     id="exampleFormControlTextarea1"
                     rows="5"

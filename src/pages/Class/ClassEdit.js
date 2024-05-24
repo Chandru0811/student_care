@@ -125,7 +125,7 @@ function ClassEdit() {
               <select
                 {...formik.getFieldProps("centerId")}
                 name="centerId"
-                className={`form-select   ${
+                className={`form-select  form-select-sm ${
                   formik.touched.centerId && formik.errors.centerId
                     ? "is-invalid"
                     : ""
@@ -152,7 +152,7 @@ function ClassEdit() {
               <select
                 {...formik.getFieldProps("courseId")}
                 name="courseId"
-                className={`form-select   ${
+                className={`form-select  form-select-sm ${
                   formik.touched.courseId && formik.errors.courseId
                     ? "is-invalid"
                     : ""
@@ -178,9 +178,8 @@ function ClassEdit() {
               </label>
               <input
                 name="className"
-                class="form-control "
                 type="text"
-                className={`form-control  ${
+                className={`form-control form-control-sm ${
                   formik.touched.className && formik.errors.className
                     ? "is-invalid"
                     : ""
@@ -238,7 +237,7 @@ function ClassEdit() {
               </label>
               <select
                 {...formik.getFieldProps("durationInHrs")}
-                className={`form-select  ${
+                className={`form-select  form-select-sm${
                   formik.touched.durationInHrs && formik.errors.durationInHrs
                     ? "is-invalid"
                     : ""
@@ -262,9 +261,8 @@ function ClassEdit() {
               <label>Remark</label>
               <textarea
                 name="remark"
-                class="form-control "
                 type="text"
-                className={`form-control  ${
+                className={`form-control form-control-sm ${
                   formik.touched.remark && formik.errors.remark
                     ? "is-invalid"
                     : ""

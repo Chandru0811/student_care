@@ -95,7 +95,7 @@ function SubjectEdit({ id, onSuccess }) {
                   <div className="input-group mb-3">
                     <input
                       type="text"
-                      className={`form-control   ${
+                      className={`form-control form-control-sm  ${
                         formik.touched.subject && formik.errors.subject
                           ? "is-invalid"
                           : ""
@@ -118,7 +118,7 @@ function SubjectEdit({ id, onSuccess }) {
                   <div className="input-group mb-3">
                     <input
                       type="text"
-                      className={`form-control   ${
+                      className={`form-control form-control-sm  ${
                         formik.touched.code && formik.errors.code
                           ? "is-invalid"
                           : ""
@@ -141,7 +141,7 @@ function SubjectEdit({ id, onSuccess }) {
                   <div class="input-group mb-3">
                     <select
                       {...formik.getFieldProps("status")}
-                      className={`form-select  ${
+                      className={`form-select form-select-sm ${
                         formik.touched.status && formik.errors.status
                           ? "is-invalid"
                           : ""

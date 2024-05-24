@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .required("*Postal Code is required"),
 });
 const StaffContactAdd = forwardRef(
-  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
     const formik = useFormik({
       initialValues: {
         email: formData.email,
@@ -30,21 +30,25 @@ const StaffContactAdd = forwardRef(
       onSubmit: async (values) => {
         setLoadIndicators(true);
         try {
-          const response = await api.post(`/createUserContactInfo/${formData.user_id}`, values, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const response = await api.post(
+            `/createUserContactInfo/${formData.user_id}`,
+            values,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
           if (response.status === 201) {
             toast.success(response.data.message);
-            setFormData((prv) => ({ ...prv, ...values}));
+            setFormData((prv) => ({ ...prv, ...values }));
             handleNext();
           } else {
             toast.error(response.data.message);
           }
         } catch (error) {
           toast.error(error);
-        }finally {
+        } finally {
           setLoadIndicators(false);
         }
       },
@@ -66,7 +70,7 @@ const StaffContactAdd = forwardRef(
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="email"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -84,7 +88,7 @@ const StaffContactAdd = forwardRef(
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="contactNumber"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -101,9 +105,9 @@ const StaffContactAdd = forwardRef(
                 <label>
                   Address<span class="text-danger">*</span>
                 </label>
-                <textarea 
+                <textarea
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="address"
                   rows="3"
                   onChange={formik.handleChange}
@@ -122,7 +126,7 @@ const StaffContactAdd = forwardRef(
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="postalCode"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
