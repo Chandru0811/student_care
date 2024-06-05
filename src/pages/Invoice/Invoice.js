@@ -9,7 +9,7 @@ import api from "../../config/URL";
 import fetchAllCoursesWithIds from "../List/CourseList";
 import fetchAllCentersWithIds from "../List/CenterList";
 import fetchAllStudentsWithIds from "../List/StudentList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 // import { SCREENS } from "../../config/ScreenFilter";
 
 const Invoice = () => {

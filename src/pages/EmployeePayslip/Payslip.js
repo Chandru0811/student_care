@@ -7,7 +7,7 @@ import { format } from "date-fns"; // Import format function from date-fns
 import api from "../../config/URL";
 import { FaDownload } from "react-icons/fa6";
 
-// import { toast } from "react-toastify";
+// import toast from "react-hot-toast";
 
 function Payslip() {
   const [selectedMonth, setSelectedMonth] = useState("");

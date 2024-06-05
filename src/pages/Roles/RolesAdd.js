@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../config/URL";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function RolesAdd() {
   const [role, setRole] = useState("1");

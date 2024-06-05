@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEdit } from "react-icons/fa";
 import Delete from "../../../components/common/DeleteModel";
 import api from "../../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import fetchAllCentersWithIds from "../../List/CenterList";
 
 const Payroll = () => {

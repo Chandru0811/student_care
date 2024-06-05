@@ -8,7 +8,7 @@ import api from "../../config/URL";
 // import Delete from "../../components/common/Delete";
 // import fetchAllCentersWithIds from "../List/CenterList";
 // import fetchAllSubjectsWithIds from "../List/SubjectList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 // import { SCREENS } from "../../config/ScreenFilter";
 
 const Lead = () => {

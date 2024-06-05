@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../styles/sidebar.css";
 import api from "../../config/URL";
 // import AddMore from "./AddMore";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import fetchAllCentersWithIds from "../List/CenterList";
 import WebSocketService from "../../config/WebSocketService";
 // import fetchAllCoursesWithIds from "../List/CourseList";

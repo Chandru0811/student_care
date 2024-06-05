@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../../config/URL";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 

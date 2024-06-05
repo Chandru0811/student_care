@@ -1,6 +1,6 @@
 // apiService.js
 
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../config/URL";
 
 const fetchAllClassesWithIdsC = async (id) => {

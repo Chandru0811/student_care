@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { TbTrashFilled } from "react-icons/tb";
 
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function RemoveStudentTimeSlot({ onSuccess, id }) {
   const [show, setShow] = useState(false);

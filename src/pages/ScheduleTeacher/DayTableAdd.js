@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaPlusCircle } from "react-icons/fa";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../config/URL";
 import fetchAllStudentListByCenter from "../List/StudentListByCenter";
 

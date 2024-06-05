@@ -5,7 +5,7 @@ import { IoMdSend, IoMdClose } from "react-icons/io";
 
 // import user from "../../assets/user.png";
 // import axios from "axios";
-// import { toast } from "react-toastify";
+// import toast from "react-hot-toast";
 // import { API_URL } from "../../Config/URL";
 
 // const role = sessionStorage.getItem("role");

@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import fetchAllCentersWithIds from "../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 // import fetchAllTeacherListByCenter from "../List/TeacherListByCenter";
 import fetchAllEmployeeListByCenter from "../List/EmployeeList";
 import api from "../../config/URL";

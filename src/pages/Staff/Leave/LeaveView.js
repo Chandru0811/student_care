@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import api from "../../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 // import fetchAllCentersWithIds from "../../List/CenterList";
 // import fetchAllTeachersWithIds from "../../List/TeacherList";
 

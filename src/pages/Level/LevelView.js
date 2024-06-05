@@ -9,7 +9,7 @@ export default function LevelView() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getAllCourseLevels/${id}`);
+        const response = await api.get(`/getAllCourseLevelById/${id}`);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data ", error);

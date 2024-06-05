@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { FaEdit } from "react-icons/fa";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../config/URL";
 
 function SubjectEdit({ id, onSuccess }) {
@@ -13,7 +13,7 @@ function SubjectEdit({ id, onSuccess }) {
 
   const navigate = useState();
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false)};
   const handleShow = () => setShow(true);
 
   const validationSchema = yup.object().shape({
@@ -40,8 +40,8 @@ function SubjectEdit({ id, onSuccess }) {
         });
         if (response.status === 200) {
           toast.success(response.data.message);
-          onSuccess();
           handleClose();
+          onSuccess();
           navigate("/level");
         } else {
           toast.error(response.data.message);
@@ -57,7 +57,7 @@ function SubjectEdit({ id, onSuccess }) {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getAllCourseSubjectsById/${id}`);
+        const response = await api.get(`/getAllCourseSubjectById/${id}`);
         formik.setValues(response.data);
       } catch (error) {
         console.error("Error fetching data ", error);

@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { ImBlocked } from "react-icons/im";
 
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function UnBlockTimeSlot({ onSuccess, id }) {
   const [show, setShow] = useState(false);

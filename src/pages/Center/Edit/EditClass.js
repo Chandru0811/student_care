@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { FaEdit } from "react-icons/fa";
 import api from "../../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function EditClass({ id, onSuccess }) {
   const [show, setShow] = useState(false);

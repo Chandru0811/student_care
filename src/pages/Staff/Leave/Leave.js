@@ -5,7 +5,7 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 // import fetchAllCentersWithIds from "../../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../../config/URL";
 
 const Leave = () => {

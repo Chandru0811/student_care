@@ -11,7 +11,7 @@ import AddClass from "./Add/AddClass";
 import AddPackage from "./Add/AddPackage";
 // import Delete from "../../components/common/Delete";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Center = () => {
   const tableRef = useRef(null);
@@ -19,12 +19,12 @@ const Center = () => {
   // console.log("Screens : ", SCREENS);
 
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getCenterData = async () => {
       try {
-        const response = await api.get("/getAllCenter");
+        const response = await api.get("/getAllStudentCares");
         setDatas(response.data);
         setLoading(false);
       } catch (error) {
@@ -119,81 +119,81 @@ const Center = () => {
                     {datas.map((data, index) => (
                       <tr key={index}>
                         <th scope="row">{index + 1}</th>
-                        <td>{data.centerName}</td>
-                        <td>{data.centerManager}</td>
+                        <td>{data.studentCareName}</td>
+                        <td>{data.studentCareManager}</td>
                         <td>{data.code}</td>
                         <td>{data.uenNumber}</td>
                         <td>{data.mobile}</td>
                         <td>
                           <div className="d-flex justify-content-center align-items-center ">
-                            {storedScreens?.centerListingCreate && (
-                              <div
-                                class="dropdown"
-                                style={{ display: "inline-block" }}
+                            {/* {storedScreens?.centerListingCreate && ( */}
+                            <div
+                              class="dropdown"
+                              style={{ display: "inline-block" }}
+                            >
+                              <button
+                                class="btn dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
                               >
-                                <button
-                                  class="btn dropdown-toggle"
-                                  type="button"
-                                  data-bs-toggle="dropdown"
-                                  aria-expanded="false"
-                                >
-                                  <IoMdAdd />
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li>
-                                    <AddRegister
-                                      id={data.id}
-                                      onSuccess={refreshData}
-                                    />
-                                  </li>
-                                  <li style={{ width: "100%" }}>
-                                    <AddBreak
-                                      id={data.id}
-                                      onSuccess={refreshData}
-                                    />
-                                  </li>
-                                  <li style={{ width: "100%" }}>
-                                    <AddClass
-                                      id={data.id}
-                                      onSuccess={refreshData}
-                                    />
-                                  </li>
-                                  <li style={{ width: "100%" }}>
-                                    <AddPackage
-                                      id={data.id}
-                                      onSuccess={refreshData}
-                                    />
-                                  </li>
-                                </ul>
-                              </div>
-                            )}
-                            {storedScreens?.centerListingRead && (
-                              <Link
-                                to={`/center/view/${data.id}`}
-                                style={{ display: "inline-block" }}
-                              >
-                                <button className="btn btn-sm">
-                                  <FaEye />
-                                </button>
-                              </Link>
-                            )}
-                            {storedScreens?.centerListingUpdate && (
-                              <Link
-                                to={`/center/edit/${data.id}`}
-                                style={{ display: "inline-block" }}
-                              >
-                                <button className="btn btn-sm">
-                                  <FaEdit />
-                                </button>
-                              </Link>
-                            )}
-                            {/* {storedScreens?.centerListingDelete && (
-                      <Delete
+                                <IoMdAdd />
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <AddRegister
+                                    id={data.id}
+                                    onSuccess={refreshData}
+                                  />
+                                </li>
+                                <li style={{ width: "100%" }}>
+                                  <AddBreak
+                                    id={data.id}
+                                    onSuccess={refreshData}
+                                  />
+                                </li>
+                                <li style={{ width: "100%" }}>
+                                  <AddClass
+                                    id={data.id}
+                                    onSuccess={refreshData}
+                                  />
+                                </li>
+                                <li style={{ width: "100%" }}>
+                                  <AddPackage
+                                    id={data.id}
+                                    onSuccess={refreshData}
+                                  />
+                                </li>
+                              </ul>
+                            </div>
+                            {/* )}
+                            {storedScreens?.centerListingRead && ( */}
+                            <Link
+                              to={`/center/view/${data.id}`}
+                              style={{ display: "inline-block" }}
+                            >
+                              <button className="btn btn-sm">
+                                <FaEye />
+                              </button>
+                            </Link>
+                            {/* )}
+                            {storedScreens?.centerListingUpdate && ( */}
+                            <Link
+                              to={`/center/edit/${data.id}`}
+                              style={{ display: "inline-block" }}
+                            >
+                              <button className="btn btn-sm">
+                                <FaEdit />
+                              </button>
+                            </Link>
+                            {/* )} */}
+                            {/* {storedScreens?.centerListingDelete && ( */}
+                            {/* <Delete
                         onSuccess={refreshData}
                         path={`/deleteCenter/${data.id}`}
                         style={{ display: "inline-block" }}
-                      />
-                    )} */}
+                      /> */}
+                            {/* )} */}
                           </div>
                         </td>
                       </tr>

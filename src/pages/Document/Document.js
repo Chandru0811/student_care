@@ -5,7 +5,7 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import fetchAllStudentsWithIds from "../List/StudentList";
 import DocumentEdit from "./DocumentEdit";
 // import { SCREENS } from "../../config/ScreenFilter";

@@ -6,30 +6,30 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEdit } from "react-icons/fa";
 // import Delete from "../../components/common/Delete";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 // import { SCREENS } from "../../config/ScreenFilter";
 
 const Staff = () => {
   const tableRef = useRef(null);
 
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
   // console.log("Screens : ", SCREENS);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get("/getAllUsersByRole/staff");
-  //       setDatas(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       toast.error("Error Fetch Data", error);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get("/getAllUsersByRole/staff");
+        setDatas(response.data);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error Fetch Data", error);
+      }
+    };
+    getData();
+  }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -117,21 +117,19 @@ const Staff = () => {
                       <tr key={index}>
                         <th scope="row">{index + 1}</th>
                         <td>
-                          {data.userAccountInfo.length > 0 &&
+                          {data.userAccountInfo?.length > 0 &&
                             data.userAccountInfo[0].teacherId}
                         </td>
-                        {/* <td>{data.teacherId}</td> */}
+                        {/* <td>{data.teacherId}</td> */} 
                         <td>{data.teacherName}</td>
                         <td>
-                          {data.userAccountInfo.length > 0 &&
-                            data.userAccountInfo[0].teacherType}
+                          {data.teacherType}
                         </td>
                         <td>
-                          {data.userContactInfo.length > 0 &&
-                            data.userContactInfo[0].contactNumber}
+                          {data.contactNumber}
                         </td>
                         <td>
-                          {data.userAccountInfo.length > 0 &&
+                          {data.userAccountInfo?.length > 0 &&
                           data.userAccountInfo[0].status === "Active" ? (
                             <span className="badge badges-Green">Active</span>
                           ) : (
@@ -140,20 +138,20 @@ const Staff = () => {
                         </td>
                         <td>
                           <div className="d-flex">
-                            {storedScreens?.staffRead && (
+                            {/* {storedScreens?.staffRead && ( */}
                               <Link to={`/staff/view/${data.id}`}>
                                 <button className="btn btn-sm">
                                   <FaEye />
                                 </button>
                               </Link>
-                            )}
-                            {storedScreens?.staffUpdate && (
+                            {/* )}
+                            {storedScreens?.staffUpdate && ( */}
                               <Link to={`/staff/edit/${data.id}`}>
                                 <button className="btn btn-sm">
                                   <FaEdit />
                                 </button>
                               </Link>
-                            )}
+                            {/* )} */}
                             {/* {storedScreens?.staffDelete && (
                         <Delete
                           onSuccess={refreshData}

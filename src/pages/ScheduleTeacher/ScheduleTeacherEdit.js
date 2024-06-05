@@ -7,7 +7,7 @@ import Modal from "react-bootstrap/Modal";
 // import { useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import fetchAllCentersWithIds from "../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import fetchAllCoursesWithIdsC from "../List/CourseListByCenter";
 import fetchAllClassesWithIdsC from "../List/ClassListByCourse";
 import fetchAllTeachersWithIds from "../List/TeacherList";

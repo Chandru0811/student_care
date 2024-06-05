@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaCircleExclamation } from "react-icons/fa6";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function BlockTimeSlot({ onSuccess, id }) {
   const [show, setShow] = useState(false);

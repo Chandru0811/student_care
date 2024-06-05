@@ -13,21 +13,21 @@ const Level = () => {
   const tableRef = useRef(null);
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get("/getAllCourseLevels");
-  //       setDatas(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get("/getAllCourseLevels");
+        setDatas(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -87,7 +87,7 @@ const Level = () => {
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
                 {/* {storedScreens?.levelCreate && ( */}
                 <h2>Level</h2>
-                <LevelAdd />
+                <LevelAdd onSuccess={refreshData}/>
                 {/* )} */}
               </div>
               <hr />
@@ -116,16 +116,16 @@ const Level = () => {
                           )}
                         </td>
                         <td>
-                          {storedScreens?.levelRead && (
+                          {/* {storedScreens?.levelRead && ( */}
                             <Link to={`/level/view/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEye />
                               </button>
                             </Link>
-                          )}
-                          {storedScreens?.levelUpdate && (
+                          {/* )}
+                          {storedScreens?.levelUpdate && ( */}
                             <LevelEdit id={data.id} onSuccess={refreshData} />
-                          )}
+                          {/* )} */}
                           {/* {storedScreens?.levelDelete && (
                     <Delete
                       onSuccess={refreshData}

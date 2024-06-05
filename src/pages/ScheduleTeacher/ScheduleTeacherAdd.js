@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import fetchAllCentersWithIds from "../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import fetchAllCoursesWithIdsC from "../List/CourseListByCenter";
 import fetchAllClassesWithIdsC from "../List/ClassListByCourse";
 import api from "../../config/URL";

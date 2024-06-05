@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function CenterView() {
   const { id } = useParams();
   const [data, setData] = useState([]);
   console.log(data);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get(`/getAllCenterById/${id}`);
-  //       setData(response.data);
-  //     } catch (error) {
-  //       toast.error("Error Fetching Data", error);
-  //     }
-  //   };
-  //   getData();
-  // }, [id]);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get(`/getAllStudentCareById/${id}`);
+        setData(response.data);
+      } catch (error) {
+        toast.error("Error Fetching Data", error);
+      }
+    };
+    getData();
+  }, [id]);
   return (
     <div className="minHeight container-fluid center">
       <div className="card shadow border-0 mb-2 top-header">
@@ -54,7 +54,7 @@ function CenterView() {
                 </div>
                 <div className="col-6">
                   <p className="text-muted text-sm">
-                    : {data.centerName || "--"}
+                    : {data.studentCareName || "--"}
                   </p>
                 </div>
               </div>
@@ -76,7 +76,7 @@ function CenterView() {
                 </div>
                 <div className="col-6">
                   <p className="text-muted text-sm">
-                    : {data.centerManager || "--"}
+                    : {data.studentCareManager || "--"}
                   </p>
                 </div>
               </div>
@@ -263,8 +263,8 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.centerRegistrations &&
-                    data.centerRegistrations.map((registration, index) => (
+                  {data.studentCareRegistrationModels &&
+                    data.studentCareRegistrationModels.map((registration, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>
@@ -299,13 +299,13 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.centerBreaks &&
-                    data.centerBreaks.map((centerBreak, index) => (
+                  {data.studentCareBreakModels &&
+                    data.studentCareBreakModels.map((centerBreak, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{centerBreak.breakName}</td>
-                        <td>{centerBreak.fromDate.substring(0, 10)}</td>
-                        <td>{centerBreak.toDate.substring(0, 10)}</td>
+                        <td>{centerBreak?.fromDate?.substring(0, 10)}</td>
+                        <td>{centerBreak?.toDate?.substring(0, 10)}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -358,8 +358,8 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.centerClassRooms &&
-                    data.centerClassRooms.map((centerClassRoom, index) => (
+                  {data.studentCareClassRoomModels &&
+                    data.studentCareClassRoomModels.map((centerClassRoom, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{centerClassRoom.classRoomName}</td>
@@ -390,8 +390,8 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.centerPackages &&
-                    data.centerPackages.map((centerPackage, index) => (
+                  {data.studentCarePackageModels &&
+                    data.studentCarePackageModels.map((centerPackage, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{centerPackage.packageName || "--"}</td>

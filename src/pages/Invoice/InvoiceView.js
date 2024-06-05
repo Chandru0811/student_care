@@ -6,7 +6,7 @@ import api from "../../config/URL";
 import fetchAllCoursesWithIds from "../List/CourseList";
 import fetchAllStudentsWithIds from "../List/StudentList";
 import { BsFillSendFill } from "react-icons/bs";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import SendAndPublish from "../../components/SendAndPublish";

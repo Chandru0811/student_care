@@ -117,21 +117,21 @@ const Teacher = () => {
                       <tr key={index}>
                         <th scope="row">{index + 1}</th>
                         <td>
-                          {data.userAccountInfo.length > 0 &&
+                          {data.userAccountInfo?.length > 0 &&
                             data.userAccountInfo[0].teacherId}
                         </td>
                         {/* <td>{data.teacherId}</td> */}
                         <td>{data.teacherName}</td>
                         <td>
-                          {data.userAccountInfo.length > 0 &&
+                          {data.userAccountInfo?.length > 0 &&
                             data.userAccountInfo[0].teacherType}
                         </td>
                         <td>
-                          {data.userContactInfo.length > 0 &&
+                          {data.userContactInfo?.length > 0 &&
                             data.userContactInfo[0].contactNumber}
                         </td>
                         <td>
-                          {data.userAccountInfo.length > 0 &&
+                          {data.userAccountInfo?.length > 0 &&
                           data.userAccountInfo[0].status === "Active" ? (
                             <span className="badge badges-Green">Active</span>
                           ) : (
@@ -140,26 +140,26 @@ const Teacher = () => {
                         </td>
                         <td>
                           <div className="d-flex">
-                            {storedScreens?.teacherRead && (
+                            {/* {storedScreens?.teacherRead && ( */}
                               <Link to={`/teacher/view/${data.id}`}>
                                 <button className="btn btn-sm">
                                   <FaEye />
                                 </button>
                               </Link>
-                            )}
-                            {storedScreens?.teacherUpdate && (
+                            {/* )}
+                            {storedScreens?.teacherUpdate && ( */}
                               <Link to={`/teacher/edit/${data.id}`}>
                                 <button className="btn btn-sm">
                                   <FaEdit />
                                 </button>
                               </Link>
-                            )}
-                            {storedScreens?.teacherDelete && (
+                            {/* )}
+                            {storedScreens?.teacherDelete && ( */}
                               <Delete
                                 onSuccess={refreshData}
                                 path={`/deleteUser/${data.id}`}
                               />
-                            )}
+                            {/* )} */}
                           </div>
                         </td>
                       </tr>

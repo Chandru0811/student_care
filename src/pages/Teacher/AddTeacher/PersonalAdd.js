@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../../config/URL";
 
 const validationSchema = Yup.object().shape({
@@ -80,7 +80,7 @@ const PersonalAdd = forwardRef(
           );
 
           if (response.status === 201) {
-            const user_id = response.data.user_id;
+            const user_id = response.data.userId;
             toast.success(response.data.message);
             setFormData((prv) => ({ ...prv, ...values, user_id }));
             handleNext();

@@ -2,7 +2,7 @@ import React, { forwardRef, useEffect, useImperativeHandle } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object().shape({
   parentName: Yup.string().required("*Parent Name is required!"),

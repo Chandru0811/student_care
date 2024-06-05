@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../../config/URL";
 
 function AddClass({ id, onSuccess }) {
@@ -35,8 +35,7 @@ function AddClass({ id, onSuccess }) {
       setLoadIndicator(true);
       console.log("Form values:", values);
       try {
-        const response = await api.post(
-          `/createCenterClassRooms/${id}`,
+        const response = await api.post(`/createStudentCareClassRooms/${id}`,
           values,
           {
             headers: {

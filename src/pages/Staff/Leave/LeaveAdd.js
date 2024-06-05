@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 // import fetchAllTeacherListByCenter from "../../List/TeacherListByCenter";
 // import fetchAllCentersWithIds from "../../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../../config/URL";
 
 const validationSchema = Yup.object({
