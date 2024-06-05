@@ -192,7 +192,7 @@ function Admin({ handleLogout }) {
               <Route path="/attendance/list" element={<AttendancesCourse />} />
               <Route path="/attendance" element={<Attendances />} />
               <Route path="/attendance/add" element={<AttendancesAdd />} />
-              <Route path="/attendance/edit" element={<AttendancesEdit />} />
+              <Route path="/attendance/edit/:id" element={<AttendancesEdit />} />
 
               {/* {/ ScheduleTeacher /} */}
               <Route path="/scheduleteacher" element={<ScheduleTeacher />} />
@@ -215,8 +215,8 @@ function Admin({ handleLogout }) {
 
               <Route path="/holiday" element={<Holiday />} />
               <Route path="/holiday/add" element={<HolidayAdd />} />
-              <Route path="/holiday/edit" element={<HolidayEdit />} />
-              <Route path="/holiday/view" element={<HolidayView />} />
+              <Route path="/holiday/edit/:id" element={<HolidayEdit />} />
+              <Route path="/holiday/view/:id" element={<HolidayView />} />
 
               <Route path="/deduction" element={<Deduction />} />
               <Route path="/deduction/add" element={<DeductionAdd />} />

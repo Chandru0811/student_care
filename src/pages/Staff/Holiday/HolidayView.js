@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../../config/URL";
 // import fetchAllCentersWithIds from "../../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 
 function HolidayView() {
   const [data, setData] = useState([]);
@@ -10,26 +11,26 @@ function HolidayView() {
   const [centerData, setCenterData] = useState(null);
 
   const fetchData = async () => {
-    // try {
-    //   const centerData = await fetchAllCentersWithIds();
-    //   setCenterData(centerData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centerData = await fetchAllStudentCaresWithIds();
+      setCenterData(centerData);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get(`/getAllUserHolidayById/${id}`);
-  //       setData(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-  //   getData();
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get(`/getAllHolidaysById/${id}`);
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    getData();
+    fetchData();
+  }, []);
 
   return (
     <div className="container-fluid center">
@@ -65,9 +66,9 @@ function HolidayView() {
                   <p className="text-muted text-sm">
                     :{" "}
                     {centerData &&
-                      centerData.map((centerId) =>
-                        parseInt(data.centerId) === centerId.id
-                          ? centerId.centerNames || "--"
+                      centerData.map((studentCareId) =>
+                        parseInt(data.studentCareId) === studentCareId.id
+                          ? studentCareId.studentCareName || "--"
                           : ""
                       )}
                   </p>
@@ -81,9 +82,7 @@ function HolidayView() {
                   <p className="fw-medium">Holiday Name</p>
                 </div>
                 <div className="col-6">
-                  <p className="text-muted text-sm">
-                    : {(data && data.holidayName) || "--"}
-                  </p>
+                  <p className="text-muted text-sm">: {data.holidayName}</p>
                 </div>
               </div>
             </div>
@@ -94,9 +93,7 @@ function HolidayView() {
                   <p className="fw-medium">Start Date</p>
                 </div>
                 <div className="col-6">
-                  <p className="text-muted text-sm">
-                    : {data.startDate || "--"}
-                  </p>
+                  <p className="text-muted text-sm">: {data.startDate}</p>
                 </div>
               </div>
             </div>
@@ -106,7 +103,7 @@ function HolidayView() {
                   <p className="fw-medium">End Date</p>
                 </div>
                 <div className="col-6">
-                  <p className="text-muted text-sm">: {data.endDate || "--"}</p>
+                  <p className="text-muted text-sm">: {data.endDate}</p>
                 </div>
               </div>
             </div>
@@ -117,7 +114,7 @@ function HolidayView() {
                 </div>
                 <div className="col-6">
                   <p className="text-muted text-sm">
-                    : {data.holidayDescription || "--"}
+                    : {data.holidayDescription}
                   </p>
                 </div>
               </div>
