@@ -9,28 +9,29 @@ import SubjectAdd from "./SubjectAdd";
 import SubjectEdit from "./SubjectEdit";
 import api from "../../config/URL";
 import { SCREENS } from "../../config/ScreenFilter";
+import toast from "react-hot-toast";
 
 const Subject = () => {
   const tableRef = useRef(null);
 
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
   console.log("Screens : ", SCREENS);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get("/getAllCourseSubjects");
-  //       setDatas(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       toast.error("Error Fetching Data ", error);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get("/getAllCourseSubjects");
+        setDatas(response.data);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error Fetching Data ", error);
+      }
+    };
+    getData();
+  }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -90,7 +91,7 @@ const Subject = () => {
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
                 {/* {storedScreens?.subjectCreate && ( */}
                 <h2>Subject</h2>
-                <SubjectAdd />
+                <SubjectAdd onSuccess={refreshData}/>
                 {/* )} */}
               </div>
               <hr />
@@ -124,20 +125,20 @@ const Subject = () => {
                         </td>
                         <td>
                           <div className="d-flex">
-                            {storedScreens?.subjectRead && (
+                            {/* {storedScreens?.subjectRead && ( */}
                               <Link to={`/subject/view/${data.id}`}>
                                 <button className="btn btn-sm">
                                   <FaEye />
                                 </button>
                               </Link>
-                            )}
+                            {/* )}
 
-                            {storedScreens?.subjectUpdate && (
+                            {storedScreens?.subjectUpdate && ( */}
                               <SubjectEdit
                                 id={data.id}
                                 onSuccess={refreshData}
                               />
-                            )}
+                            {/* )} */}
 
                             {/* {storedScreens?.subjectDelete && (
                       <Delete

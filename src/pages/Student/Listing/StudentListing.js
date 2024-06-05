@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 // import Delete from "../../components/common/Delete";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import AddRegister from "../../Center/Add/AddRegister";
 import AddBreak from "../../Center/Add/AddBreak";
 import AddClass from "../../Center/Add/AddClass";

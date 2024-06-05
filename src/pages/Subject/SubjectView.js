@@ -10,7 +10,7 @@ function SubjectView() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getAllCourseSubjectsById/${id}`);
+        const response = await api.get(`/getAllCourseSubjectById/${id}`);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data ", error);

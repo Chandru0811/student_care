@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useImperativeHandle } from "react";
 import { useFormik } from "formik";
 import api from "../../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({

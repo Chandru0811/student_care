@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../config/URL";
 
 function SendAndPublish({ data }) {

@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import api from "../../config/URL";
 import fetchAllCentersWithIds from "../List/CenterList";
 import fetchAllTeachersWithIds from "../List/TeacherList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 
 function StaffingAttendanceView() {

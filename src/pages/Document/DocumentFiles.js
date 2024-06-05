@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import api from "../../config/URL";
 import fetchAllCentersWithIds from "../List/CenterList";
 import { Link, useNavigate } from "react-router-dom";

@@ -5,7 +5,7 @@ import $ from "jquery";
 import Modal from "react-bootstrap/Modal";
 import { FaTrash } from "react-icons/fa";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import ScheduleTeacherAdd from "../ScheduleTeacher/ScheduleTeacherAdd";
 // import ScheduleTeacherEdit from "../ScheduleTeacher/ScheduleTeacherEdit";
 import ScheduleTeacherView from "../ScheduleTeacher/ScheduleTeacherView";

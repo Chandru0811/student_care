@@ -6,7 +6,7 @@ import BlockTimeSlot from "./BlockTimeSlot";
 import UnBlockTimeSlot from "./UnBlockTimeSlot";
 import ApproveStudentTimeSlot from "./ApproveStudentTimeSlot";
 import RemoveStudentTimeSlot from "./RemoveStudentTimeSlot";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 export default function ScheduleTime() {
   const { id } = useParams();

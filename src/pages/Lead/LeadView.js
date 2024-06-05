@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import api from "../../config/URL";
 // import fetchAllCentersWithIds from "../List/CenterList";
 // import fetchAllSubjectsWithIds from "../List/SubjectList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
 import Modal from "react-bootstrap/Modal";

@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 // import teacher from "../../assets/images/teacher.jpg";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 // import TeacherSummary from "../Teacher/TeacherSummary";
 import BlockImg from "../.././assets/Block_Img1.jpg";
 import TeacherSummary from "../Teacher/TeacherSummary";
@@ -14,17 +14,17 @@ function StaffView() {
   console.log("Api Staff data:", data);
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get(`/getAllUsersById/${id}`);
-  //       setData(response.data);
-  //     } catch (error) {
-  //       toast.error("Error Fetching Data ", error);
-  //     }
-  //   };
-  //   getData();
-  // }, [id]);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get(`/getAllUsersById/${id}`);
+        setData(response.data);
+      } catch (error) {
+        toast.error("Error Fetching Data ", error);
+      }
+    };
+    getData();
+  }, [id]);
 
   return (
     <div className="container-fluid center">

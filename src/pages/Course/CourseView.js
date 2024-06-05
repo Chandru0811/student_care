@@ -1,44 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/URL";
-// import fetchAllCentersWithIds from "../List/CenterList";
-// import fetchAllSubjectsWithIds from "../List/SubjectList";
-import { toast } from "react-toastify";
-// import fetchAllLevelsWithIds from "../List/LevelList";
+import fetchAllStudentCaresWithIds from "../List/CenterList";
+import fetchAllLevelsWithIds from "../List/LevelList";
+import fetchAllSubjectsWithIds from "../List/SubjectList";import toast from "react-hot-toast";
+;
 
 function CourseView() {
   const { id } = useParams();
   const [data, setData] = useState([]);
 
-  // const [centerData, setCenterData] = useState(null);
-  // const [subjectData, setSubjectData] = useState(null);
-  // const [levelData, setLevelData] = useState(null);
+  const [centerData, setCenterData] = useState(null);
+  const [subjectData, setSubjectData] = useState(null);
+  const [levelData, setLevelData] = useState(null);
 
   const fetchData = async () => {
-    // try {
-    //   const centerData = await fetchAllCentersWithIds();
-    //   const subjectData = await fetchAllSubjectsWithIds();
-    //   const levelData = await fetchAllLevelsWithIds();
-    //   setCenterData(centerData);
-    //   setSubjectData(subjectData);
-    //   setLevelData(levelData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centerData = await fetchAllStudentCaresWithIds();
+      const subjectData = await fetchAllSubjectsWithIds();
+      const levelData = await fetchAllLevelsWithIds();
+      setCenterData(centerData);
+      setSubjectData(subjectData);
+      setLevelData(levelData);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get(`/getAllCoursesById/${id}`);
-  //       setData(response.data);
-  //     } catch (error) {
-  //       toast.error("Error Fetching Data ", error);
-  //     }
-  //   };
-  //   getData();
-  //   fetchData();
-  // }, [id]);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get(`/getAllCourseById/${id}`);
+        setData(response.data);
+      } catch (error) {
+        toast.error("Error Fetching Data ", error);
+      }
+    };
+    getData();
+    fetchData();
+  }, [id]);
 
   return (
     <div className="container-fluid  center">
@@ -70,15 +70,15 @@ function CourseView() {
                 <p className="fw-medium">Centre Name</p>
               </div>
               <div className="col-6">
-                {/* <p className="text-muted text-sm">
+                <p className="text-muted text-sm">
                     :{" "}
                     {centerData &&
-                      centerData.map((centerId) =>
-                        parseInt(data.centerId) === centerId.id
-                          ? centerId.centerNames || "--"
+                      centerData.map((studentCareId) =>
+                        parseInt(data.studentCareId) === studentCareId.id
+                          ? studentCareId.studentCareName || "--"
                           : ""
                       )}
-                  </p> */}
+                  </p>
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@ function CourseView() {
                 <p className="fw-medium">Subject</p>
               </div>
               <div className="col-6">
-                {/* <p className="text-muted text-sm">
+                <p className="text-muted text-sm">
                     :{" "}
                     {subjectData &&
                       subjectData.map((subjectId) =>
@@ -116,7 +116,7 @@ function CourseView() {
                           ? subjectId.subjects || "--"
                           : ""
                       )}
-                  </p> */}
+                  </p>
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@ function CourseView() {
                 <p className="fw-medium">Level</p>
               </div>
               <div className="col-6">
-                {/* <p className="text-muted text-sm">
+                <p className="text-muted text-sm">
                     :{" "}
                     {levelData &&
                       levelData.map((levelId) =>
@@ -134,7 +134,7 @@ function CourseView() {
                           ? levelId.levels || "--"
                           : ""
                       )}
-                  </p> */}
+                  </p>
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/URL";
 import fetchAllCentersWithIds from "../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import fetchAllCoursesWithIds from "../List/CourseList";
 import StudentSummary from "./StudentSummary";
 // import BlockImg from "../../assets/images/Block_Img1.jpg";

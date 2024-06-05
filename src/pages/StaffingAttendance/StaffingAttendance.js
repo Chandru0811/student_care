@@ -7,7 +7,7 @@ import { FaEye, FaEdit } from "react-icons/fa";
 import Delete from "../../components/common/Delete";
 import api from "../../config/URL";
 import fetchAllCentersWithIds from "../List/CenterList";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const StaffingAttendance = () => {
   const tableRef = useRef(null);

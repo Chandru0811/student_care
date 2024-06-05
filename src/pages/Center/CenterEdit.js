@@ -7,14 +7,14 @@ import EditBreak from "./Edit/EditBreak";
 import EditClass from "./Edit/EditClass";
 import EditPackage from "./Edit/EditPackage";
 import api from "../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object().shape({
-  centerName: Yup.string().required("*Centre Name is required"),
+  studentCareName: Yup.string().required("*Centre Name is required"),
   code: Yup.number()
     .typeError("*Enter a valid number")
     .required("*Code is required"),
-  centerManager: Yup.string().required("*Select the Center Manager"),
+  studentCareManager: Yup.string().required("*Select the Center Manager"),
   zipCode: Yup.number()
     .typeError("*Zip Code must be number")
     .required("*Zip Code is required")
@@ -56,9 +56,9 @@ function CenterEdit() {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      centerName: "",
+      studentCareName: "",
       code: "",
-      centerManager: "",
+      studentCareManager: "",
       address: "",
       zipCode: "",
       mobile: "",
@@ -76,45 +76,45 @@ function CenterEdit() {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setLoadIndicator(true);
-      // try {
-      //   const response = await api.put(`/updateCenter/${id}`, values, {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
-      //   if (response.status === 200) {
-      //     toast.success(response.data.message);
-      //     navigate("/center");
-      //   } else {
-      //     toast.error(response.data.message);
-      //   }
-      // } catch (error) {
-      //   toast.error(error);
-      // }finally {
-      //   setLoadIndicator(false);
-      // }
+      try {
+        const response = await api.put(`/updateStudentCare/${id}`, values, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.status === 200) {
+          toast.success(response.data.message);
+          navigate("/center");
+        } else {
+          toast.error(response.data.message);
+        }
+      } catch (error) {
+        toast.error(error);
+      }finally {
+        setLoadIndicator(false);
+      }
     },
   });
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const response = await api.get(`/getAllCenterById/${id}`);
-  //     const formattedData = {
-  //       ...response.data,
-  //       openingDate: response.data.openingDate
-  //         ? new Date(response.data.openingDate).toISOString().substring(0, 10)
-  //         : null,
-  //     };
-  //     formik.setValues(formattedData);
-  //     setData(response.data);
-  //   };
+  useEffect(() => {
+    const getData = async () => {
+      const response = await api.get(`/getAllStudentCareById/${id}`);
+      const formattedData = {
+        ...response.data,
+        openingDate: response.data.openingDate
+          ? new Date(response.data.openingDate).toISOString().substring(0, 10)
+          : null,
+      };
+      formik.setValues(formattedData);
+      setData(response.data);
+    };
 
-  //   getData();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [id]);
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const refreshData = async () => {
     try {
-      const response = await api.get(`/getAllCenterById/${id}`);
+      const response = await api.get(`/getAllStudentCareById/${id}`);
       setData(response.data);
     } catch (error) {
       toast.error("Error Fetching Data");
@@ -170,19 +170,19 @@ function CenterEdit() {
                   </label>
                   <input
                     type="text"
-                    name="centerName"
+                    name="studentCareName"
                     className={`form-control form-control-sm  ${
-                      formik.touched.centerName && formik.errors.centerName
+                      formik.touched.studentCareName && formik.errors.studentCareName
                         ? "is-invalid"
                         : ""
                     }`}
                     aria-label="Username"
                     aria-describedby="basic-addon1"
-                    {...formik.getFieldProps("centerName")}
+                    {...formik.getFieldProps("studentCareName")}
                   />
-                  {formik.touched.centerName && formik.errors.centerName && (
+                  {formik.touched.studentCareName && formik.errors.studentCareName && (
                     <div className="invalid-feedback">
-                      {formik.errors.centerName}
+                      {formik.errors.studentCareName}
                     </div>
                   )}
                 </div>
@@ -213,10 +213,10 @@ function CenterEdit() {
                     Centre Manager<span className="text-danger">*</span>
                   </label>
                   <select
-                    {...formik.getFieldProps("centerManager")}
+                    {...formik.getFieldProps("studentCareManager")}
                     className={`form-select form-select-sm   ${
-                      formik.touched.centerManager &&
-                      formik.errors.centerManager
+                      formik.touched.studentCareManager &&
+                      formik.errors.studentCareManager
                         ? "is-invalid"
                         : ""
                     }`}
@@ -227,10 +227,10 @@ function CenterEdit() {
                     <option value="Jeanette Aw">Jeanette Aw</option>
                     <option value="Baey Yam Keng">Baey Yam Keng</option>
                   </select>
-                  {formik.touched.centerManager &&
-                    formik.errors.centerManager && (
+                  {formik.touched.studentCareManager &&
+                    formik.errors.studentCareManager && (
                       <div className="invalid-feedback">
-                        {formik.errors.centerManager}
+                        {formik.errors.studentCareManager}
                       </div>
                     )}
                 </div>
@@ -562,8 +562,8 @@ function CenterEdit() {
                 </tr>
               </thead>
               <tbody>
-                {data.centerRegistrations &&
-                  data.centerRegistrations.map((registration, index) => (
+                {data.studentCareRegistrationModels &&
+                  data.studentCareRegistrationModels.map((registration, index) => (
                     <tr key={index}>
                       <td>{registration.id}</td>
                       <td>{registration.registrationDate.substring(0, 10)}</td>
@@ -605,13 +605,13 @@ function CenterEdit() {
                 </tr>
               </thead>
               <tbody>
-                {data.centerBreaks &&
-                  data.centerBreaks.map((centerBreak, index) => (
+                {data.studentCareBreakModels &&
+                  data.studentCareBreakModels.map((centerBreak, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{centerBreak.breakName}</td>
-                      <td>{centerBreak.fromDate.substring(0, 10)}</td>
-                      <td>{centerBreak.toDate.substring(0, 10)}</td>
+                      <td>{centerBreak?.fromDate?.split(0, 10)}</td>
+                      <td>{centerBreak?.toDate?.split(0, 10)}</td>
                       <td>
                         <EditBreak
                           id={centerBreak.id}
@@ -673,8 +673,8 @@ function CenterEdit() {
                 </tr>
               </thead>
               <tbody>
-                {data.centerClassRooms &&
-                  data.centerClassRooms.map((centerClassRoom, index) => (
+                {data.studentCareClassRoomModels &&
+                  data.studentCareClassRoomModels.map((centerClassRoom, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{centerClassRoom.classRoomName}</td>
@@ -714,8 +714,8 @@ function CenterEdit() {
                 </tr>
               </thead>
               <tbody>
-                {data.centerPackages &&
-                  data.centerPackages.map((centerPackage, index) => (
+                {data.studentCarePackageModels &&
+                  data.studentCarePackageModels.map((centerPackage, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{centerPackage.packageName || "--"}</td>
