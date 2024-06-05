@@ -16,11 +16,23 @@ const Holiday = () => {
   // console.log("Screens : ", SCREENS);
 
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [centerData, setCenterData] = useState(null);
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
-  const token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQb29tYSIsImlhdCI6MTcxNzU2ODI4NywiZXhwIjoxNzIyNzUyMjg3fQ.3GVVYl1M96t8b-86el8Kfz6MQcakZtC7XPt4qwFW6uvuKE4kojMNrqpGf-g_Uv0FedCCUNcyCcImHDZKLLO_KQ";
+
+    useEffect(() => {
+      const getData = async () => {
+        try {
+          const response = await api.get("getAllHoliday");
+          setDatas(response.data);
+          setLoading(false);
+        } catch (error) {
+          toast.error("Error Fetching Data : ", error);
+        }
+      };
+      getData();
+      fetchData();
+    }, []);
 
   const fetchData = async () => {
     try {
@@ -31,23 +43,7 @@ const Holiday = () => {
     }
   };
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await api.get("getAllHoliday", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setDatas(response.data);
-        setLoading(false);
-      } catch (error) {
-        toast.error("Error Fetching Data : ", error);
-      }
-    };
-    getData();
-    fetchData();
-  }, []);
+
 
   useEffect(() => {
     if (!loading) {
@@ -79,11 +75,7 @@ const Holiday = () => {
     destroyDataTable();
     setLoading(true);
     try {
-      const response = await api.get("getAllHoliday", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get("getAllHoliday");
       setDatas(response.data);
       initializeDataTable(); // Reinitialize DataTable after successful data update
     } catch (error) {
@@ -137,9 +129,9 @@ const Holiday = () => {
                       <th scope="row">{index + 1}</th>
                       <td>
                         {centerData &&
-                          centerData.map((centerId) =>
-                            parseInt(data.centerId) === centerId.id
-                              ? centerId.studentCareName || "--"
+                          centerData.map((studentCareId) =>
+                            parseInt(data.studentCareId) === studentCareId.id
+                              ? studentCareId.studentCareName || "--"
                               : ""
                           )}
                       </td>
@@ -149,7 +141,7 @@ const Holiday = () => {
                         <div className="d-flex justify-content-center align-items-center ">
                           {/* {storedScreens?.holidayRead && ( */}
                             <Link
-                              to={`/holiday/list/${data.id}`}
+                              to={`/holiday/view/${data.id}`}
                               style={{ display: "inline-block" }}
                             >
                               <button className="btn btn-sm">
@@ -167,13 +159,13 @@ const Holiday = () => {
                               </button>
                             </Link>
                           {/* )} */}
-                          {/* {storedScreens?.holidayDelete && ( */}
+                          {/* {storedScreens?.holidayDelete && (  */}
                             <DeleteModel
                               onSuccess={refreshData}
-                              path={`/deleteHolidayModel/${data.id}`}
+                              path={`deleteHolidayModel/${data.id}`}
                               style={{ display: "inline-block" }}
                             />
-                          {/* )} */}
+                          {/*  )}  */}
                         </div>
                       </td>
                     </tr>

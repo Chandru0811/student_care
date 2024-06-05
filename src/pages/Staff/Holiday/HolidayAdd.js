@@ -4,13 +4,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 // import fetchAllCentersWithIds from "../../List/CenterList";
 import api from "../../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import fetchAllCentersWithIds from "../../List/CenterList";
 
 function HolidayAdd() {
-
   const validationSchema = Yup.object({
-    // centerId: Yup.string().required("*Center Name is required"),
+    studentCareId: Yup.string().required("*Center Name is required"),
     holidayName: Yup.string().required("*Holiday Name is required"),
     startDate: Yup.string().required("*Select the start date"),
     endDate: Yup.string().required("*Select the end date"),
@@ -23,11 +22,11 @@ function HolidayAdd() {
   const [loadIndicator, setLoadIndicator] = useState(false);
   const navigate = useNavigate();
   const token =
-  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQb29tYSIsImlhdCI6MTcxNzU2ODI4NywiZXhwIjoxNzIyNzUyMjg3fQ.3GVVYl1M96t8b-86el8Kfz6MQcakZtC7XPt4qwFW6uvuKE4kojMNrqpGf-g_Uv0FedCCUNcyCcImHDZKLLO_KQ";
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQb29tYSIsImlhdCI6MTcxNzU2ODI4NywiZXhwIjoxNzIyNzUyMjg3fQ.3GVVYl1M96t8b-86el8Kfz6MQcakZtC7XPt4qwFW6uvuKE4kojMNrqpGf-g_Uv0FedCCUNcyCcImHDZKLLO_KQ";
 
   const formik = useFormik({
     initialValues: {
-      centerId: "",
+      studentCareId: "",
       holidayName: "",
       startDate: "",
       endDate: "",
@@ -39,7 +38,7 @@ function HolidayAdd() {
       console.log(values);
       try {
         const payload = {
-          // centerId: values.centerId,
+          studentCareId: values.studentCareId,
           holidayName: values.holidayName,
           startDate: values.startDate,
           endDate: values.endDate,
@@ -125,28 +124,35 @@ function HolidayAdd() {
                   <label className="form-label">
                     Center Name<span className="text-danger">*</span>
                   </label>
-                  <select
-                    {...formik.getFieldProps("centerId")}
-                    name="centerId"
-                    className={`form-select form-select-sm ${
-                      formik.touched.centerId && formik.errors.centerId
-                        ? "is-invalid"
-                        : ""
-                    }`}
-                  >
-                    <option selected disabled></option>
-                    {centerData &&
-                      centerData.map((center) => (
-                        <option key={center.id} value={center.id}>
-                          {center.centerNames}
-                        </option>
-                      ))}
-                  </select>
-                  {formik.touched.centerId && formik.errors.centerId && (
-                    <div className="invalid-feedback">
-                      {formik.errors.centerId}
-                    </div>
-                  )}
+                  <div className="input-group mb-3">
+                    <select
+                      {...formik.getFieldProps("studentCareId")}
+                      className={`form-select form-select-sm  ${
+                        formik.touched.studentCareId &&
+                        formik.errors.studentCareId
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                      aria-label="Default select example"
+                    >
+                      <option selected></option>
+                      {centerData &&
+                        centerData.map((studentCareId) => (
+                          <option
+                            key={studentCareId.id}
+                            value={studentCareId.id}
+                          >
+                            {studentCareId.studentCareName}
+                          </option>
+                        ))}
+                    </select>
+                    {formik.touched.studentCareId &&
+                      formik.errors.studentCareId && (
+                        <div className="invalid-feedback">
+                          {formik.errors.studentCareId}
+                        </div>
+                      )}
+                  </div>
                 </div>
               </div>
               <div className="col-lg-6 col-md-6 col-12">
