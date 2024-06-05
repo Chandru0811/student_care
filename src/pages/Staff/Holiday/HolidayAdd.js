@@ -5,10 +5,12 @@ import * as Yup from "yup";
 // import fetchAllCentersWithIds from "../../List/CenterList";
 import api from "../../../config/URL";
 import { toast } from "react-toastify";
+import fetchAllCentersWithIds from "../../List/CenterList";
 
 function HolidayAdd() {
+
   const validationSchema = Yup.object({
-    centerId: Yup.string().required("*Center Name is required"),
+    // centerId: Yup.string().required("*Center Name is required"),
     holidayName: Yup.string().required("*Holiday Name is required"),
     startDate: Yup.string().required("*Select the start date"),
     endDate: Yup.string().required("*Select the end date"),
@@ -16,9 +18,13 @@ function HolidayAdd() {
       "*Holiday Description is required"
     ),
   });
+
   const [centerData, setCenterData] = useState(null);
   const [loadIndicator, setLoadIndicator] = useState(false);
   const navigate = useNavigate();
+  const token =
+  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQb29tYSIsImlhdCI6MTcxNzU2ODI4NywiZXhwIjoxNzIyNzUyMjg3fQ.3GVVYl1M96t8b-86el8Kfz6MQcakZtC7XPt4qwFW6uvuKE4kojMNrqpGf-g_Uv0FedCCUNcyCcImHDZKLLO_KQ";
+
   const formik = useFormik({
     initialValues: {
       centerId: "",
@@ -29,19 +35,19 @@ function HolidayAdd() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      setLoadIndicator(true);
+      // setLoadIndicator(true);
       console.log(values);
       try {
         const payload = {
-          centerId: values.centerId,
+          // centerId: values.centerId,
           holidayName: values.holidayName,
           startDate: values.startDate,
           endDate: values.endDate,
           holidayDescription: values.holidayDescription,
         };
-        const response = await api.post("/createUserHoliday", payload, {
+        const response = await api.post("creteHoliday", payload, {
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -62,12 +68,12 @@ function HolidayAdd() {
   });
 
   const fetchData = async () => {
-    // try {
-    //   const centerData = await fetchAllCentersWithIds();
-    //   setCenterData(centerData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centerData = await fetchAllCentersWithIds();
+      setCenterData(centerData);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   useEffect(() => {

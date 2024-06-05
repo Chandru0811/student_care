@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEdit } from "react-icons/fa";
 // import Delete from "../../../components/common/Delete";
 import api from "../../../config/URL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+import fetchAllCentersWithIds from "../../List/CenterList";
+import DeleteModel from "../../../components/common/DeleteModel";
 // import fetchAllCentersWithIds from "../../List/CenterList";
 
 const Holiday = () => {
@@ -17,29 +19,35 @@ const Holiday = () => {
   const [loading, setLoading] = useState(false);
   const [centerData, setCenterData] = useState(null);
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
+  const token =
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQb29tYSIsImlhdCI6MTcxNzU2ODI4NywiZXhwIjoxNzIyNzUyMjg3fQ.3GVVYl1M96t8b-86el8Kfz6MQcakZtC7XPt4qwFW6uvuKE4kojMNrqpGf-g_Uv0FedCCUNcyCcImHDZKLLO_KQ";
 
   const fetchData = async () => {
-    // try {
-    //   const centerData = await fetchAllCentersWithIds();
-    //   setCenterData(centerData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centerData = await fetchAllCentersWithIds();
+      setCenterData(centerData);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get("/getAllUserHoliday");
-  //       setDatas(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       toast.error("Error Fetching Data : ", error);
-  //     }
-  //   };
-  //   getData();
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get("getAllHoliday", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setDatas(response.data);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error Fetching Data : ", error);
+      }
+    };
+    getData();
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -70,13 +78,17 @@ const Holiday = () => {
   const refreshData = async () => {
     destroyDataTable();
     setLoading(true);
-    // try {
-    //   const response = await api.get("/getAllUserHoliday");
-    //   setDatas(response.data);
-    //   initializeDataTable(); // Reinitialize DataTable after successful data update
-    // } catch (error) {
-    //   console.error("Error refreshing data:", error);
-    // }
+    try {
+      const response = await api.get("getAllHoliday", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setDatas(response.data);
+      initializeDataTable(); // Reinitialize DataTable after successful data update
+    } catch (error) {
+      console.error("Error refreshing data:", error);
+    }
     setLoading(false);
   };
 
@@ -127,7 +139,7 @@ const Holiday = () => {
                         {centerData &&
                           centerData.map((centerId) =>
                             parseInt(data.centerId) === centerId.id
-                              ? centerId.centerNames || "--"
+                              ? centerId.studentCareName || "--"
                               : ""
                           )}
                       </td>
@@ -135,7 +147,7 @@ const Holiday = () => {
                       <td>{data.startDate.substring(0, 10)}</td>
                       <td>
                         <div className="d-flex justify-content-center align-items-center ">
-                          {storedScreens?.holidayRead && (
+                          {/* {storedScreens?.holidayRead && ( */}
                             <Link
                               to={`/holiday/list/${data.id}`}
                               style={{ display: "inline-block" }}
@@ -144,8 +156,8 @@ const Holiday = () => {
                                 <FaEye />
                               </button>
                             </Link>
-                          )}
-                          {storedScreens?.holidayUpdate && (
+                          {/* )} */}
+                          {/* {storedScreens?.holidayUpdate && ( */}
                             <Link
                               to={`/holiday/edit/${data.id}`}
                               style={{ display: "inline-block" }}
@@ -154,14 +166,14 @@ const Holiday = () => {
                                 <FaEdit />
                               </button>
                             </Link>
-                          )}
-                          {/* {storedScreens?.holidayDelete && (
-                      <Delete
-                        onSuccess={refreshData}
-                        path={`/deleteUserHoliday/${data.id}`}
-                        style={{ display: "inline-block" }}
-                      />
-                    )} */}
+                          {/* )} */}
+                          {/* {storedScreens?.holidayDelete && ( */}
+                            <DeleteModel
+                              onSuccess={refreshData}
+                              path={`/deleteHolidayModel/${data.id}`}
+                              style={{ display: "inline-block" }}
+                            />
+                          {/* )} */}
                         </div>
                       </td>
                     </tr>
