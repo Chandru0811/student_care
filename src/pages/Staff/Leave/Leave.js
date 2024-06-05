@@ -4,45 +4,43 @@ import "datatables.net-responsive-dt";
 import $ from "jquery";
 import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
-// import fetchAllCentersWithIds from "../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 import toast from "react-hot-toast";
 import api from "../../../config/URL";
 
 const Leave = () => {
   const tableRef = useRef(null);
   const [datas, setDatas] = useState([]);
-  const userId = sessionStorage.getItem("userId");
+  // const userId = sessionStorage.getItem("userId");
+  const userId = 22;
   // console.log("Data:", datas.employeeData);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [centerData, setCenterData] = useState(null);
   // console.log("centerData", centerData);
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
 
   const fetchData = async () => {
-    // try {
-    //   const centerData = await fetchAllCentersWithIds();
-    //   setCenterData(centerData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centerData = await fetchAllStudentCaresWithIds();
+      setCenterData(centerData);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get(
-  //         `/getUserLeaveRequestByUserId/${userId}`
-  //       );
-  //       setDatas(response.data);
-  //       // console.log("responsedata", response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       toast.error("Error Fetching Data : ", error);
-  //     }
-  //   };
-  //   getData();
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get(`/getUserLeaveRequestByUserId/${userId}`);
+        setDatas(response.data);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error Fetching Data : ", error);
+      }
+    };
+    getData();
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -142,9 +140,9 @@ const Leave = () => {
                       <th scope="row">{index + 1}</th>
                       <td>
                         {centerData &&
-                          centerData.map((centerId) =>
-                            parseInt(data.centerId) === centerId.id
-                              ? centerId.centerNames || "--"
+                          centerData.map((studentCareId) =>
+                            parseInt(data.studentCareId) === studentCareId.id
+                              ? studentCareId.studentCareName || "--"
                               : ""
                           )}
                       </td>

@@ -77,7 +77,7 @@ const AddParentGuardian = forwardRef(
           });
 
           const response = await api.post(
-            `/createMultipleStudentParentsDetailsWithProfileImages/${formData.student_id}`,
+            `/createMultipleStudentParentsDetailsWithProfileImages/${formData.studentId}`,
             formDatas,
             {
               headers: {

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import fetchAllTeacherListByCenter from "../../List/TeacherListByCenter";
-// import fetchAllCentersWithIds from "../../List/CenterList";
+import fetchAllTeacherListByCenter from "../../List/TeacherListByCenter";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 import toast from "react-hot-toast";
 import api from "../../../config/URL";
 
@@ -19,7 +19,7 @@ function LeaveAdd() {
   const [centerData, setCenterData] = useState(null);
   const [datas, setDatas] = useState([]);
   const userId = sessionStorage.getItem("userId");
-  const centerId = sessionStorage.getItem("centerId");
+  const studentCareId = sessionStorage.getItem("studentCareId");
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
@@ -37,12 +37,12 @@ function LeaveAdd() {
   };
 
   const fetchData = async () => {
-    // try {
-    //   const centers = await fetchAllCentersWithIds();
-    //   setCenterData(centers);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centers = await fetchAllStudentCaresWithIds();
+      setCenterData(centers);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function LeaveAdd() {
 
   const formik = useFormik({
     initialValues: {
-      centerId: "",
+      studentCareId: "",
       centerName: "",
       employeeName: "",
       userId: "",
@@ -72,15 +72,15 @@ function LeaveAdd() {
       let selectedCenterName = "";
 
       if (centerData) {
-        centerData.forEach((center) => {
-          if (parseInt(centerId) === center.id) {
-            selectedCenterName = center.centerNames || "--";
+        centerData.forEach((studentCareId) => {
+          if (parseInt(studentCareId) === studentCareId.id) {
+            selectedCenterName = studentCareId.studentCareName || "--";
           }
         });
       }
       const payload = {
         userId: userId,
-        centerId: centerId,
+        studentCareId: studentCareId,
         centerName: selectedCenterName,
         employeeName: datas.employeeName,
         leaveType: values.leaveType,
@@ -96,37 +96,37 @@ function LeaveAdd() {
 
       console.log("Request Date is", payload);
 
-      // try {
-      //   const response = await api.post("/createUserLeaveRequest", payload, {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
-      //   if (response.status === 201) {
-      //     toast.success(response.data.message);
-      //     navigate("/leave");
-      //   } else {
-      //     toast.error(response.data.message);
-      //   }
-      // } catch (error) {
-      //   toast.error(error);
-      // }
+      try {
+        const response = await api.post("/createUserLeaveRequest", payload, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.status === 201) {
+          toast.success(response.data.message);
+          navigate("/leave");
+        } else {
+          toast.error(response.data.message);
+        }
+      } catch (error) {
+        toast.error(error);
+      }
     },
   });
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get(
-  //         `/getUserLeaveRequestByUserId/${userId}`
-  //       );
-  //       setDatas(response.data);
-  //     } catch (error) {
-  //       toast.error("Error Fetching Data : ", error);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get(
+          `/getUserLeaveRequestByUserId/${userId}`
+        );
+        setDatas(response.data);
+      } catch (error) {
+        toast.error("Error Fetching Data : ", error);
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <div className="container-fluid center">
@@ -167,7 +167,7 @@ function LeaveAdd() {
                   name="employeeName"
                   className="form-control form-control-sm"
                   value={datas && datas.employeeName}
-                  // {...formik.getFieldProps("employeeName")}
+                  {...formik.getFieldProps("employeeName")}
                   readOnly
                 />
                 <input

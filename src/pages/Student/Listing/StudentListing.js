@@ -19,12 +19,12 @@ const StudentListing = () => {
   // console.log("Screens : ", SCREENS);
 
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getCenterData = async () => {
       try {
-        const response = await api.get("/getAllCenter");
+        const response = await api.get("/getAllStudentDetails");
         setDatas(response.data);
         setLoading(false);
       } catch (error) {
@@ -167,7 +167,7 @@ const StudentListing = () => {
                                 </ul>
                               </div>
                             )}
-                            {storedScreens?.centerListingRead && (
+                            {/* {storedScreens?.centerListingRead && ( */}
                               <Link
                                 to={`/center/view/${data.id}`}
                                 style={{ display: "inline-block" }}
@@ -176,8 +176,8 @@ const StudentListing = () => {
                                   <FaEye />
                                 </button>
                               </Link>
-                            )}
-                            {storedScreens?.centerListingUpdate && (
+                            {/* )}
+                            {storedScreens?.centerListingUpdate && ( */}
                               <Link
                                 to={`/studentlisting/edit`}
                                 style={{ display: "inline-block" }}
@@ -186,7 +186,7 @@ const StudentListing = () => {
                                   <FaEdit />
                                 </button>
                               </Link>
-                            )}
+                            {/* )} */}
                             {/* {storedScreens?.centerListingDelete && (
                       <Delete
                         onSuccess={refreshData}

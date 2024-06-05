@@ -89,13 +89,13 @@ const Student = () => {
         <div className="container-fluid px-0">
           <div className="my-3 d-flex justify-content-between px-4">
             <h2>Student Listing</h2>
-            {/ {storedScreens?.studentListingCreate && ( /}
+            {/* {/ {storedScreens?.studentListingCreate && ( /}
               <Link to="/student/add">
                 <button type="button" className="btn btn-button btn-sm">
                   Add <i class="bx bx-plus"></i>
                 </button>
               </Link>
-            {/ )} /}
+            {/ )} /} */}
           </div>
           <hr/>
           <div className="px-4">

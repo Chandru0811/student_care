@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import fetchAllCentersWithIds from "../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 import toast from "react-hot-toast";
 import api from "../../../config/URL";
-// import fetchAllEmployeeListByCenter from "../../List/EmployeeList";
+import fetchAllEmployeeListByCenter from "../../List/EmployeeList";
 
 const validationSchema = Yup.object({
-  centerId: Yup.string().required("*Select a Centre Name"),
+  studentCareId: Yup.string().required("*Select a Centre Name"),
   userId: Yup.string().required("*Employee Name is required"),
   leaveType: Yup.string().required("*Select a Leave Type"),
   fromDate: Yup.string().required("*From Date is required"),
@@ -28,7 +28,7 @@ function LeaveAdminEdit() {
   const { id } = useParams();
   const formik = useFormik({
     initialValues: {
-      centerId: "",
+      studentCareId: "",
       centerName: "",
       userId: "",
       leaveType: "",
@@ -53,7 +53,7 @@ function LeaveAdminEdit() {
       // console.log("user Data", values.userId)
 
       centerData.forEach((center) => {
-        if (parseInt(values.centerId) === center.id) {
+        if (parseInt(values.studentCareId) === center.id) {
           selectedCenterName = center.centerNames || "--";
         }
       });
@@ -65,7 +65,7 @@ function LeaveAdminEdit() {
       });
 
       const payload = {
-        centerId: values.centerId,
+        studentCareId: values.studentCareId,
         centerName: selectedCenterName,
         userId: values.userId,
         employeeName: selectedTeacherName,
@@ -85,7 +85,7 @@ function LeaveAdminEdit() {
 
       try {
         const response = await api.put(
-          `/updateUserLeaveRequest/${id}`,
+          `/updateLeaveRequest/${id}`,
           payload,
           {
             headers: {
@@ -108,21 +108,21 @@ function LeaveAdminEdit() {
   });
 
   const fetchData = async () => {
-    // try {
-    //   const centers = await fetchAllCentersWithIds();
-    //   setCenterData(centers);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centers = await fetchAllStudentCaresWithIds();
+      setCenterData(centers);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  const fetchTeacher = async (centerId) => {
-    // try {
-    //   const teacher = await fetchAllEmployeeListByCenter(centerId);
-    //   setTeacherData(teacher);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+  const fetchTeacher = async (studentCareId) => {
+    try {
+      const teacher = await fetchAllEmployeeListByCenter(studentCareId);
+      setTeacherData(teacher);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   const calculateDays = (fromDate, toDate) => {
@@ -156,31 +156,31 @@ function LeaveAdminEdit() {
 
   const handleCenterChange = (event) => {
     setTeacherData(null);
-    const centerId = event.target.value;
-    formik.setFieldValue("centerId", centerId);
-    fetchTeacher(centerId);
+    const studentCareId = event.target.value;
+    formik.setFieldValue("studentCareId", studentCareId);
+    fetchTeacher(studentCareId);
   };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await api.get(`/getUserLeaveRequestById/${id}`);
-  //       console.log(response.data);
-  //       formik.setValues(response.data);
-  //       fetchData();
-  //       fetchTeacher(response.data.centerId);
-  //       const { daysDifference } = calculateDays(
-  //         response.data.fromDate,
-  //         response.data.toDate
-  //       );
-  //       setDaysDifference(daysDifference);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get(`/getAllLeaveRequestById/${id}`);
+        console.log(response.data);
+        formik.setValues(response.data);
+        fetchData();
+        fetchTeacher(response.data.studentCareId);
+        const { daysDifference } = calculateDays(
+          response.data.fromDate,
+          response.data.toDate
+        );
+        setDaysDifference(daysDifference);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  //   getData();
-  // }, [id]);
+    getData();
+  }, [id]);
 
   return (
     <div className="container-fluid center">
@@ -227,9 +227,9 @@ function LeaveAdminEdit() {
                   Centre Name<span className="text-danger">*</span>
                 </label>
                 <select
-                  {...formik.getFieldProps("centerId")}
+                  {...formik.getFieldProps("studentCareId")}
                   className={`form-select ${
-                    formik.touched.centerId && formik.errors.centerId
+                    formik.touched.studentCareId && formik.errors.studentCareId
                       ? "is-invalid"
                       : ""
                   }`}
@@ -238,15 +238,15 @@ function LeaveAdminEdit() {
                 >
                   <option disabled></option>
                   {centerData &&
-                    centerData.map((center) => (
-                      <option key={center.id} value={center.id}>
-                        {center.centerNames}
+                    centerData.map((studentCareId) => (
+                      <option key={studentCareId.id} value={studentCareId.id}>
+                        {studentCareId.studentCareName}
                       </option>
                     ))}
                 </select>
-                {formik.touched.centerId && formik.errors.centerId && (
+                {formik.touched.studentCareId && formik.errors.studentCareId && (
                   <div className="invalid-feedback">
-                    {formik.errors.centerId}
+                    {formik.errors.studentCareId}
                   </div>
                 )}
               </div>

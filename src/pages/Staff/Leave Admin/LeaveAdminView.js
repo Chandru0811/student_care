@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../../config/URL";
 import toast from "react-hot-toast";
-// import fetchAllCentersWithIds from "../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 
 function LeaveAdminView() {
   const [data, setData] = useState([]);
@@ -12,20 +12,20 @@ function LeaveAdminView() {
   // const [teacherData, setTeacherData] = useState(null);
 
   const fetchData = async () => {
-    // try {
-    //   const centerData = await fetchAllCentersWithIds();
-    //   // const teacherData = await fetchAllTeachersWithIds();
-    //   setCenterData(centerData);
-    //   // setTeacherData(teacherData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centerData = await fetchAllStudentCaresWithIds();
+      // const teacherData = await fetchAllTeachersWithIds();
+      setCenterData(centerData);
+      // setTeacherData(teacherData);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getUserLeaveRequestById/${id}`);
+        const response = await api.get(`/getAllLeaveRequestById/${id}`);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -68,9 +68,9 @@ function LeaveAdminView() {
                 <p className="text-muted text-sm">
                   :{" "}
                   {centerData &&
-                    centerData.map((centerId) =>
-                      parseInt(data.centerId) === centerId.id
-                        ? centerId.centerNames || "--"
+                    centerData.map((studentCareId) =>
+                      parseInt(data.studentCareId) === studentCareId.id
+                        ? studentCareId.studentCareName || "--"
                         : ""
                     )}
                 </p>

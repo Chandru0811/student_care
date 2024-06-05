@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/sidebar.css";
 import api from "../../config/URL";
-// import AddMore from "./AddMore";
+import AddMore from "./AddMore";
 import toast from "react-hot-toast";
 import fetchAllCentersWithIds from "../List/CenterList";
 import WebSocketService from "../../config/WebSocketService";
-// import fetchAllCoursesWithIds from "../List/CourseList";
+import fetchAllCoursesWithIds from "../List/CourseList";
 
 function Attendances() {
   const [attendanceData, setAttendanceData] = useState([]);
   console.log("Attendance Data Reload again", attendanceData);
   const [centerData, setCenterData] = useState(null);
-  // const [courseData, setCourseData] = useState(null);
+  const [courseData, setCourseData] = useState(null);
   const [selectedCenter, setSelectedCenter] = useState("1");
-  // const [selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedBatch, setSelectedBatch] = useState("1");
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
   const [count, setCount] = useState(0);
@@ -32,7 +32,7 @@ function Attendances() {
   const fetchListData = async () => {
     try {
       const centerData = await fetchAllCentersWithIds();
-      // const courseData = await fetchAllCoursesWithIds();
+      const courseData = await fetchAllCoursesWithIds();
 
       setCenterData(centerData);
       // setCourseData(courseData);
@@ -50,7 +50,7 @@ function Attendances() {
     // setLoadIndicator(true);
     try {
       const requestBody = {
-        centerId: selectedCenter,
+        studentCareId: selectedCenter,
         batchId: selectedBatch,
         date: selectedDate,
       };
@@ -67,13 +67,13 @@ function Attendances() {
 
   // const [count, setCount] = useState(0);
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     setCount((prevCount) => prevCount + 1); // Increment count every 5 seconds
-  //   }, 5000);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCount((prevCount) => prevCount + 1); // Increment count every 5 seconds
+    }, 5000);
 
-  //   return () => clearInterval(intervalId); // Clean up the interval on unmount
-  // }, []);
+    return () => clearInterval(intervalId); // Clean up the interval on unmount
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -128,7 +128,7 @@ function Attendances() {
           remarks: student.remarks,
           userId: attendanceItem.userId,
           studentId: student.studentId,
-          centerId: attendanceItem.centerId,
+          studentCareId: attendanceItem.studentCareId,
           classId: attendanceItem.classId,
           courseId: attendanceItem.courseId,
           batchId: parseInt(selectedBatch),
@@ -164,9 +164,9 @@ function Attendances() {
                   onChange={(e) => setSelectedCenter(e.target.value)}
                 >
                   {centerData &&
-                    centerData.map((center) => (
-                      <option key={center.id} value={center.id}>
-                        {center.centerNames}
+                    centerData.map((studentCareId) => (
+                      <option key={studentCareId.id} value={studentCareId.id}>
+                        {studentCareId.studentCareName}
                       </option>
                     ))}
                 </select>
