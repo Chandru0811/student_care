@@ -33,7 +33,7 @@ const AddParentGuardian = forwardRef(
       formData.parentInformation ? formData.parentInformation.length : 1
     ); // Initially one row for one parent
     const [selectedPrimaryContactIndex, setSelectedPrimaryContactIndex] =
-      useState(null);
+      useState(0);
 
     const formik = useFormik({
       initialValues: {
@@ -77,7 +77,7 @@ const AddParentGuardian = forwardRef(
           });
 
           const response = await api.post(
-            `/createMultipleStudentParentsDetailsWithProfileImages/${formData.studentId}`,
+            `/createMultipleStudentParentsDetailsWithProfileImages/${formData.student_id}`,
             formDatas,
             {
               headers: {
@@ -129,7 +129,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control form-control-sm"
+                            className="form-control "
                             type="text"
                             name={`parentInformation[${index}].parentNames`}
                             onChange={formik.handleChange}
@@ -192,7 +192,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control form-control-sm"
+                            className="form-control "
                             type="emails"
                             name={`parentInformation[${index}].emails`}
                             onChange={formik.handleChange}
@@ -222,7 +222,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <select
-                            className="form-select form-select-sm"
+                            className="form-select "
                             type="text"
                             name={`parentInformation[${index}].relations`}
                             onChange={formik.handleChange}
@@ -299,7 +299,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control form-control-sm"
+                            className="form-control "
                             type="text"
                             name={`parentInformation[${index}].occupations`}
                             onChange={formik.handleChange}
@@ -354,7 +354,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control form-control-sm"
+                            className="form-control "
                             type="tel"
                             name={`parentInformation[${index}].mobileNumbers`}
                             onChange={formik.handleChange}
@@ -385,7 +385,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <input
-                            className="form-control form-control-sm"
+                            className="form-control "
                             type="tel"
                             name={`parentInformation[${index}].postalCodes`}
                             onChange={formik.handleChange}
@@ -418,7 +418,7 @@ const AddParentGuardian = forwardRef(
                           </label>
                           <br />
                           <textarea
-                            className="form-control form-control-sm"
+                            className="form-control "
                             type="text"
                             style={{
                               height: "7rem",

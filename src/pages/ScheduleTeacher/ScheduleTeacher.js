@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "datatables.net-dt";
 import "datatables.net-responsive-dt";
-import $ from "jquery";
+import $, { data } from "jquery";
 import Modal from "react-bootstrap/Modal";
 import { FaTrash } from "react-icons/fa";
 import api from "../../config/URL";
 import toast from "react-hot-toast";
 import ScheduleTeacherAdd from "../ScheduleTeacher/ScheduleTeacherAdd";
-// import ScheduleTeacherEdit from "../ScheduleTeacher/ScheduleTeacherEdit";
+import ScheduleTeacherEdit from "../ScheduleTeacher/ScheduleTeacherEdit";
 import ScheduleTeacherView from "../ScheduleTeacher/ScheduleTeacherView";
 import { Link } from "react-router-dom";
 import { BsTable } from "react-icons/bs";
@@ -46,7 +46,7 @@ const ScheduleTeacher = () => {
       //   classId: 20,
       //   dayOfWeek: days,
       // };
-      const response = await api.delete("deleteAllScheduleTeacher", {
+      const response = await api.delete(`deleteAllScheduleTeacher/${data.id}`, {
         data: formData,
       });
 
@@ -159,32 +159,32 @@ const ScheduleTeacher = () => {
                         <td>{data.days}</td>
                         <td>
                           <div className="d-flex justify-content-center align-item-center">
-                            {storedScreens?.scheduleTeacherRead && (
-                              <ScheduleTeacherView id={data.id} />
-                            )}
-                            {/* {storedScreens?.scheduleTeacherUpdate && (
-                        <ScheduleTeacherEdit
-                          id={data.id}
-                          onSuccess={refreshData}
-                        />
-                      )} */}
-                            {storedScreens?.scheduleTeacherDelete && (
-                              <button
-                                className="btn btn-sm"
-                                onClick={() => handleShow(data)}
-                              >
-                                <FaTrash />
+                            {/* {storedScreens?.scheduleTeacherRead && ( */}
+                            <ScheduleTeacherView id={data.id} />
+                            {/* )} */}
+                            {/* {storedScreens?.scheduleTeacherUpdate && ( */}
+                            <ScheduleTeacherEdit
+                              id={data.id}
+                              onSuccess={refreshData}
+                            />
+                            {/* )} */}
+                            {/* {storedScreens?.scheduleTeacherDelete && ( */}
+                            <button
+                              className="btn btn-sm"
+                              onClick={() => handleShow(data)}
+                            >
+                              <FaTrash />
+                            </button>
+                            {/* )} */}
+                            {/* {storedScreens?.timeScheduleIndex && ( */}
+                            <Link
+                              to={`/scheduleteacher/scheduletime/${data.userId}?centerId=${data.centerId}`}
+                            >
+                              <button className="btn">
+                                <BsTable className="text-dark" />
                               </button>
-                            )}
-                            {storedScreens?.timeScheduleIndex && (
-                              <Link
-                                to={`/scheduleteacher/scheduletime/${data.userId}?centerId=${data.centerId}`}
-                              >
-                                <button className="btn">
-                                  <BsTable className="text-dark" />
-                                </button>
-                              </Link>
-                            )}
+                            </Link>
+                            {/* )} */}
                           </div>
                         </td>
                       </tr>

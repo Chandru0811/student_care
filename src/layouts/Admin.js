@@ -108,7 +108,7 @@ import { Toaster } from "react-hot-toast";
 function Admin({ handleLogout }) {
   return (
     <BrowserRouter>
-    <Toaster></Toaster>
+      <Toaster></Toaster>
       <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
         <Sidebar onLogout={handleLogout} />
         <div className="h-screen flex-grow-1 overflow-y-lg-auto">
@@ -196,22 +196,10 @@ function Admin({ handleLogout }) {
 
               {/* {/ ScheduleTeacher /} */}
               <Route path="/scheduleteacher" element={<ScheduleTeacher />} />
-              <Route
-                path="/scheduleteacher/add"
-                element={<ScheduleTeacherAdd />}
-              />
-              <Route
-                path="/scheduleteacher/edit"
-                element={<ScheduleTeacherEdit />}
-              />
-              <Route
-                path="/scheduleteacher/view"
-                element={<ScheduleTeacherView />}
-              />
-              <Route
-                path="/scheduleteacher/scheduletime/:id"
-                element={<ScheduleTime />}
-              />
+              <Route path="/scheduleteacher/add" element={<ScheduleTeacherAdd />}/>
+              <Route path="/scheduleteacher/edit/:id" element={<ScheduleTeacherEdit />}/>
+              <Route path="/scheduleteacher/view/:id" element={<ScheduleTeacherView />} />
+              <Route path="/scheduleteacher/scheduletime/:id" element={<ScheduleTime />}/>
 
               <Route path="/holiday" element={<Holiday />} />
               <Route path="/holiday/add" element={<HolidayAdd />} />

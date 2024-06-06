@@ -114,19 +114,19 @@ function LeaveAdd() {
     },
   });
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await api.get(
-          `/getUserLeaveRequestByUserId/${userId}`
-        );
-        setDatas(response.data);
-      } catch (error) {
-        toast.error("Error Fetching Data : ", error);
-      }
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const response = await api.get(
+  //         `/getUserLeaveRequestByUserId/${userId}`
+  //       );
+  //       setDatas(response.data);
+  //     } catch (error) {
+  //       toast.error("Error Fetching Data : ", error);
+  //     }
+  //   };
+  //   getData();  
+  // }, []);
 
   return (
     <div className="container-fluid center">

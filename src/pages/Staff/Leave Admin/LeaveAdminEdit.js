@@ -112,7 +112,7 @@ function LeaveAdminEdit() {
       const centers = await fetchAllStudentCaresWithIds();
       setCenterData(centers);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 
@@ -121,7 +121,7 @@ function LeaveAdminEdit() {
       const teacher = await fetchAllEmployeeListByCenter(studentCareId);
       setTeacherData(teacher);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 

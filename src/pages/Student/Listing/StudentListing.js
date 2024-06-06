@@ -179,7 +179,7 @@ const StudentListing = () => {
                             {/* )}
                             {storedScreens?.centerListingUpdate && ( */}
                               <Link
-                                to={`/studentlisting/edit`}
+                                to={`/studentlisting/edit/${data.id}`}
                                 style={{ display: "inline-block" }}
                               >
                                 <button className="btn btn-sm">

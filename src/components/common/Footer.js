@@ -7,7 +7,7 @@ function Footer() {
         <div className="row align-items-center">
           <div className="col">
             <div className="d-flex align-items-center justify-content-center gap-4">
-              <p className="text-muted text-sm">copyright@ArtyLearning2024</p>
+              <p className="text-muted text-sm">copyright@StudentCare2024</p>
             </div>
           </div>
         </div>
