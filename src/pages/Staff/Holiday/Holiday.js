@@ -8,6 +8,7 @@ import api from "../../../config/URL";
 import toast from "react-hot-toast";
 import fetchAllCentersWithIds from "../../List/CenterList";
 import DeleteModel from "../../../components/common/DeleteModel";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 // import fetchAllCentersWithIds from "../../List/CenterList";
 
 const Holiday = () => {
@@ -36,7 +37,7 @@ const Holiday = () => {
 
   const fetchData = async () => {
     try {
-      const centerData = await fetchAllCentersWithIds();
+      const centerData = await fetchAllStudentCaresWithIds();
       setCenterData(centerData);
     } catch (error) {
       toast.error(error);

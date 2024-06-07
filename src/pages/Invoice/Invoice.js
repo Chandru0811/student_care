@@ -35,17 +35,18 @@ const Invoice = () => {
       setCourseData(courseData);
       setStudentData(studentData);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get("/getAllGenerateInvoices");
+        const response = await api.get("getAllGenerateInvoices");
         setDatas(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
+        // toast.error("Error fetching invoice data");
       } finally {
         setLoading(false);
       }
@@ -84,13 +85,15 @@ const Invoice = () => {
     destroyDataTable();
     setLoading(true);
     try {
-      const response = await api.get("/getAllGenerateInvoices");
+      const response = await api.get("getAllGenerateInvoices");
       setDatas(response.data);
       initializeDataTable();
     } catch (error) {
       console.error("Error refreshing data:", error);
+      toast.error("Error refreshing invoice data");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -137,52 +140,52 @@ const Invoice = () => {
                       <th scope="row">{index + 1}</th>
                       <td>
                         {courseData &&
-                          courseData.map((course) =>
-                            parseInt(data.courseId) === course.id
-                              ? course.courseNames || "--"
+                          courseData.map((courseId) =>
+                            parseInt(data.courseId) === courseId.id
+                              ? courseId.course || "--"
                               : ""
                           )}
                       </td>
                       <td>
                         {centerData &&
-                          centerData.map((center) =>
-                            parseInt(data.centerId) === center.id
-                              ? center.centerNames || "--"
+                          centerData.map((studentCareId) =>
+                            parseInt(data.studentCareId) === studentCareId.id
+                              ? studentCareId.studentCareName || "--"
                               : ""
                           )}
                       </td>
                       <td>
                         {studentData &&
-                          studentData.map((student) =>
-                            parseInt(data.studentId) === student.id
-                              ? student.studentNames || "--"
+                          studentData.map((studentId) =>
+                            parseInt(data.studentId) === studentId.id
+                              ? studentId.student || "--"
                               : ""
                           )}
                       </td>
                       <td>
                         {packageData &&
-                          packageData.map((packages) =>
-                            parseInt(data.packageId) === packages.id
-                              ? packages.packageNames || "--"
+                          packageData.map((packageId) =>
+                            parseInt(data.packageId) === packageId.id
+                              ? packageId.package || "--"
                               : ""
                           )}
                       </td>
                       <td>
                         <div className="d-flex">
-                          {storedScreens?.invoiceRead && (
+                          {/* {storedScreens?.invoiceRead && ( */}
                             <Link to={`/invoice/view/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEye />
                               </button>
                             </Link>
-                          )}
-                          {storedScreens?.invoiceUpdate && (
+                          {/* )}  */}
+                          {/* {storedScreens?.invoiceUpdate && (  */}
                             <Link to={`/invoice/edit/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEdit />
                               </button>
                             </Link>
-                          )}
+                          {/* )}  */}
                           {storedScreens?.invoiceDelete && (
                             <Delete
                               onSuccess={refreshData}

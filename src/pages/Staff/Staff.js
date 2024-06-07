@@ -117,20 +117,22 @@ const Staff = () => {
                       <tr key={index}>
                         <th scope="row">{index + 1}</th>
                         <td>
-                          {data.userAccountInfo?.length > 0 &&
-                            data.userAccountInfo[0].teacherId}
+                          {data.userAccountInfoModels?.length > 0 &&
+                            data.userAccountInfoModels[0].teacherId}
                         </td>
                         {/* <td>{data.teacherId}</td> */} 
                         <td>{data.teacherName}</td>
                         <td>
-                          {data.teacherType}
+                        {data.userAccountInfoModels?.length > 0 &&
+                            data.userAccountInfoModels[0].teacherType}
                         </td>
                         <td>
-                          {data.contactNumber}
+                        {data.userContactInfoModels?.length > 0 &&
+                            data.userContactInfoModels[0].contactNumber}
                         </td>
                         <td>
-                          {data.userAccountInfo?.length > 0 &&
-                          data.userAccountInfo[0].status === "Active" ? (
+                          {data.userAccountInfoModels?.length > 0 &&
+                          data.userAccountInfoModels[0].status === "Active" ? (
                             <span className="badge badges-Green">Active</span>
                           ) : (
                             <span className="badge badges-Red ">Inactive</span>

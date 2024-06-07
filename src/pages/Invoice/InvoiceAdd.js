@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useState } from "react";
 import api from "../../config/URL";
 import toast from "react-hot-toast";
 import fetchAllCentersWithIds from "../List/CenterList";
@@ -21,9 +20,9 @@ export default function InvoiceAdd() {
   const [loadIndicator, setLoadIndicator] = useState(false);
 
   const validationSchema = Yup.object({
-    center: Yup.string().required("*Select a Centre"),
+    studentCareId: Yup.string().required("*Select a Centre"),
     parent: Yup.string().required("*Parent is required"),
-    student: Yup.string().required("*Select a Student"),
+    studentId: Yup.string().required("*Select a Student"),
     course: Yup.string().required("*Select a course"),
     schedule: Yup.string().required("*Select a schedule"),
     invoiceDate: Yup.string().required("*Invoice Date is required"),
@@ -40,9 +39,9 @@ export default function InvoiceAdd() {
 
   const formik = useFormik({
     initialValues: {
-      center: "",
+      studentCareId: "",
       parent: "",
-      student: "",
+      studentId: "",
       course: "",
       schedule: "",
       noOfLessons: "",
@@ -73,9 +72,9 @@ export default function InvoiceAdd() {
         // Prepare the payload to send to the API
         const payload = {
           generateInvoice: {
-            centerId: values.center,
+            studentCareId: values.studentCareId,
             parent: values.parent,
-            studentId: values.student,
+            studentId: values.studentId,
             courseId: values.course,
             schedule: values.schedule,
             invoiceDate: values.invoiceDate,
@@ -113,9 +112,9 @@ export default function InvoiceAdd() {
           toast.error(response.data.message);
         }
       } catch (error) {
-        toast.error(
-          error.message || "An error occurred while submitting the form"
-        );
+        // Ensure error.message is rendered as a string
+        const errorMessage = error.message || "An error occurred while submitting the form";
+        toast.error(errorMessage);
       } finally {
         setLoadIndicator(false);
       }
@@ -127,16 +126,16 @@ export default function InvoiceAdd() {
       const centerData = await fetchAllCentersWithIds();
       setCenterData(centerData);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message); // Ensure error.message is rendered as a string
     }
   };
 
-  const fetchCourses = async (centerId) => {
+  const fetchCourses = async (studentCareId) => {
     try {
-      const courseData = await fetchAllCoursesWithIdsC(centerId);
+      const courseData = await fetchAllCoursesWithIdsC(studentCareId);
       setCourseData(courseData);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message); // Ensure error.message is rendered as a string
     }
   };
 
@@ -145,7 +144,7 @@ export default function InvoiceAdd() {
       const packageData = await fetchAllPackageListByCenter(centerId);
       setPackageData(packageData);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message); // Ensure error.message is rendered as a string
     }
   };
 
@@ -154,7 +153,7 @@ export default function InvoiceAdd() {
       const student = await fetchAllStudentListByCenter(centerId);
       setStudentData(student);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message); // Ensure error.message is rendered as a string
     }
   };
 
@@ -205,7 +204,7 @@ export default function InvoiceAdd() {
   }, [formik.values.invoiceItems]);
 
   return (
-    <div className="container-fluid  center">
+    <div className="container-fluid center">
       <form onSubmit={formik.handleSubmit}>
         <div className="card shadow border-0 mb-2 top-header">
           <div className="my-3 d-flex justify-content-between">
@@ -214,7 +213,7 @@ export default function InvoiceAdd() {
             </div>
             <div>
               <Link to="/invoice">
-                <button type="button " className="btn btn-sm btn-border">
+                <button type="button" className="btn btn-sm btn-border">
                   Back
                 </button>
               </Link>
@@ -240,14 +239,14 @@ export default function InvoiceAdd() {
             <div className="col-lg-6 col-md-6 col-12 px-5">
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Centre<span class="text-danger">*</span>
+                  Centre<span className="text-danger">*</span>
                 </label>
                 <br />
                 <select
-                  {...formik.getFieldProps("center")}
-                  name="center"
+                  {...formik.getFieldProps("studentCareId")}
+                  name="studentCareId"
                   className={`form-select form-select-sm ${
-                    formik.touched.center && formik.errors.center
+                    formik.touched.studentCareId && formik.errors.studentCareId
                       ? "is-invalid"
                       : ""
                   }`}
@@ -255,19 +254,21 @@ export default function InvoiceAdd() {
                 >
                   <option selected></option>
                   {centerData &&
-                    centerData.map((center) => (
-                      <option key={center.id} value={center.id}>
-                        {center.centerNames}
+                    centerData.map((studentCareId) => (
+                      <option key={studentCareId.id} value={studentCareId.id}>
+                        {studentCareId.studentCareName}
                       </option>
                     ))}
                 </select>
-                {formik.touched.center && formik.errors.center && (
-                  <div className="invalid-feedback">{formik.errors.center}</div>
+                {formik.touched.studentCareId && formik.errors.studentCareId && (
+                  <div className="invalid-feedback">
+                    {formik.errors.studentCareId}
+                  </div>
                 )}
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Parent<span class="text-danger">*</span>
+                  Parent<span className="text-danger">*</span>
                 </label>
                 <br />
                 <input
@@ -280,23 +281,25 @@ export default function InvoiceAdd() {
                   type="text"
                 />
                 {formik.touched.parent && formik.errors.parent && (
-                  <div className="invalid-feedback">{formik.errors.parent}</div>
+                  <div className="invalid-feedback">
+                    {formik.errors.parent}
+                  </div>
                 )}
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Student<span class="text-danger">*</span>
+                  Student<span className="text-danger">*</span>
                 </label>
                 <br />
                 <select
-                  {...formik.getFieldProps("student")}
+                  {...formik.getFieldProps("studentId")}
                   className={`form-select form-select-sm ${
-                    formik.touched.student && formik.errors.student
+                    formik.touched.studentId && formik.errors.studentId
                       ? "is-invalid"
                       : ""
                   }`}
                 >
-                  <option selected></option>
+                  <option value="" selected></option>
                   {studentData &&
                     studentData.map((student) => (
                       <option key={student.id} value={student.id}>
@@ -304,15 +307,15 @@ export default function InvoiceAdd() {
                       </option>
                     ))}
                 </select>
-                {formik.touched.student && formik.errors.student && (
+                {formik.touched.studentId && formik.errors.studentId && (
                   <div className="invalid-feedback">
-                    {formik.errors.student}
+                    {formik.errors.studentId}
                   </div>
                 )}
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Course<span class="text-danger">*</span>
+                  Course<span className="text-danger">*</span>
                 </label>
                 <br />
                 <select
@@ -323,7 +326,7 @@ export default function InvoiceAdd() {
                       : ""
                   }`}
                 >
-                  <option selected></option>
+                  <option value="" selected></option>
                   {courseData &&
                     courseData.map((course) => (
                       <option key={course.id} value={course.id}>
@@ -332,28 +335,25 @@ export default function InvoiceAdd() {
                     ))}
                 </select>
                 {formik.touched.course && formik.errors.course && (
-                  <div className="invalid-feedback">{formik.errors.course}</div>
+                  <div className="invalid-feedback">
+                    {formik.errors.course}
+                  </div>
                 )}
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Schedule<span class="text-danger">*</span>
+                  Schedule<span className="text-danger">*</span>
                 </label>
                 <br />
-                <select
+                <input
                   {...formik.getFieldProps("schedule")}
-                  className={`form-select form-select-sm ${
+                  className={`form-control form-control-sm  ${
                     formik.touched.schedule && formik.errors.schedule
                       ? "is-invalid"
                       : ""
                   }`}
-                >
-                  <option value=""></option>
-                  <option value="2:30 pm">2:30 pm</option>
-                  <option value="3:30 pm">3:30 pm</option>
-                  <option value="5:00 pm">5:00 pm</option>
-                  <option value="7:00 pm">7:00 pm</option>
-                </select>
+                  type="text"
+                />
                 {formik.touched.schedule && formik.errors.schedule && (
                   <div className="invalid-feedback">
                     {formik.errors.schedule}
@@ -362,40 +362,29 @@ export default function InvoiceAdd() {
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Number of Lesson
+                  No Of Lessons
                 </label>
                 <br />
-                <select
-                  name="noOfLessons"
+                <input
                   {...formik.getFieldProps("noOfLessons")}
-                  class="form-select form-select-sm "
-                  aria-label="Default select example"
-                >
-                  <option selected></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-              </div>
-              <div className="text-start mt-3">
-                <label htmlFor="" className="mb-1 fw-medium">
-                  Remarks
-                </label>
-                <br />
-                <textarea
-                  {...formik.getFieldProps("remarks")}
-                  className="form-control form-control-sm "
-                  type="text"
-                  placeholder="Remarks"
-                  style={{
-                    height: "7rem",
-                  }}
+                  className={`form-control form-control-sm  ${
+                    formik.touched.noOfLessons && formik.errors.noOfLessons
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  type="number"
                 />
+                {formik.touched.noOfLessons && formik.errors.noOfLessons && (
+                  <div className="invalid-feedback">
+                    {formik.errors.noOfLessons}
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-lg-6 col-md-6 col-12 px-5">
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Invoice Date<span class="text-danger">*</span>
+                  Invoice Date<span className="text-danger">*</span>
                 </label>
                 <br />
                 <input
@@ -415,7 +404,7 @@ export default function InvoiceAdd() {
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Due Date<span class="text-danger">*</span>
+                  Due Date<span className="text-danger">*</span>
                 </label>
                 <br />
                 <input
@@ -435,7 +424,7 @@ export default function InvoiceAdd() {
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Package<span class="text-danger">*</span>
+                  Package<span className="text-danger">*</span>
                 </label>
                 <br />
                 <select
@@ -446,7 +435,7 @@ export default function InvoiceAdd() {
                       : ""
                   }`}
                 >
-                  <option selected></option>
+                  <option value="" selected></option>
                   {packageData &&
                     packageData.map((packages) => (
                       <option key={packages.id} value={packages.id}>
@@ -462,11 +451,10 @@ export default function InvoiceAdd() {
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Invoice Period From<span class="text-danger">*</span>
+                  Invoice Period From<span className="text-danger">*</span>
                 </label>
                 <br />
                 <input
-                  {...formik.getFieldProps("invoicePeriodFrom")}
                   {...formik.getFieldProps("invoicePeriodFrom")}
                   className={`form-control form-control-sm  ${
                     formik.touched.invoicePeriodFrom &&
@@ -485,7 +473,7 @@ export default function InvoiceAdd() {
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Invoice Period To<span class="text-danger">*</span>
+                  Invoice Period To<span className="text-danger">*</span>
                 </label>
                 <br />
                 <input
@@ -505,249 +493,236 @@ export default function InvoiceAdd() {
                     </div>
                   )}
               </div>
-
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
-                  Receipt Amount<span class="text-danger">*</span>
+                  Receipt Amount<span className="text-danger">*</span>
                 </label>
                 <br />
                 <input
                   {...formik.getFieldProps("receiptAmount")}
                   className={`form-control form-control-sm  ${
-                    formik.touched.receiptAmount && formik.errors.receiptAmount
+                    formik.touched.receiptAmount &&
+                    formik.errors.receiptAmount
                       ? "is-invalid"
                       : ""
                   }`}
-                  type="text"
-                  placeholder=""
+                  type="number"
                 />
                 {formik.touched.receiptAmount &&
                   formik.errors.receiptAmount && (
-                    <div className="text-danger" style={{ fontSize: ".875em" }}>
+                    <div className="invalid-feedback">
                       {formik.errors.receiptAmount}
                     </div>
                   )}
               </div>
-            </div>
-          </div>
-
-          <div className="row mt-5 pt-5 flex-nowrap">
-            <div className="col-12">
-              <div className="table-responsive table-bordered">
-                <table class="table table-light table-nowrap">
-                  <thead className="thead-light">
-                    <tr>
-                      <th>
-                        Item<span class="text-danger">*</span>
-                      </th>
-                      <th>
-                        Item Amount (Exc GST)<span class="text-danger">*</span>
-                      </th>
-                      <th>
-                        Tax Type<span class="text-danger">*</span>
-                      </th>
-                      <th>
-                        GST Amount<span class="text-danger">*</span>
-                      </th>
-                      <th>
-                        Total Amount (Inc GST)<span class="text-danger">*</span>
-                      </th>
-                      {/* <th></th> */}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {rows.map((row, index) => (
-                      <tr key={index}>
-                        <td>
-                          <input
-                            {...formik.getFieldProps(
-                              `invoiceItems[${index}].item`
-                            )}
-                            className="form-control form-control-sm"
-                            type="text"
-                            style={{ width: "80%" }}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            {...formik.getFieldProps(
-                              `invoiceItems[${index}].itemAmount`
-                            )}
-                            className="form-control form-control-sm"
-                            type="text"
-                            style={{ width: "80%" }}
-                            onChange={(e) => {
-                              const newValue = e.target.value;
-                              formik.setFieldValue(
-                                `invoiceItems[${index}].itemAmount`,
-                                newValue
-                              );
-                              // Calculate total amount when item amount changes
-                              const gstValue =
-                                formik.values.invoiceItems[index].gstAmount ||
-                                0;
-                              const totalAmount = calculateTotalAmount(
-                                newValue,
-                                gstValue
-                              );
-                              formik.setFieldValue(
-                                `invoiceItems[${index}].totalAmount`,
-                                totalAmount
-                              );
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            {...formik.getFieldProps(
-                              `invoiceItems[${index}].taxType`
-                            )}
-                            className="form-control form-control-sm"
-                            type="text"
-                            style={{ width: "80%" }}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            {...formik.getFieldProps(
-                              `invoiceItems[${index}].gstAmount`
-                            )}
-                            className="form-control form-control-sm"
-                            type="text"
-                            style={{ width: "80%" }}
-                            onChange={(e) => {
-                              const newValue = e.target.value;
-                              formik.setFieldValue(
-                                `invoiceItems[${index}].gstAmount`,
-                                newValue
-                              );
-                              // Calculate total amount when GST changes
-                              const itemAmount =
-                                formik.values.invoiceItems[index].itemAmount ||
-                                0;
-                              const totalAmount = calculateTotalAmount(
-                                itemAmount,
-                                newValue
-                              );
-                              formik.setFieldValue(
-                                `invoiceItems[${index}].totalAmount`,
-                                totalAmount
-                              );
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            {...formik.getFieldProps(
-                              `invoiceItems[${index}].totalAmount`
-                            )}
-                            className="form-control form-control-sm"
-                            type="text"
-                            style={{ width: "80%" }}
-                            readOnly
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="text-start mt-3">
+                <label htmlFor="" className="mb-1 fw-medium">
+                  Credit Advice Offset
+                </label>
+                <br />
+                <input
+                  {...formik.getFieldProps("creditAdviceOffset")}
+                  className={`form-control form-control-sm  ${
+                    formik.touched.creditAdviceOffset &&
+                    formik.errors.creditAdviceOffset
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  type="number"
+                  readOnly
+                />
+                {formik.touched.creditAdviceOffset &&
+                  formik.errors.creditAdviceOffset && (
+                    <div className="invalid-feedback">
+                      {formik.errors.creditAdviceOffset}
+                    </div>
+                  )}
+              </div>
+              <div className="text-start mt-3">
+                <label htmlFor="" className="mb-1 fw-medium">
+                  GST
+                </label>
+                <br />
+                <input
+                  {...formik.getFieldProps("gst")}
+                  className={`form-control form-control-sm  ${
+                    formik.touched.gst && formik.errors.gst ? "is-invalid" : ""
+                  }`}
+                  type="number"
+                  readOnly
+                />
+                {formik.touched.gst && formik.errors.gst && (
+                  <div className="invalid-feedback">{formik.errors.gst}</div>
+                )}
+              </div>
+              <div className="text-start mt-3">
+                <label htmlFor="" className="mb-1 fw-medium">
+                  Total Amount
+                </label>
+                <br />
+                <input
+                  {...formik.getFieldProps("totalAmount")}
+                  className={`form-control form-control-sm  ${
+                    formik.touched.totalAmount && formik.errors.totalAmount
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  type="number"
+                  readOnly
+                />
+                {formik.touched.totalAmount && formik.errors.totalAmount && (
+                  <div className="invalid-feedback">
+                    {formik.errors.totalAmount}
+                  </div>
+                )}
+              </div>
+              <div className="text-start mt-3">
+                <label htmlFor="" className="mb-1 fw-medium">
+                  Remarks
+                </label>
+                <br />
+                <textarea
+                  {...formik.getFieldProps("remarks")}
+                  className={`form-control form-control-sm  ${
+                    formik.touched.remarks && formik.errors.remarks
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  rows="3"
+                ></textarea>
+                {formik.touched.remarks && formik.errors.remarks && (
+                  <div className="invalid-feedback">
+                    {formik.errors.remarks}
+                  </div>
+                )}
               </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-12 text-end">
-              {rows.length > 1 && (
+        </div>
+
+        {/* Item */}
+        <div className="container card shadow border-0 mb-2 top-header p-5">
+          {formik.values.invoiceItems.map((item, index) => (
+            <div className="row pb-4" key={index}>
+              <div className="col-lg-12 col-md-12 col-12 mb-3">
                 <button
                   type="button"
-                  className="btn btn-sm btn-danger me-2"
+                  className="btn"
                   onClick={() => {
-                    // Remove the last row from the state
-                    setRows((pr) => pr.slice(0, -1));
-                    // Remove the last item from the invoiceItems array in formik values
-                    formik.setFieldValue(
-                      "invoiceItems",
-                      formik.values.invoiceItems.slice(0, -1)
-                    );
+                    const items = [...formik.values.invoiceItems];
+                    items.splice(index, 1);
+                    formik.setFieldValue("invoiceItems", items);
                   }}
                 >
-                  Delete
+                  <IoIosCloseCircleOutline
+                    size={24}
+                    className="cursor-pointer"
+                  />
                 </button>
-              )}
-              <button
-                className="btn btn-sm btn-button me-2"
-                type="button"
-                onClick={() => {
-                  setRows((pr) => [...pr, {}]);
-                }}
-              >
-                Add Row
-              </button>
-            </div>
-            <div className="col-lg-6 col-md-6 col-12"></div>
-            <div className="col-lg-6 col-md-6 col-12">
-              <div className="">
-                <div className="text-start mt-3">
-                  <label htmlFor="" className="mb-1 fw-medium">
-                    Credit Advise Offset
-                  </label>
-                  <br />
-                  <input
-                    {...formik.getFieldProps("creditAdviceOffset")}
-                    className="form-control form-control-sm"
-                    type="text"
-                    placeholder=""
-                    readOnly
-                  />
-                </div>
-                <div className="text-start mt-3">
-                  <label htmlFor="" className="mb-1 fw-medium">
-                    GST
-                  </label>
-                  <br />
-                  <input
-                    {...formik.getFieldProps("gst")}
-                    className="form-control form-control-sm  "
-                    type="text"
-                    placeholder=""
-                    readOnly
-                  />
-                </div>
-                <div className="text-start mt-3">
-                  <label htmlFor="" className="mb-1 fw-medium">
-                    Total Amount
-                  </label>
-                  <br />
-                  <input
-                    {...formik.getFieldProps("totalAmount")}
-                    className="form-control form-control-sm  "
-                    type="text"
-                    placeholder=""
-                    readOnly
-                  />
-                </div>
+              </div>
+              <div className="col-lg-3 col-md-6 col-12 mb-3">
+                <label className="fw-medium">Item</label>
+                <input
+                  type="text"
+                  name={`invoiceItems[${index}].item`}
+                  value={item.item}
+                  onChange={formik.handleChange}
+                  className="form-control form-control-sm"
+                />
+              </div>
+              <div className="col-lg-3 col-md-6 col-12 mb-3">
+                <label className="fw-medium">Item Amount</label>
+                <input
+                  type="number"
+                  name={`invoiceItems[${index}].itemAmount`}
+                  value={item.itemAmount}
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    const updatedItemAmount = parseFloat(e.target.value) || 0;
+                    const gstRate = parseFloat(item.taxType) || 0;
+                    const gstAmount = (updatedItemAmount * gstRate) / 100;
+                    const totalAmount = updatedItemAmount + gstAmount;
+                    const updatedInvoiceItems = [...formik.values.invoiceItems];
+                    updatedInvoiceItems[index] = {
+                      ...updatedInvoiceItems[index],
+                      gstAmount: gstAmount.toFixed(2),
+                      totalAmount: totalAmount.toFixed(2),
+                    };
+                    formik.setFieldValue("invoiceItems", updatedInvoiceItems);
+                  }}
+                  className="form-control form-control-sm"
+                />
+              </div>
+              <div className="col-lg-2 col-md-6 col-12 mb-3">
+                <label className="fw-medium">Tax Type</label>
+                <select
+                  name={`invoiceItems[${index}].taxType`}
+                  value={item.taxType}
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    const taxRate = parseFloat(e.target.value) || 0;
+                    const updatedItemAmount = parseFloat(item.itemAmount) || 0;
+                    const gstAmount = (updatedItemAmount * taxRate) / 100;
+                    const totalAmount = updatedItemAmount + gstAmount;
+                    const updatedInvoiceItems = [...formik.values.invoiceItems];
+                    updatedInvoiceItems[index] = {
+                      ...updatedInvoiceItems[index],
+                      gstAmount: gstAmount.toFixed(2),
+                      totalAmount: totalAmount.toFixed(2),
+                    };
+                    formik.setFieldValue("invoiceItems", updatedInvoiceItems);
+                  }}
+                  className="form-select form-select-sm"
+                >
+                  <option value="0">0%</option>
+                  <option value="7">7%</option>
+                  <option value="19">19%</option>
+                </select>
+              </div>
+              <div className="col-lg-2 col-md-6 col-12 mb-3">
+                <label className="fw-medium">GST Amount</label>
+                <input
+                  type="number"
+                  name={`invoiceItems[${index}].gstAmount`}
+                  value={item.gstAmount}
+                  onChange={formik.handleChange}
+                  className="form-control form-control-sm"
+                  readOnly
+                />
+              </div>
+              <div className="col-lg-2 col-md-6 col-12 mb-3">
+                <label className="fw-medium">Total Amount</label>
+                <input
+                  type="number"
+                  name={`invoiceItems[${index}].totalAmount`}
+                  value={item.totalAmount}
+                  onChange={formik.handleChange}
+                  className="form-control form-control-sm"
+                  readOnly
+                />
               </div>
             </div>
-            <div className="col-12 text-end  mt-3">
-              <Link to="/invoice">
-                <button className="btn btn-sm btn-border mx-2">Cancel</button>
-              </Link>
+          ))}
+          <div className="row">
+            <div className="col-12 d-flex justify-content-end">
               <button
-                type="submit"
-                className="btn btn-sm btn-button mx-2"
-                disabled={loadIndicator}
+                type="button"
+                className="btn btn-sm btn-outline-primary"
+                onClick={() =>
+                  formik.setFieldValue("invoiceItems", [
+                    ...formik.values.invoiceItems,
+                    {
+                      item: "",
+                      itemAmount: "",
+                      taxType: "",
+                      gstAmount: "",
+                      totalAmount: "",
+                    },
+                  ])
+                }
               >
-                {loadIndicator && (
-                  <span
-                    className="spinner-border spinner-border-sm me-2"
-                    aria-hidden="true"
-                  ></span>
-                )}
-                Generate
+                Add Item
               </button>
-
-              {/* <button type="submit" className="btn btn-sm btn-button mx-2">
-                Generate
-              </button> */}
             </div>
           </div>
         </div>
