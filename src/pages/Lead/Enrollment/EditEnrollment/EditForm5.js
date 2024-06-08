@@ -7,11 +7,11 @@ import React, {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-// import fetchAllCentersWithIds from "../../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../../List/CenterList";
 import api from "../../../../config/URL";
 
 const validationSchema = Yup.object().shape({
-  centerId: Yup.string().required("*Center is required!"),
+  studentCareId: Yup.string().required("*Center is required!"),
   // preferredDay: Yup.array().of(Yup.string().required("*Select Days")),
   preferredDay: Yup.array()
     .min(1, "*Select at least one preferred day!")
@@ -25,13 +25,13 @@ const EditForm5 = forwardRef(
 
     const formik = useFormik({
       initialValues: {
-        centerId: formData.centerId,
+        studentCareId: formData.studentCareId,
         preferredDay: formData.preferredDay || "",
         enquiryDate: formData.enquiryDate || "",
         marketingSource: formData.marketingSource || "",
         referBy: formData.referBy || "",
         nameOfReferral: formData.nameOfReferral || "",
-        referedStudentCenterNameId: formData.referedStudentCenterNameId || "",
+        referedStudentCareNameId: formData.referedStudentCareNameId || "",
         remark: formData.remark || "",
         preferredTimeSlot: formData.preferredTimeSlot || "",
       },
@@ -64,34 +64,34 @@ const EditForm5 = forwardRef(
     });
 
     const fetchData = async () => {
-      // try {
-      //   const centerData = await fetchAllCentersWithIds();
-      //   setCenterData(centerData);
-      // } catch (error) {
-      //   toast.error(error);
-      // }
+      try {
+        const centerData = await fetchAllStudentCaresWithIds();
+        setCenterData(centerData);
+      } catch (error) {
+        toast.error(error);
+      }
     };
 
-    // const getData = async () => {
-    //   const response = await api.get(`/getAllLeadInfoById/${formData.id}`);
-    //   const enquiryDate =
-    //     response.data.enquiryDate && response.data.enquiryDate.substring(0, 10);
+    const getData = async () => {
+      const response = await api.get(`/getAllLeadInfosById/${formData.id}`);
+      const enquiryDate =
+        response.data.enquiryDate && response.data.enquiryDate.substring(0, 10);
 
-    //   formik.setValues({
-    //     ...response.data,
-    //     enquiryDate: enquiryDate,
-    //   });
-    // };
+      formik.setValues({
+        ...response.data,
+        enquiryDate: enquiryDate,
+      });
+    };
 
-    // useEffect(() => {
-    //   getData();
-    //   fetchData();
-    //   // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+    useEffect(() => {
+      getData();
+      fetchData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    // useImperativeHandle(ref, () => ({
-    //   editform5: formik.handleSubmit,
-    // }));
+    useImperativeHandle(ref, () => ({
+      editform5: formik.handleSubmit,
+    }));
 
     return (
       <section>
@@ -108,22 +108,22 @@ const EditForm5 = forwardRef(
                 </lable>
                 <select
                   className="form-select form-select-sm"
-                  name="centerId"
+                  name="studentCareId"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.centerId}
+                  value={formik.values.studentCareId}
                 >
                   <option selected></option>
                   {centerData &&
-                    centerData.map((centerId) => (
-                      <option key={centerId.id} value={centerId.id}>
-                        {centerId.centerNames}
+                    centerData.map((studentCareId) => (
+                      <option key={studentCareId.id} value={studentCareId.id}>
+                        {studentCareId.studentCareName}
                       </option>
                     ))}
                 </select>
-                {formik.touched.centerId && formik.errors.centerId && (
+                {formik.touched.studentCareId && formik.errors.studentCareId && (
                   <div className="error text-danger">
-                    <small>{formik.errors.centerId}</small>
+                    <small>{formik.errors.studentCareId}</small>
                   </div>
                 )}
               </div>
@@ -500,27 +500,27 @@ const EditForm5 = forwardRef(
                 <div className="input-group ">
                   <select
                     className="form-select form-select-sm"
-                    name="referedStudentCenterNameId"
+                    name="referedStudentCareNameId"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.referedStudentCenterNameId}
+                    value={formik.values.referedStudentCareNameId}
                   >
                     <option selected></option>
                     {centerData &&
-                      centerData.map((referedStudentCenterNameId) => (
+                      centerData.map((referedStudentCareNameId) => (
                         <option
-                          key={referedStudentCenterNameId.id}
-                          value={referedStudentCenterNameId.id}
+                          key={referedStudentCareNameId.id}
+                          value={referedStudentCareNameId.id}
                         >
-                          {referedStudentCenterNameId.centerNames}
+                          {referedStudentCareNameId.studentCareName}
                         </option>
                       ))}
                   </select>
                 </div>
-                {formik.touched.referedStudentCenterNameId &&
-                  formik.errors.referedStudentCenterNameId && (
+                {formik.touched.referedStudentCareNameId &&
+                  formik.errors.referedStudentCareNameId && (
                     <div className="error text-danger">
-                      <small>{formik.errors.referedStudentCenterNameId}</small>
+                      <small>{formik.errors.referedStudentCareNameId}</small>
                     </div>
                   )}
               </div>

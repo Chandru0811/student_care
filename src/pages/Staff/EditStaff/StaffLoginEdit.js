@@ -40,7 +40,7 @@ const StaffLoginEdit = forwardRef(
       //       toast.error(response.data.message);
       //     }
       //   } catch (error) {
-      //     toast.error(error);
+      //     toast.error(error.message);
       //   }
       // },
       onSubmit: async (values) => {
@@ -82,7 +82,7 @@ const StaffLoginEdit = forwardRef(
             }
           }
         } catch (error) {
-          toast.error(error);
+          toast.error(error.message);
         }finally{
           setLoadIndicators(false);
         }
@@ -104,7 +104,7 @@ const StaffLoginEdit = forwardRef(
       const getData = async () => {
         try {
           const response = await api.get(
-            `/getAllUsersById/${formData.staff_id}`
+            `/getAllUserById/${formData.id}`
           );
           if (
             response.data.userLoginInfoModels &&

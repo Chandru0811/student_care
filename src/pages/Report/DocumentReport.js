@@ -79,13 +79,13 @@ const DocumentReport = () => {
                   <td>{data.video_files}</td>
                   <td>
                     <div className="d-flex">
-                      {storedScreens?.documentReportRead && (
+                      {/* {storedScreens?.documentReportRead && ( */}
                         <Link to={`/report/document/view`}>
                           <button className="btn btn-sm">
                             <FaEye />
                           </button>
                         </Link>
-                      )}
+                      {/* )} */}
                     </div>
                   </td>
                 </tr>

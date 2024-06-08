@@ -29,7 +29,7 @@ function EditBreak({ id, onSuccess }) {
     onSubmit: async (values) => {
       setLoadIndicator(true);
       try {
-        const response = await api.put(`/updateCenterBreaks/${id}`, values, {
+        const response = await api.put(`/updateStudentCareBreaks/${id}`, values, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -42,7 +42,7 @@ function EditBreak({ id, onSuccess }) {
           toast.error(response.data.message);
         }
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message);
       } finally {
         setLoadIndicator(false);
       }
@@ -51,7 +51,7 @@ function EditBreak({ id, onSuccess }) {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getAllCenterBreaksById/${id}`);
+        const response = await api.get(`/getAllStudentCareBreaksById/${id}`);
         const formattedData = {
           ...response.data,
           fromDate: response.data.fromDate

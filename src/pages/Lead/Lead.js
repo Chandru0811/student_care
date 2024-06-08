@@ -5,9 +5,9 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 import { FaEye, FaEdit } from "react-icons/fa";
 import api from "../../config/URL";
-// import Delete from "../../components/common/Delete";
-// import fetchAllCentersWithIds from "../List/CenterList";
-// import fetchAllSubjectsWithIds from "../List/SubjectList";
+import Delete from "../../components/common/DeleteModel";
+import fetchAllStudentCaresWithIds from "../List/CenterList";
+import fetchAllSubjectsWithIds from "../List/SubjectList";
 import toast from "react-hot-toast";
 // import { SCREENS } from "../../config/ScreenFilter";
 
@@ -15,8 +15,7 @@ const Lead = () => {
   const tableRef = useRef(null);
 
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
   // console.log("Screens : ", SCREENS);
 
@@ -24,29 +23,29 @@ const Lead = () => {
   const [subjectData, setSubjectData] = useState(null);
 
   const fetchData = async () => {
-    // try {
-    //   const centerData = await fetchAllCentersWithIds();
-    //   const subjectData = await fetchAllSubjectsWithIds();
-    //   setCenterData(centerData);
-    //   setSubjectData(subjectData);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centerData = await fetchAllStudentCaresWithIds();
+      const subjectData = await fetchAllSubjectsWithIds();
+      setCenterData(centerData);
+      setSubjectData(subjectData);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  // useEffect(() => {
-  //   const getCenterData = async () => {
-  //     try {
-  //       const response = await api.get("/getAllLeadInfo");
-  //       setDatas(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       toast.error("Error Fetch Data ", error);
-  //     }
-  //   };
-  //   getCenterData();
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const getCenterData = async () => {
+      try {
+        const response = await api.get("/getAllLeadInfos");
+        setDatas(response.data);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error Fetch Data ", error);
+      }
+    };
+    getCenterData();
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -78,7 +77,7 @@ const Lead = () => {
     destroyDataTable();
     setLoading(true);
     try {
-      const response = await api.get("/getAllLeadInfo");
+      const response = await api.get("/getAllLeadInfos");
       setDatas(response.data);
       initializeDataTable();
     } catch (error) {
@@ -140,10 +139,11 @@ const Lead = () => {
                           {" "}
                           {centerData &&
                             centerData.map((center) =>
-                              parseInt(data.centerId) === center.id
-                                ? center.centerNames || "--"
+                              parseInt(data.studentCareId) === center.id
+                                ? center.studentCareName || "--"
                                 : ""
                             )}
+
                         </td>
                         <td>{data.studentName}</td>
 
@@ -183,26 +183,26 @@ const Lead = () => {
 
                         <td>
                           <div className="d-flex">
-                            {storedScreens?.leadListingRead && (
-                              <Link to={`/lead/lead/view/${data.id}`}>
-                                <button className="btn btn-sm">
-                                  <FaEye />
-                                </button>
-                              </Link>
-                            )}
-                            {storedScreens?.leadListingUpdate && (
-                              <Link to={`/lead/lead/edit/${data.id}`}>
-                                <button className="btn btn-sm">
-                                  <FaEdit />
-                                </button>
-                              </Link>
-                            )}
-                            {/* {storedScreens?.leadListingDelete && (
-                        <Delete
-                          onSuccess={refreshData}
-                          path={`/deleteLeadInfo/${data.id}`}
-                        />
-                      )} */}
+                            {/* {storedScreens?.leadListingRead && ( */}
+                            <Link to={`/lead/view/${data.id}`}>
+                              <button className="btn btn-sm">
+                                <FaEye />
+                              </button>
+                            </Link>
+                            {/* )} */}
+                            {/* {storedScreens?.leadListingUpdate && ( */}
+                            <Link to={`/lead/edit/${data.id}`}>
+                              <button className="btn btn-sm">
+                                <FaEdit />
+                              </button>
+                            </Link>
+                            {/* )} */}
+                            {/* {storedScreens?.leadListingDelete && ( */}
+                            <Delete
+                              onSuccess={refreshData}
+                              path={`/deleteLeadInfo/${data.id}`}
+                            />
+                            {/* )} */}
                           </div>
                         </td>
                         {/* <td className="text-center">

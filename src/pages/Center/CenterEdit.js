@@ -610,8 +610,8 @@ function CenterEdit() {
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{centerBreak.breakName}</td>
-                      <td>{centerBreak?.fromDate?.split(0, 10)}</td>
-                      <td>{centerBreak?.toDate?.split(0, 10)}</td>
+                      <td>{centerBreak?.fromDate?.substring(0, 10)}</td>
+                      <td>{centerBreak?.toDate?.substring(0, 10)}</td>
                       <td>
                         <EditBreak
                           id={centerBreak.id}

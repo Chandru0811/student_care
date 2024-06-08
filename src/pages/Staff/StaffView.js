@@ -17,7 +17,7 @@ function StaffView() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getAllUsersById/${id}`);
+        const response = await api.get(`/getAllUserById/${id}`);
         setData(response.data);
       } catch (error) {
         toast.error("Error Fetching Data ", error);
@@ -194,10 +194,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].startDate
-                      ? data.userAccountInfo[0].startDate.substring(0, 10)
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].startDate
+                      ? data.userAccountInfoModels[0].startDate.substring(0, 10)
                       : "--"}
                   </p>
                 </div>
@@ -211,10 +211,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].colorCode
-                      ? data.userAccountInfo[0].colorCode
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].colorCode
+                      ? data.userAccountInfoModels[0].colorCode
                       : "--"}
                   </p>
                 </div>
@@ -228,10 +228,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].teacherId
-                      ? data.userAccountInfo[0].teacherId
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].teacherId
+                      ? data.userAccountInfoModels[0].teacherId
                       : "--"}
                   </p>
                 </div>
@@ -245,10 +245,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].teacherType
-                      ? data.userAccountInfo[0].teacherType
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].teacherType
+                      ? data.userAccountInfoModels[0].teacherType
                       : "--"}
                   </p>
                 </div>
@@ -262,10 +262,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].shgType
-                      ? data.userAccountInfo[0].shgType
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].shgType
+                      ? data.userAccountInfoModels[0].shgType
                       : "--"}
                   </p>
                 </div>
@@ -279,10 +279,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].shgAmount
-                      ? data.userAccountInfo[0].shgAmount
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].shgAmount
+                      ? data.userAccountInfoModels[0].shgAmount
                       : "--"}
                   </p>
                 </div>
@@ -296,10 +296,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].status
-                      ? data.userAccountInfo[0].status
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].status
+                      ? data.userAccountInfoModels[0].status
                       : "--"}
                   </p>
                 </div>
@@ -313,10 +313,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].endDate
-                      ? data.userAccountInfo[0].endDate.substring(0, 10)
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].endDate
+                      ? data.userAccountInfoModels[0].endDate.substring(0, 10)
                       : "--"}
                   </p>
                 </div>
@@ -330,11 +330,11 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    typeof data.userAccountInfo[0].approvelContentRequired ===
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    typeof data.userAccountInfoModels[0].approvelContentRequired ===
                       "boolean"
-                      ? data.userAccountInfo[0].approvelContentRequired
+                      ? data.userAccountInfoModels[0].approvelContentRequired
                         ? "Yes"
                         : "No"
                       : "--"}
@@ -350,10 +350,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userAccountInfo &&
-                    data.userAccountInfo.length > 0 &&
-                    data.userAccountInfo[0].workingDays
-                      ? data.userAccountInfo[0].workingDays.join(", ")
+                    {data.userAccountInfoModels &&
+                    data.userAccountInfoModels.length > 0 &&
+                    data.userAccountInfoModels[0].workingDays
+                      ? data.userAccountInfoModels[0].workingDays.join(", ")
                       : "--"}
                   </p>
                 </div>
@@ -370,10 +370,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userContactInfo &&
-                    data.userContactInfo.length > 0 &&
-                    data.userContactInfo[0].email
-                      ? data.userContactInfo[0].email
+                    {data.userContactInfoModels &&
+                    data.userContactInfoModels.length > 0 &&
+                    data.userContactInfoModels[0].email
+                      ? data.userContactInfoModels[0].email
                       : "--"}
                   </p>
                 </div>
@@ -387,10 +387,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userContactInfo &&
-                    data.userContactInfo.length > 0 &&
-                    data.userContactInfo[0].contactNumber
-                      ? data.userContactInfo[0].contactNumber
+                    {data.userContactInfoModels &&
+                    data.userContactInfoModels.length > 0 &&
+                    data.userContactInfoModels[0].contactNumber
+                      ? data.userContactInfoModels[0].contactNumber
                       : "--"}
                   </p>
                 </div>
@@ -404,10 +404,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userContactInfo &&
-                    data.userContactInfo.length > 0 &&
-                    data.userContactInfo[0].address
-                      ? data.userContactInfo[0].address
+                    {data.userContactInfoModels &&
+                    data.userContactInfoModels.length > 0 &&
+                    data.userContactInfoModels[0].address
+                      ? data.userContactInfoModels[0].address
                       : "--"}
                   </p>
                 </div>
@@ -421,10 +421,10 @@ function StaffView() {
                 <div className="col-6">
                   <p className="text-muted text-sm">
                     :{" "}
-                    {data.userContactInfo &&
-                    data.userContactInfo.length > 0 &&
-                    data.userContactInfo[0].postalCode
-                      ? data.userContactInfo[0].postalCode
+                    {data.userContactInfoModels &&
+                    data.userContactInfoModels.length > 0 &&
+                    data.userContactInfoModels[0].postalCode
+                      ? data.userContactInfoModels[0].postalCode
                       : "--"}
                   </p>
                 </div>

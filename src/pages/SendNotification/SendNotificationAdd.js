@@ -37,7 +37,7 @@ function SendNotificationAdd({ onSuccess }) {
       setLoadIndicator(true);
       console.log("pushNotification:", values);
       try {
-        const response = await api.post(`/sendSmsPushNotifications`, values, {
+        const response = await api.post(`/sendStudentCarePushNotifications`, values, {
           headers: {
             "Content-Type": "application/json",
             //Authorization: `Bearer ${token}`,

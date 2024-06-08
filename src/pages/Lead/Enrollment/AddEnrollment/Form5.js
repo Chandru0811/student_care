@@ -7,12 +7,12 @@ import React, {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-// import fetchAllCentersWithIds from "../../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../../List/CenterList";
 import api from "../../../../config/URL";
 import { logDOM } from "@testing-library/react";
 
 const validationSchema = Yup.object().shape({
-  centerId: Yup.string().required("*Centre is required"),
+  studentCareId: Yup.string().required("*Centre is required"),
   // preferredDay: Yup.array().of(Yup.string().required("*Select Days")),
   preferredDay: Yup.array()
     .min(1, "*Select at least one preferred day")
@@ -26,13 +26,13 @@ const Form5 = forwardRef(
 
     const formik = useFormik({
       initialValues: {
-        centerId: formData.centerId || "",
+        studentCareId: formData.studentCareId || "",
         preferredDay: formData.preferredDay || "",
         enquiryDate: formData.enquiryDate || "",
         marketingSource: formData.marketingSource || "",
         referBy: formData.referBy || "",
         nameOfReferral: formData.nameOfReferral || "",
-        referedStudentCenterNameId: formData.referedStudentCenterNameId || "",
+        referedStudentCareNameId: formData.referedStudentCareNameId || "",
         remark: formData.remark || "",
         preferredTimeSlot: formData.preferredTimeSlot || "",
       },
@@ -66,12 +66,12 @@ const Form5 = forwardRef(
     });
 
     const fetchData = async () => {
-      // try {
-      //   const centerData = await fetchAllCentersWithIds();
-      //   setCenterData(centerData);
-      // } catch (error) {
-      //   toast.error(error);
-      // }
+      try {
+        const centerData = await fetchAllStudentCaresWithIds();
+        setCenterData(centerData);
+      } catch (error) {
+        toast.error(error);
+      }
     };
 
     useEffect(() => {
@@ -97,22 +97,22 @@ const Form5 = forwardRef(
                 </lable>
                 <select
                   className="form-select form-select-sm"
-                  name="centerId"
+                  name="studentCareId"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.centerId}
+                  value={formik.values.studentCareId}
                 >
                   <option selected></option>
                   {centerData &&
-                    centerData.map((centerId) => (
-                      <option key={centerId.id} value={centerId.id}>
-                        {centerId.centerNames}
+                    centerData.map((studentCareId) => (
+                      <option key={studentCareId.id} value={studentCareId.id}>
+                        {studentCareId.studentCareName}
                       </option>
                     ))}
                 </select>
-                {formik.touched.centerId && formik.errors.centerId && (
+                {formik.touched.studentCareId && formik.errors.studentCareId && (
                   <div className="error text-danger">
-                    <small>{formik.errors.centerId}</small>
+                    <small>{formik.errors.studentCareId}</small>
                   </div>
                 )}
               </div>
@@ -278,14 +278,17 @@ const Form5 = forwardRef(
                 )}
               </div>
 
-              <div className="col-md-6 col-12 mb-3">
-                <label>Preferred Timeslot</label>
-                <div className="mt-2 d-flex">
-                  <div className="checkbox-container ">
+              <div className="col-md-6 col-12 mb-2 ps-3">
+                <lable>
+                  Preferrded Timeslot
+                  <span className="text-danger">*</span>
+                </lable>
+                <div className="gap-2">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox1"
+                      id="inlineCheckbox1"
                       name="preferredTimeSlot"
                       value="3PM - 6PM"
                       checked={
@@ -295,84 +298,81 @@ const Form5 = forwardRef(
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox1" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox1" className="mx-1">
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox1"
+                    >
                       3PM - 6PM
                     </label>
                   </div>
-                  <div className="checkbox-container mx-4">
+                  <div className="form-check form-check-inline ">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox2"
+                      id="inlineCheckbox1"
                       name="preferredTimeSlot"
-                      value="6PM - 9PM"
+                      value="6PM - 10PM"
                       checked={
                         formik.values.preferredTimeSlot &&
-                        formik.values.preferredTimeSlot.includes("6PM - 9PM")
+                        formik.values.preferredTimeSlot.includes("6PM - 10PM")
                       }
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox2" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox2" className="mx-1">
-                      6PM - 9PM
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox1"
+                    >
+                      6PM - 10PM
                     </label>
                   </div>
-                </div>
-
-                <div className="d-flex">
-                  <div className="checkbox-container ">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox3"
+                      id="inlineCheckbox2"
                       name="preferredTimeSlot"
-                      value="9AM -12NN"
+                      value="9AM - 12PM"
                       checked={
                         formik.values.preferredTimeSlot &&
-                        formik.values.preferredTimeSlot.includes("9AM -12NN")
+                        formik.values.preferredTimeSlot.includes("9AM - 12PM")
                       }
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox3" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox3" className="mx-1">
-                      9AM -12NN
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox2"
+                    >
+                      9AM - 12PM
                     </label>
                   </div>
-                  <div className="checkbox-container mx-4">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox4"
+                      id="inlineCheckbox3"
                       name="preferredTimeSlot"
-                      value="12NN - 3PM"
+                      value="12PM - 3PM"
                       checked={
                         formik.values.preferredTimeSlot &&
-                        formik.values.preferredTimeSlot.includes("12NN - 3PM")
+                        formik.values.preferredTimeSlot.includes("12PM - 3PM")
                       }
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox4" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox4" className="mx-1">
-                      12NN - 3PM
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox3"
+                    >
+                      12PM - 3PM
                     </label>
                   </div>
-                  <div className="checkbox-container mx-4">
+                  <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="myCheckbox5"
+                      id="inlineCheckbox2"
                       name="preferredTimeSlot"
                       value="3AM - 6AM"
                       checked={
@@ -382,14 +382,19 @@ const Form5 = forwardRef(
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <label for="myCheckbox5" className="custom-checkbox">
-                      <div className="inner-square"></div>
-                    </label>
-                    <label for="myCheckbox5" className="mx-1">
+                    <label
+                      className="form-check-label ms-3"
+                      for="inlineCheckbox2"
+                    >
                       3AM - 6AM
                     </label>
                   </div>
                 </div>
+                {formik.touched.preferredTimeSlot && formik.errors.preferredTimeSlot && (
+                  <div className="error text-danger ">
+                    <small>{formik.errors.preferredTimeSlot}</small>
+                  </div>
+                )}
               </div>
 
               <div className="col-md-6 col-12 mb-2"></div>
@@ -484,27 +489,27 @@ const Form5 = forwardRef(
                 <div className="input-group ">
                   <select
                     className="form-select form-select-sm"
-                    name="referedStudentCenterNameId"
+                    name="referedStudentCareNameId"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.referedStudentCenterNameId}
+                    value={formik.values.referedStudentCareNameId}
                   >
                     <option selected></option>
                     {centerData &&
-                      centerData.map((referedStudentCenterNameId) => (
+                      centerData.map((referedStudentCareNameId) => (
                         <option
-                          key={referedStudentCenterNameId.id}
-                          value={referedStudentCenterNameId.id}
+                          key={referedStudentCareNameId.id}
+                          value={referedStudentCareNameId.id}
                         >
-                          {referedStudentCenterNameId.centerNames}
+                          {referedStudentCareNameId.studentCareName}
                         </option>
                       ))}
                   </select>
                 </div>
-                {formik.touched.referedStudentCenterNameId &&
-                  formik.errors.referedStudentCenterNameId && (
+                {formik.touched.referedStudentCareNameId &&
+                  formik.errors.referedStudentCareNameId && (
                     <div className="error text-danger">
-                      <small>{formik.errors.referedStudentCenterNameId}</small>
+                      <small>{formik.errors.referedStudentCareNameId}</small>
                     </div>
                   )}
               </div>

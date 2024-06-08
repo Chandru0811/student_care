@@ -32,7 +32,7 @@ function EditRegisteration({ id, onSuccess }) {
       setLoadIndicator(true);
       try {
         const response = await api.put(
-          `/updateCenterRegistrations/${id}`,
+          `/updateStudentCareRegistrations/${id}`,
           values,
           {
             headers: {
@@ -48,7 +48,7 @@ function EditRegisteration({ id, onSuccess }) {
           toast.error(response.data.message);
         }
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message);
       } finally {
         setLoadIndicator(false);
       }
@@ -57,7 +57,7 @@ function EditRegisteration({ id, onSuccess }) {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getAllCenterRegistrationsById/${id}`);
+        const response = await api.get(`/getAllStudentCareRegistrationById/${id}`);
         const formattedData = {
           ...response.data,
           registrationDate: response.data.registrationDate

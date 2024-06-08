@@ -113,15 +113,15 @@ const StaffContactEdit = forwardRef(
       const getData = async () => {
         try {
           const response = await api.get(
-            `/getAllUsersById/${formData.staff_id}`
+            `/getAllUserById/${formData.id}`
           );
           if (
-            response.data.userContactInfo &&
-            response.data.userContactInfo.length > 0
+            response.data.userContactInfoModels &&
+            response.data.userContactInfoModels.length > 0
           ) {
             formik.setValues({
-              ...response.data.userContactInfo[0],
-              contactId: response.data.userContactInfo[0].id,
+              ...response.data.userContactInfoModels[0],
+              contactId: response.data.userContactInfoModels[0].id,
             });
           } else {
             formik.setValues({

@@ -33,7 +33,7 @@ function SendNotificationEdit({ id, onSuccess }) {
       setLoadIndicator(true);
       try {
         const response = await api.put(
-          `/updateSmsPushNotifications/${id}`,
+          `/updateStudentCarePushNotifications/${id}`,
           values,
           {
             headers: {
@@ -57,7 +57,7 @@ function SendNotificationEdit({ id, onSuccess }) {
   });
   const getData = async () => {
     try {
-      const response = await api.get(`/getAllSmsPushNotificationsById/${id}`);
+      const response = await api.get(`/getAllStudentCarePushNotificationsById/${id}`);
       formik.setValues(response.data);
     } catch (error) {
       console.error("Error fetching data ", error);

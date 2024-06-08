@@ -58,31 +58,31 @@ const StaffAccountEdit = forwardRef(
         studentCareId: "",
       },
       validationSchema: validationSchema,
-      onSubmit: async (values) => {
-        values.approvelContentRequired =
-          values.approvelContentRequired === "Yes";
+      // onSubmit: async (values) => {
+      //   values.approvelContentRequired =
+      //     values.approvelContentRequired === "Yes";
 
-        try {
-          const response = await api.put(
-            `/updateUserAccountInfo/${values.accountId}`,
-            values,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          if (response.status === 200) {
-            toast.success(response.data.message);
-            setFormData((prv) => ({ ...prv, ...values }));
-            handleNext();
-          } else {
-            toast.error(response.data.message);
-          }
-        } catch (error) {
-          toast.error(error);
-        }
-      },
+      //   try {
+      //     const response = await api.put(
+      //       `/updateUserAccountInfo/${values.accountId}`,
+      //       values,
+      //       {
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //       }
+      //     );
+      //     if (response.status === 200) {
+      //       toast.success(response.data.message);
+      //       setFormData((prv) => ({ ...prv, ...values }));
+      //       handleNext();
+      //     } else {
+      //       toast.error(response.data.message);
+      //     }
+      //   } catch (error) {
+      //     toast.error(error);
+      //   }
+      // },
       onSubmit: async (values) => {
         // console.log("Api Data:", values);
         setLoadIndicators(true);
@@ -95,7 +95,7 @@ const StaffAccountEdit = forwardRef(
         try {
           if (values.accountId !== null) {
             const response = await api.put(
-              `/updateUserAccountInfo/${values.accountId}`,
+              `/updateUserAccountInfo/${values.id}`,
               updatedData,
               {
                 headers: {
@@ -117,9 +117,9 @@ const StaffAccountEdit = forwardRef(
               ...values,
               approvelContentRequired: Approval,
             };
-            values.userId = formData.staff_id;
-            const response = await api.get(
-              `/getAllUsersById/${formData.staff_id}`,
+            values.userId = formData.id;
+            const response = await api.post(
+              `/createUserAccountInfo`,
               updatedData,
               {
                 headers: {
@@ -143,37 +143,37 @@ const StaffAccountEdit = forwardRef(
       },
     });
 
-    useEffect(() => {
-      const getData = async () => {
-        const response = await api.get(`/getAllUsersById/${formData.user_id}`);
-        const data = response.data.userAccountInfo[0];
-        formik.setValues({
-          ...data,
-          startDate: data.startDate.substring(0, 10),
-          endDate: data.endDate.substring(0, 10),
-          accountId: data.id,
-          approvelContentRequired:
-            data.approvelContentRequired === true ? "Yes" : "No",
-        });
-      };
-      getData();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //   const getData = async () => {
+    //     const response = await api.get(`/getAllUsersById/${formData.user_id}`);
+    //     const data = response.data.userAccountInfo[0];
+    //     formik.setValues({
+    //       ...data,
+    //       startDate: data.startDate.substring(0, 10),
+    //       endDate: data.endDate.substring(0, 10),
+    //       accountId: data.id,
+    //       approvelContentRequired:
+    //         data.approvelContentRequired === true ? "Yes" : "No",
+    //     });
+    //   };
+    //   getData();
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     useEffect(() => {
       const getData = async () => {
         try {
           const response = await api.get(
-            `/getAllUsersById/${formData.staff_id}`
+            `/getAllUserById/${formData.id}`
           );
           if (
-            response.data.userAccountInfo &&
-            response.data.userAccountInfo.length > 0
+            response.data.userAccountInfoModels &&
+            response.data.userAccountInfoModels.length > 0
           ) {
-            const data = response.data.userAccountInfo[0];
+            const data = response.data.userAccountInfoModels[0];
             formik.setValues({
-              ...response.data.userAccountInfo[0],
-              accountId: response.data.userAccountInfo[0].id,
+              ...response.data.userAccountInfoModels[0],
+              accountId: response.data.userAccountInfoModels[0].id,
               startDate: data.startDate.substring(0, 10),
               endDate: data.endDate.substring(0, 10),
               // accountId: data.id,

@@ -104,6 +104,7 @@ import SendNotificationEdit from "../pages/SendNotification/SendNotificationEdit
 import SendNotificationAdd from "../pages/SendNotification/SendNotificationAdd";
 import SendNotification from "../pages/SendNotification/SendNotification";
 import { Toaster } from "react-hot-toast";
+import Curriculum from "../pages/Curriculum/Curriculum";
 
 function Admin({ handleLogout }) {
   return (
@@ -125,8 +126,8 @@ function Admin({ handleLogout }) {
               <Route path="/course/add" element={<CourseAdd />} />
               <Route path="/course/edit/:id" element={<CourseEdit />} />
               <Route path="/course/view/:id" element={<CourseView />} />
-              {/* <Route path="/course/curriculum/:id" element={<Curriculum />} />
-              <Route path="/curriculum" element={<Curriculum />} /> */}
+              <Route path="/course/curriculum/:id" element={<Curriculum />} />
+              <Route path="/curriculum" element={<Curriculum />} />
 
               <Route path="/level" element={<Level />} />
               <Route path="/level/add" element={<LevelAdd />} />
@@ -146,7 +147,7 @@ function Admin({ handleLogout }) {
               <Route path="/lead/lead" element={<Lead />} />
               <Route path="/lead/add" element={<LeadAdd />} />
               <Route path="/lead/edit/:id" element={<LeadEdit />} />
-              <Route path="/lead/lead/view/:id" element={<LeadView />} />
+              <Route path="/lead/view/:id" element={<LeadView />} />
 
               {/* {/ Document  /} */}
               <Route path="/document" element={<Document />} />
@@ -246,8 +247,8 @@ function Admin({ handleLogout }) {
               {/* {/ Invoice /} */}
               <Route path="/invoice" element={<Invoice />} />
               <Route path="/invoice/add" element={<InvoiceAdd />} />
-              <Route path="/invoice/edit" element={<InvoiceEdit />} />
-              <Route path="/invoice/view" element={<InvoiceView />} />
+              <Route path="/invoice/edit/:id" element={<InvoiceEdit />} />
+              <Route path="/invoice/view/:id" element={<InvoiceView />} />
 
               <Route path="/report/assessment" element={<AssessmentReport />} />
               <Route path="/report/attendance" element={<Attendance />} />
@@ -266,14 +267,8 @@ function Admin({ handleLogout }) {
               <Route path="/adminpayroll" element={<Payroll />} />
 
               <Route path="/sendNotification" element={<SendNotification />} />
-              <Route
-                path="/sendNotification/add"
-                element={<SendNotificationAdd />}
-              />
-              <Route
-                path="/sendNotification/Edit"
-                element={<SendNotificationEdit />}
-              />
+              <Route path="/sendNotification/add" element={<SendNotificationAdd />} />
+              <Route path="/sendNotification/Edit/:id" element={<SendNotificationEdit />} />
             </Routes>
             <Footer />
           </main>
