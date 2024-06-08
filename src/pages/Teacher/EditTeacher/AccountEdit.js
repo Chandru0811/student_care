@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import api from "../../../config/URL";
-import fetchAllCentersWithIds from "../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 
 const validationSchema = Yup.object().shape({
   startDate: Yup.string().required("*Start Date is required!"),
@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
   workingDays: Yup.array()
     .of(Yup.string().required("*Working Days is required!"))
     .min(1, "*Working Days is required!"),
-  centerId: Yup.string().required("*Centres is required!"),
+    studentCareId: Yup.string().required("*Centres is required!"),
 });
 
 const AccountEdit = forwardRef(
@@ -36,7 +36,7 @@ const AccountEdit = forwardRef(
 
     const fetchData = async () => {
       try {
-        const centerData = await fetchAllCentersWithIds();
+        const centerData = await fetchAllStudentCaresWithIds();
         setCenterData(centerData);
       } catch (error) {
         toast.error(error);
@@ -54,7 +54,7 @@ const AccountEdit = forwardRef(
         endDate: "",
         approvelContentRequired: "",
         workingDays: [],
-        centerId: "",
+        studentCareId: "",
       },
       validationSchema: validationSchema,
       // onSubmit: async (values) => {
@@ -169,16 +169,16 @@ const AccountEdit = forwardRef(
       const getData = async () => {
         try {
           const response = await api.get(
-            `/getAllUsersById/${formData.staff_id}`
+            `/getAllUserById/${formData.id}`
           );
           if (
-            response.data.userAccountInfo &&
-            response.data.userAccountInfo.length > 0
+            response.data.userAccountInfoModels &&
+            response.data.userAccountInfoModels.length > 0
           ) {
-            const data = response.data.userAccountInfo[0];
+            const data = response.data.userAccountInfoModels[0];
             formik.setValues({
-              ...response.data.userAccountInfo[0],
-              accountId: response.data.userAccountInfo[0].id,
+              ...response.data.userAccountInfoModels[0],
+              accountId: response.data.userAccountInfoModels[0].id,
               startDate: data.startDate.substring(0, 10),
               endDate: data.endDate.substring(0, 10),
               approvelContentRequired:
@@ -197,7 +197,7 @@ const AccountEdit = forwardRef(
               endDate: "",
               approvelContentRequired: "",
               workingDays: [],
-              centerId: "",
+              studentCareId: "",
             });
             // console.log("Account ID:", formik.values.accountId);
           }
@@ -585,9 +585,9 @@ const AccountEdit = forwardRef(
               </lable>
               <div className="input-group mb-3">
                 <select
-                  {...formik.getFieldProps("centerId")}
+                  {...formik.getFieldProps("studentCareId")}
                   className={`form-select form-select-sm ${
-                    formik.touched.centerId && formik.errors.centerId
+                    formik.touched.studentCareId && formik.errors.studentCareId
                       ? "is-invalid"
                       : ""
                   }`}
@@ -595,15 +595,15 @@ const AccountEdit = forwardRef(
                 >
                   <option selected></option>
                   {centerData &&
-                    centerData.map((centerId) => (
-                      <option key={centerId.id} value={centerId.id}>
-                        {centerId.centerNames}
+                    centerData.map((studentCareId) => (
+                      <option key={studentCareId.id} value={studentCareId.id}>
+                        {studentCareId.studentCareName}
                       </option>
                     ))}
                 </select>
-                {formik.touched.centerId && formik.errors.centerId && (
+                {formik.touched.studentCareId && formik.errors.studentCareId && (
                   <div className="invalid-feedback">
-                    {formik.errors.centerId}
+                    {formik.errors.studentCareId}
                   </div>
                 )}
               </div>

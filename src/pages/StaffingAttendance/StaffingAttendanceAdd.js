@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import fetchAllCentersWithIds from "../List/CenterList";
+import fetchAllstudentCareIdsWithIds from "../List/CenterList";
 import toast from "react-hot-toast";
 import api from "../../config/URL";
-import fetchAllEmployeeListByCenter from "../List/EmployeeList";
+import fetchAllEmployeeListBystudentCareId from "../List/EmployeeList";
 import { format } from "date-fns";
 
 const validationSchema = Yup.object({
-  centerId: Yup.string().required("*Centre name is required"),
+  studentCareId: Yup.string().required("*Centre name is required"),
   userId: Yup.string().required("*Employee name is required"),
   date: Yup.string().required("*Date is required"),
   attendanceStatus: Yup.string().required("*Attendance status is required"),
@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
 });
 
 function StaffingAttendanceAdd() {
-  const [centerData, setCenterData] = useState(null);
+  const [studentCareIdData, setstudentCareIdData] = useState(null);
   const [userNamesData, setUserNameData] = useState(null);
   const [loadIndicator, setLoadIndicator] = useState(false);
   const currentDate = format(new Date(), "yyyy-MM-dd");
@@ -30,7 +30,7 @@ function StaffingAttendanceAdd() {
 
   const formik = useFormik({
     initialValues: {
-      centerId: "",
+      studentCareId: "",
       userId: "",
       date: currentDate,
       attendanceStatus: "",
@@ -47,12 +47,12 @@ function StaffingAttendanceAdd() {
     onSubmit: async (values) => {
       setLoadIndicator(true);
       console.log("Attendance Emp:", values);
-      let selectedCenterName = "";
+      let selectedstudentCareIdName = "";
       let selectedEmployeeName = "";
 
-      centerData.forEach((center) => {
-        if (parseInt(values.centerId) === center.id) {
-          selectedCenterName = center.centerNames || "--";
+      studentCareIdData.forEach((studentCareId) => {
+        if (parseInt(values.studentCareId) === studentCareId.id) {
+          selectedstudentCareIdName = studentCareId.studentCareIdNames || "--";
         }
       });
 
@@ -63,8 +63,8 @@ function StaffingAttendanceAdd() {
       });
 
       let payload = {
-        centerId: values.centerId,
-        centerName: selectedCenterName,
+        studentCareId: values.studentCareId,
+        studentCareIdName: selectedstudentCareIdName,
         userId: values.userId,
         employeeName: selectedEmployeeName,
         date: values.date,
@@ -80,7 +80,7 @@ function StaffingAttendanceAdd() {
       };
 
       try {
-        const response = await api.post("/createUserAttendance", payload, {
+        const response = await api.post("/createAttendance", payload, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -92,30 +92,30 @@ function StaffingAttendanceAdd() {
           toast.error(response.data.message);
         }
       } catch (error) {
-        toast.error(error);
-      }finally {
+        toast.error(error.message);
+      } finally {
         setLoadIndicator(false);
       }
     },
   });
 
-  const handleCenterChange = async (event) => {
+  const handlestudentCareIdChange = async (event) => {
     setUserNameData(null);
-    const centerId = event.target.value;
-    formik.setFieldValue("centerId", centerId);
+    const studentCareId = event.target.value;
+    formik.setFieldValue("studentCareId", studentCareId);
     try {
-      await fetchUserName(centerId);
+      await fetchUserName(studentCareId);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 
   const fetchData = async () => {
     try {
-      const centers = await fetchAllCentersWithIds();
-      setCenterData(centers);
+      const studentCareIds = await fetchAllstudentCareIdsWithIds();
+      setstudentCareIdData(studentCareIds);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 
@@ -123,12 +123,12 @@ function StaffingAttendanceAdd() {
     fetchData();
   }, []);
 
-  const fetchUserName = async (centerId) => {
+  const fetchUserName = async (studentCareId) => {
     try {
-      const userNames = await fetchAllEmployeeListByCenter(centerId);
+      const userNames = await fetchAllEmployeeListBystudentCareId(studentCareId);
       setUserNameData(userNames);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 
@@ -144,40 +144,39 @@ function StaffingAttendanceAdd() {
                 </Link>
                 &nbsp;&nbsp;
                 <button type="submit" className="btn btn-button btn-sm" disabled={loadIndicator}>
-                {loadIndicator && (
+                  {loadIndicator && (
                     <span
                       className="spinner-border spinner-border-sm me-2"
                       aria-hidden="true"
                     ></span>
                   )}
-                Save
-              </button>              </div>
+                  Save
+                </button>              </div>
             </div>
             <div className="row mt-3">
               <div className="col-md-6 col-12 mb-3 ">
                 <lable className="">Centre Name</lable>
                 <span className="text-danger">*</span>
                 <select
-                  {...formik.getFieldProps("centerId")}
-                  className={`form-select ${
-                    formik.touched.centerId && formik.errors.centerId
+                  {...formik.getFieldProps("studentCareId")}
+                  className={`form-select ${formik.touched.studentCareId && formik.errors.studentCareId
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   aria-label="Default select example"
-                  onChange={handleCenterChange}
+                  onChange={handlestudentCareIdChange}
                 >
                   <option selected disabled></option>
-                  {centerData &&
-                    centerData.map((center) => (
-                      <option key={center.id} value={center.id}>
-                        {center.centerNames}
+                  {studentCareIdData &&
+                    studentCareIdData.map((studentCareId) => (
+                      <option key={studentCareId.id} value={studentCareId.id}>
+                        {studentCareId.studentCareName}
                       </option>
                     ))}
                 </select>
-                {formik.touched.centerId && formik.errors.centerId && (
+                {formik.touched.studentCareId && formik.errors.studentCareId && (
                   <div className="invalid-feedback">
-                    {formik.errors.centerId}
+                    {formik.errors.studentCareId}
                   </div>
                 )}
               </div>
@@ -186,11 +185,10 @@ function StaffingAttendanceAdd() {
                 <lable className="">Employee Name</lable>
                 <select
                   {...formik.getFieldProps("userId")}
-                  class={`form-select  ${
-                    formik.touched.userId && formik.errors.userId
+                  class={`form-select  ${formik.touched.userId && formik.errors.userId
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                 >
                   <option selected disabled></option>
                   {userNamesData &&
@@ -210,11 +208,10 @@ function StaffingAttendanceAdd() {
                 <span className="text-danger">*</span>
                 <input
                   type="date"
-                  className={`form-control ${
-                    formik.touched.date && formik.errors.date
+                  className={`form-control ${formik.touched.date && formik.errors.date
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   {...formik.getFieldProps("date")}
                 />
                 {formik.touched.date && formik.errors.date && (
@@ -225,12 +222,11 @@ function StaffingAttendanceAdd() {
                 <lable className="">Attendance Status</lable>
                 <span className="text-danger">*</span>
                 <select
-                  className={`form-select ${
-                    formik.touched.attendanceStatus &&
-                    formik.errors.attendanceStatus
+                  className={`form-select ${formik.touched.attendanceStatus &&
+                      formik.errors.attendanceStatus
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   {...formik.getFieldProps("attendanceStatus")}
                   aria-label="Default select example"
                 >
@@ -249,11 +245,10 @@ function StaffingAttendanceAdd() {
                 <lable className="">Mode Of Working</lable>
                 <span className="text-danger">*</span>
                 <select
-                  className={`form-select ${
-                    formik.touched.modeOfWorking && formik.errors.modeOfWorking
+                  className={`form-select ${formik.touched.modeOfWorking && formik.errors.modeOfWorking
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   {...formik.getFieldProps("modeOfWorking")}
                   aria-label="Default select example"
                 >
@@ -273,11 +268,10 @@ function StaffingAttendanceAdd() {
                 <span className="text-danger">*</span>
                 <input
                   type="time"
-                  className={`form-control ${
-                    formik.touched.checkIn && formik.errors.checkIn
+                  className={`form-control ${formik.touched.checkIn && formik.errors.checkIn
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   {...formik.getFieldProps("checkIn")}
                 />
                 {formik.touched.checkIn && formik.errors.checkIn && (
@@ -291,11 +285,10 @@ function StaffingAttendanceAdd() {
                 <span className="text-danger">*</span>
                 <input
                   type="time"
-                  className={`form-control ${
-                    formik.touched.checkOut && formik.errors.checkOut
+                  className={`form-control ${formik.touched.checkOut && formik.errors.checkOut
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   {...formik.getFieldProps("checkOut")}
                 />
                 {formik.touched.checkOut && formik.errors.checkOut && (
@@ -353,11 +346,10 @@ function StaffingAttendanceAdd() {
                 <span className="text-danger">*</span>
                 <input
                   type="time"
-                  className={`form-control ${
-                    formik.touched.otStartTime && formik.errors.otStartTime
+                  className={`form-control ${formik.touched.otStartTime && formik.errors.otStartTime
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   {...formik.getFieldProps("otStartTime")}
                 />
                 {formik.touched.otStartTime && formik.errors.otStartTime && (
@@ -371,11 +363,10 @@ function StaffingAttendanceAdd() {
                 <span className="text-danger">*</span>
                 <input
                   type="time"
-                  className={`form-control  ${
-                    formik.touched.otEndTime && formik.errors.otEndTime
+                  className={`form-control  ${formik.touched.otEndTime && formik.errors.otEndTime
                       ? "is-invalid"
                       : ""
-                  }`}
+                    }`}
                   {...formik.getFieldProps("otEndTime")}
                 />
                 {formik.touched.otEndTime && formik.errors.otEndTime && (
@@ -392,12 +383,11 @@ function StaffingAttendanceAdd() {
                   <textarea
                     id="floatingTextarea2"
                     style={{ height: "100px" }}
-                    className={`form-control  ${
-                      formik.touched.attendanceRemark &&
-                      formik.errors.attendanceRemark
+                    className={`form-control  ${formik.touched.attendanceRemark &&
+                        formik.errors.attendanceRemark
                         ? "is-invalid"
                         : ""
-                    }`}
+                      }`}
                     {...formik.getFieldProps("attendanceRemark")}
                   />
                   {formik.touched.attendanceRemark &&

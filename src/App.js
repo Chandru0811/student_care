@@ -3,29 +3,76 @@ import Admin from "./layouts/Admin";
 import "./styles/admin.css";
 import "./styles/custom.css";
 import Auth from "./layouts/Auth";
+import toast from "react-hot-toast";
+import api from "./config/URL";
+import { updateScreens } from "./config/ScreenFilter";
 // import { useNavigate } from "react-router-dom";
 
 function App() {
-
+  const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   // const navigate = useNavigate();
-  const handleLogin = () => {
-    sessionStorage.setItem("isAuthenticated", true);
-    setIsAuthenticated(true);
+
+  const handleLogin = async (id) => {
+    setIsLoading(true);
+    sessionStorage.setItem("isAuthenticated", true); 
+    console.log("object",isAuthenticated)   
+    try {
+      if (id) {
+        const response = await api.get(`/getAllRoleInfoById/${id}`);
+        const rolePermissions = response.data;
+        updateScreens(rolePermissions);
+        setIsAuthenticated(true);
+        sessionStorage.setItem("isAuthenticated", true);
+        // sessionStorage.setItem("userName", userName);
+      } else {
+        setIsLoading(false);
+        toast.error("Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    // navigate("/")
     sessionStorage.removeItem("isAuthenticated");
+    sessionStorage.removeItem("screens");
+    sessionStorage.removeItem("roleId");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("userName");
+    sessionStorage.removeItem("loginUserId");
+    sessionStorage.removeItem("centerId");
   };
 
+
   useEffect(() => {
-    const isAuthenticatedFromStorage =
-      sessionStorage.getItem("isAuthenticated");
-    if (isAuthenticatedFromStorage === "true") {
-      setIsAuthenticated(true);
+    const isAdminFromStorage = sessionStorage.getItem("isAuthenticated");
+    const isAdminBoolean = isAdminFromStorage === "true";
+    if (isAuthenticated !== isAdminBoolean) {
+      setIsAuthenticated(isAdminBoolean);
     }
+
+    const interceptor = api.interceptors.response.use(
+      (response) => response,
+
+      (error) => {
+        console.log("Error is", error.response);
+        if (error.response?.status === 401) {
+          toast("Session Experied!! Please Login");
+          handleLogout();
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      api.interceptors.response.eject(interceptor);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

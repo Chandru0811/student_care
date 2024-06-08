@@ -13,16 +13,16 @@
   overflow: auto;
   height: 100%;
   width: 280px;
-  background: #dfccfb;
+  background: #024166b7;
   transition: all 0.5s ease;
 }
 
 .sidebar .nav-links li a:hover {
-  background: #d0bfff;
+  background: #ffffff59;
 }
 
 .sidebar .nav-links li a.active {
-  background: #beadfa;
+  background: #f3f3f367;
 }
 
 .sidebar.active {
@@ -79,11 +79,11 @@
   font-weight: 600;
   text-align: center;
   font-size: 16px;
-  color: #484848;
+  color: #d6d4d4ea;
 }
 
 .sidebar .nav-links li a .links_name {
-  color: #303030 !important;
+  color: #ffffff !important;
   font-size: 15px;
   font-weight: 500;
   white-space: nowrap;

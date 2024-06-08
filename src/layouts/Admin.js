@@ -105,6 +105,10 @@ import SendNotificationAdd from "../pages/SendNotification/SendNotificationAdd";
 import SendNotification from "../pages/SendNotification/SendNotification";
 import { Toaster } from "react-hot-toast";
 import Curriculum from "../pages/Curriculum/Curriculum";
+import StaffingAttendance from "../pages/StaffingAttendance/StaffingAttendance";
+import StaffingAttendanceAdd from "../pages/StaffingAttendance/StaffingAttendanceAdd";
+import StaffingAttendanceEdit from "../pages/StaffingAttendance/StaffingAttendanceEdit";
+import StaffingAttendanceView from "../pages/StaffingAttendance/StaffingAttendanceView";
 
 function Admin({ handleLogout }) {
   return (
@@ -195,6 +199,12 @@ function Admin({ handleLogout }) {
               <Route path="/attendance/add" element={<AttendancesAdd />} />
               <Route path="/attendance/edit/:id" element={<AttendancesEdit />} />
 
+              {/* StaffingAttendance */}
+              <Route path="/staffing/attendance" element={<StaffingAttendance/>}/>
+              <Route path="/staffing/attendance/add" element={<StaffingAttendanceAdd/>}/>
+              <Route path="/staffing/attendance/edit/:id" element={<StaffingAttendanceEdit/>}/>
+              <Route path="/staffing/attendance/view/:id" element={<StaffingAttendanceView/>}/>
+
               {/* {/ ScheduleTeacher /} */}
               <Route path="/scheduleteacher" element={<ScheduleTeacher />} />
               <Route path="/scheduleteacher/add" element={<ScheduleTeacherAdd />}/>
@@ -209,8 +219,8 @@ function Admin({ handleLogout }) {
 
               <Route path="/deduction" element={<Deduction />} />
               <Route path="/deduction/add" element={<DeductionAdd />} />
-              <Route path="/deduction/edit" element={<DeductionEdit />} />
-              <Route path="/deduction/view" element={<DeductionView />} />
+              <Route path="/deduction/edit/:id" element={<DeductionEdit />} />
+              <Route path="/deduction/view/:id" element={<DeductionView />} />
 
               <Route path="/leaveadmin" element={<LeaveAdmin />} />
               <Route path="/leaveadmin/edit/:id" element={<LeaveAdminEdit />} />

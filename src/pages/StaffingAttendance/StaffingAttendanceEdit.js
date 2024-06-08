@@ -10,7 +10,7 @@ import api from "../../config/URL";
 
 
 const validationSchema = Yup.object({
-  centerId: Yup.string().required("*Centre name is required"),
+  studentCareId: Yup.string().required("*Centre name is required"),
   userId: Yup.string().required("*Employee name is required"),
   date: Yup.string().required("*Date is required"),
   attendanceStatus: Yup.string().required("*Attendance status is required"),
@@ -31,7 +31,7 @@ function StaffingAttendanceEdit() {
 
   const formik = useFormik({
     initialValues: {
-      centerId: "",
+      studentCareId: "",
       userId: "",
       date: "",
       attendanceStatus: "",
@@ -51,7 +51,7 @@ function StaffingAttendanceEdit() {
       let selectedEmployeeName = "";
 
       centerData.forEach((center) => {
-        if (parseInt(values.centerId) === center.id) {
+        if (parseInt(values.studentCareId) === center.id) {
           selectedCenterName = center.centerNames || "--";
         }
       });
@@ -63,7 +63,7 @@ function StaffingAttendanceEdit() {
       });
 
       let payload = {
-        centerId: values.centerId,
+        studentCareId: values.studentCareId,
         centerName: selectedCenterName,
         userId: values.userId,
         employeeName: selectedEmployeeName,
@@ -80,7 +80,7 @@ function StaffingAttendanceEdit() {
       };
 
       try {
-        const response = await api.put(`/updateUserAttendance/${id}`, payload, {
+        const response = await api.put(`/updateAttendance/${id}`, payload, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -100,10 +100,10 @@ function StaffingAttendanceEdit() {
   });
   const handleCenterChange = async (event) => {
     setUserNameData(null);
-    const centerId = event.target.value;
-    formik.setFieldValue("centerId", centerId);
+    const studentCareId = event.target.value;
+    formik.setFieldValue("studentCareId", studentCareId);
     try {
-      await fetchUserName(centerId);
+      await fetchUserName(studentCareId);
     } catch (error) {
       toast.error(error);
     }
@@ -118,9 +118,9 @@ function StaffingAttendanceEdit() {
     }
   };
 
-  const fetchUserName = async (centerId) => {
+  const fetchUserName = async (studentCareId) => {
     try {
-      const userNames = await fetchAllEmployeeListByCenter(centerId);
+      const userNames = await fetchAllEmployeeListByCenter(studentCareId);
       setUserNameData(userNames);
     } catch (error) {
       toast.error(error);
@@ -130,13 +130,13 @@ function StaffingAttendanceEdit() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getUserAttendanceById/${id}`);
+        const response = await api.get(`/getAllAttendanceById/${id}`);
         const formattedResponseData = {
           ...response.data,
           date: response.data.date.substring(0, 10),
         };
         formik.setValues(formattedResponseData);
-        fetchUserName(response.data.centerId);
+        fetchUserName(response.data.studentCareId);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -173,9 +173,9 @@ function StaffingAttendanceEdit() {
                 <lable className="">Centre Name</lable>
                 <span className="text-danger">*</span>
                 <select
-                  {...formik.getFieldProps("centerId")}
+                  {...formik.getFieldProps("studentCareId")}
                   className={`form-select ${
-                    formik.touched.centerId && formik.errors.centerId
+                    formik.touched.studentCareId && formik.errors.studentCareId
                       ? "is-invalid"
                       : ""
                   }`}
@@ -186,13 +186,13 @@ function StaffingAttendanceEdit() {
                   {centerData &&
                     centerData.map((center) => (
                       <option key={center.id} value={center.id}>
-                        {center.centerNames}
+                        {center.studentCareName}
                       </option>
                     ))}
                 </select>
-                {formik.touched.centerId && formik.errors.centerId && (
+                {formik.touched.studentCareId && formik.errors.studentCareId && (
                   <div className="invalid-feedback">
-                    {formik.errors.centerId}
+                    {formik.errors.studentCareId}
                   </div>
                 )}
               </div>

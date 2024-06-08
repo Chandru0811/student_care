@@ -44,7 +44,7 @@ const PersonalEdit = forwardRef(
           formDatas.append("gender", data.gender);
           formDatas.append("role", data.role);
           const response = await api.put(
-            `/updateUser/${formData.staff_id}`,
+            `/updateUser/${formData.id}`,
             formDatas,
             {
               headers: {
@@ -60,7 +60,7 @@ const PersonalEdit = forwardRef(
             toast.error(response.data.message);
           }
         } catch (error) {
-          toast.error(error);
+          toast.error(error.message);
         } finally {
           setLoadIndicators(false);
         }
@@ -71,7 +71,7 @@ const PersonalEdit = forwardRef(
       const getData = async () => {
         try {
           const response = await api.get(
-            `/getAllUsersById/${formData.staff_id}`
+            `/getAllUserById/${formData.id}`
           );
           const dateOfBirth = response.data.dateOfBirth.substring(0, 10);
           // console.log(response)

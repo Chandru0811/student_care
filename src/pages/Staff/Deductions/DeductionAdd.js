@@ -4,12 +4,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../../../config/URL";
 import toast from "react-hot-toast";
-// import fetchAllCentersWithIds from "../../List/CenterList";
-// import fetchAllEmployeeListByCenter from "../../List/EmployeeList";
-// import { format } from "date-fns";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
+import fetchAllEmployeeListByCenter from "../../List/EmployeeList";
+import { format } from "date-fns";
 
 const validationSchema = Yup.object({
-  centerId: Yup.number().required("*Center Name is required"),
+  studentCareId: Yup.number().required("*Center Name is required"),
   userId: Yup.number().required("*Employee Name is required"),
   deductionName: Yup.string().required("*Select the Deduction Name"),
   deductionMonth: Yup.string().required("*Select the Deduction Month"),
@@ -24,7 +24,7 @@ function DeductionAdd() {
 
   const formik = useFormik({
     initialValues: {
-      centerId: "",
+      studentCareId: "",
       userId: "",
       deductionName: "",
       deductionMonth: "",
@@ -38,7 +38,7 @@ function DeductionAdd() {
       let selectedEmployeeName = "";
 
       centerData.forEach((center) => {
-        if (parseInt(values.centerId) === center.id) {
+        if (parseInt(values.studentCareId) === center.id) {
           selectedCenterName = center.centerNames || "--";
         }
       });
@@ -50,7 +50,7 @@ function DeductionAdd() {
       });
 
       let payload = {
-        centerId: values.centerId,
+        studentCareId: values.studentCareId,
         centerName: selectedCenterName,
         userId: values.userId,
         employeeName: selectedEmployeeName,
@@ -60,7 +60,7 @@ function DeductionAdd() {
       };
 
       try {
-        const response = await api.post("/createUserDeduction", payload, {
+        const response = await api.post("/createDeduction", payload, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -81,41 +81,41 @@ function DeductionAdd() {
 
   const handleCenterChange = async (event) => {
     setUserNameData(null);
-    const centerId = event.target.value;
-    formik.setFieldValue("centerId", centerId);
+    const studentCareId = event.target.value;
+    formik.setFieldValue("studentCareId", studentCareId);
     try {
-      await fetchUserName(centerId);
+      await fetchUserName(studentCareId);
     } catch (error) {
       toast.error(error);
     }
   };
 
   const fetchData = async () => {
-    // try {
-    //   const centers = await fetchAllCentersWithIds();
-    //   setCenterData(centers);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    try {
+      const centers = await fetchAllStudentCaresWithIds();
+      setCenterData(centers);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchUserName = async (centerId) => {
-    // try {
-    //   const userNames = await fetchAllEmployeeListByCenter(centerId);
-    //   setUserNameData(userNames);
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+  const fetchUserName = async (studentCareId) => {
+    try {
+      const userNames = await fetchAllEmployeeListByCenter(studentCareId);
+      setUserNameData(userNames);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-  // useEffect(() => {
-  //   const currentMonth = format(new Date(), "yyyy-MM");
-  //   formik.setFieldValue("deductionMonth", currentMonth);
-  // }, []);
+  useEffect(() => {
+    const currentMonth = format(new Date(), "yyyy-MM");
+    formik.setFieldValue("deductionMonth", currentMonth);
+  }, []);
 
   return (
     <section className="HolidayAdd p-3">
@@ -151,9 +151,9 @@ function DeductionAdd() {
                   <label className="form-label">Centre Name</label>
                   <span className="text-danger">*</span>
                   <select
-                    {...formik.getFieldProps("centerId")}
+                    {...formik.getFieldProps("studentCareId")}
                     className={`form-select form-select-sm ${
-                      formik.touched.centerId && formik.errors.centerId
+                      formik.touched.studentCareId && formik.errors.studentCareId
                         ? "is-invalid"
                         : ""
                     }`}
@@ -162,15 +162,15 @@ function DeductionAdd() {
                   >
                     <option selected disabled></option>
                     {centerData &&
-                      centerData.map((center) => (
-                        <option key={center.id} value={center.id}>
-                          {center.centerNames}
+                      centerData.map((studentCareId) => (
+                        <option key={studentCareId.id} value={studentCareId.id}>
+                          {studentCareId.studentCareName}
                         </option>
                       ))}
                   </select>
-                  {formik.touched.centerId && formik.errors.centerId && (
+                  {formik.touched.studentCareId && formik.errors.studentCareId && (
                     <div className="invalid-feedback">
-                      {formik.errors.centerId}
+                      {formik.errors.studentCareId}
                     </div>
                   )}
                 </div>

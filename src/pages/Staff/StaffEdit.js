@@ -31,7 +31,7 @@ function StaffEdit() {
   const [loadIndicator, setLoadIndicator] = useState(false);
   const childRef = React.useRef();
   const [formData, setFormData] = useState({ id });
-  console.log("perant", formData);
+  console.log("perant", id);
 
   const isStepSkipped = (step) => {
     return skipped.has(step);

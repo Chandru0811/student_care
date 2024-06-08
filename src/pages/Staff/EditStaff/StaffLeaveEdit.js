@@ -118,7 +118,7 @@ const StaffLeaveEdit = forwardRef(
       const getData = async () => {
         try {
           const response = await api.get(
-            `/getAllUsersById/${formData.staff_id}`
+            `/getAllUserById/${formData.id}`
           );
           if (
             response.data.userLeaveCreationModels &&
