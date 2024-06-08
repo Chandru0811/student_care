@@ -5,10 +5,10 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import api from "../../config/URL";
 import toast from "react-hot-toast";
-import fetchAllCentersWithIds from "../List/CenterList";
 import fetchAllCoursesWithIdsC from "../List/CourseListByCenter";
 import fetchAllPackageListByCenter from "../List/PackageListByCenter";
 import fetchAllStudentListByCenter from "../List/StudentListByCenter";
+import fetchAllStudentCaresWithIds from "../List/CenterList";
 
 export default function InvoiceAdd() {
   const [rows, setRows] = useState([{}]);
@@ -22,12 +22,12 @@ export default function InvoiceAdd() {
   const validationSchema = Yup.object({
     studentCareId: Yup.string().required("*Select a Centre"),
     parent: Yup.string().required("*Parent is required"),
-    studentId: Yup.string().required("*Select a Student"),
+    // studentId: Yup.string().required("*Select a Student"),
     course: Yup.string().required("*Select a course"),
     schedule: Yup.string().required("*Select a schedule"),
     invoiceDate: Yup.string().required("*Invoice Date is required"),
     dueDate: Yup.string().required("*Due Date is required"),
-    packageId: Yup.string().required("*Package is required"),
+    // packageId: Yup.string().required("*Package is required"),
     invoicePeriodTo: Yup.string().required("*Invoice Period To is required"),
     invoicePeriodFrom: Yup.string().required(
       "*Invoice Period From is required"
@@ -113,7 +113,8 @@ export default function InvoiceAdd() {
         }
       } catch (error) {
         // Ensure error.message is rendered as a string
-        const errorMessage = error.message || "An error occurred while submitting the form";
+        const errorMessage =
+          error.message || "An error occurred while submitting the form";
         toast.error(errorMessage);
       } finally {
         setLoadIndicator(false);
@@ -123,10 +124,11 @@ export default function InvoiceAdd() {
 
   const fetchData = async () => {
     try {
-      const centerData = await fetchAllCentersWithIds();
+      const centerData = await fetchAllStudentCaresWithIds();
+      console.log(centerData);
       setCenterData(centerData);
     } catch (error) {
-      toast.error(error.message); // Ensure error.message is rendered as a string
+      toast.error(error); // Ensure error.message is rendered as a string
     }
   };
 
@@ -139,18 +141,18 @@ export default function InvoiceAdd() {
     }
   };
 
-  const fetchPackage = async (centerId) => {
+  const fetchPackage = async (studentCareId) => {
     try {
-      const packageData = await fetchAllPackageListByCenter(centerId);
+      const packageData = await fetchAllPackageListByCenter(studentCareId);
       setPackageData(packageData);
     } catch (error) {
       toast.error(error.message); // Ensure error.message is rendered as a string
     }
   };
 
-  const fetchStudent = async (centerId) => {
+  const fetchStudent = async (studentCareId) => {
     try {
-      const student = await fetchAllStudentListByCenter(centerId);
+      const student = await fetchAllStudentListByCenter(studentCareId);
       setStudentData(student);
     } catch (error) {
       toast.error(error.message); // Ensure error.message is rendered as a string
@@ -161,11 +163,11 @@ export default function InvoiceAdd() {
     setCourseData(null);
     setPackageData(null);
     setStudentData(null);
-    const center = event.target.value;
-    formik.setFieldValue("center", center);
-    fetchCourses(center); // Fetch courses for the selected center
-    fetchPackage(center); // Fetch courses for the selected center
-    fetchStudent(center);
+    const studentCareId = event.target.value;
+    formik.setFieldValue("studentCareId", studentCareId);
+    fetchCourses(studentCareId);
+    fetchPackage(studentCareId);
+    fetchStudent(studentCareId);
   };
 
   // Function to calculate total amount based on item amount and GST
@@ -260,11 +262,12 @@ export default function InvoiceAdd() {
                       </option>
                     ))}
                 </select>
-                {formik.touched.studentCareId && formik.errors.studentCareId && (
-                  <div className="invalid-feedback">
-                    {formik.errors.studentCareId}
-                  </div>
-                )}
+                {formik.touched.studentCareId &&
+                  formik.errors.studentCareId && (
+                    <div className="invalid-feedback">
+                      {formik.errors.studentCareId}
+                    </div>
+                  )}
               </div>
               <div className="text-start mt-3">
                 <label htmlFor="" className="mb-1 fw-medium">
@@ -281,9 +284,7 @@ export default function InvoiceAdd() {
                   type="text"
                 />
                 {formik.touched.parent && formik.errors.parent && (
-                  <div className="invalid-feedback">
-                    {formik.errors.parent}
-                  </div>
+                  <div className="invalid-feedback">{formik.errors.parent}</div>
                 )}
               </div>
               <div className="text-start mt-3">
@@ -335,9 +336,7 @@ export default function InvoiceAdd() {
                     ))}
                 </select>
                 {formik.touched.course && formik.errors.course && (
-                  <div className="invalid-feedback">
-                    {formik.errors.course}
-                  </div>
+                  <div className="invalid-feedback">{formik.errors.course}</div>
                 )}
               </div>
               <div className="text-start mt-3">
@@ -377,6 +376,26 @@ export default function InvoiceAdd() {
                 {formik.touched.noOfLessons && formik.errors.noOfLessons && (
                   <div className="invalid-feedback">
                     {formik.errors.noOfLessons}
+                  </div>
+                )}
+              </div>
+              <div className="text-start mt-3">
+                <label htmlFor="" className="mb-1 fw-medium">
+                  Remarks
+                </label>
+                <br />
+                <textarea
+                  {...formik.getFieldProps("remarks")}
+                  className={`form-control form-control-sm  ${
+                    formik.touched.remarks && formik.errors.remarks
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  rows="3"
+                ></textarea>
+                {formik.touched.remarks && formik.errors.remarks && (
+                  <div className="invalid-feedback">
+                    {formik.errors.remarks}
                   </div>
                 )}
               </div>
@@ -501,8 +520,7 @@ export default function InvoiceAdd() {
                 <input
                   {...formik.getFieldProps("receiptAmount")}
                   className={`form-control form-control-sm  ${
-                    formik.touched.receiptAmount &&
-                    formik.errors.receiptAmount
+                    formik.touched.receiptAmount && formik.errors.receiptAmount
                       ? "is-invalid"
                       : ""
                   }`}
@@ -515,7 +533,12 @@ export default function InvoiceAdd() {
                     </div>
                   )}
               </div>
-              <div className="text-start mt-3">
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6 col-md-6 col-12"></div>
+            <div className="col-lg-6 col-md-6 col-12">
+              <div className="text-start mt-5">
                 <label htmlFor="" className="mb-1 fw-medium">
                   Credit Advice Offset
                 </label>
@@ -573,26 +596,6 @@ export default function InvoiceAdd() {
                 {formik.touched.totalAmount && formik.errors.totalAmount && (
                   <div className="invalid-feedback">
                     {formik.errors.totalAmount}
-                  </div>
-                )}
-              </div>
-              <div className="text-start mt-3">
-                <label htmlFor="" className="mb-1 fw-medium">
-                  Remarks
-                </label>
-                <br />
-                <textarea
-                  {...formik.getFieldProps("remarks")}
-                  className={`form-control form-control-sm  ${
-                    formik.touched.remarks && formik.errors.remarks
-                      ? "is-invalid"
-                      : ""
-                  }`}
-                  rows="3"
-                ></textarea>
-                {formik.touched.remarks && formik.errors.remarks && (
-                  <div className="invalid-feedback">
-                    {formik.errors.remarks}
                   </div>
                 )}
               </div>

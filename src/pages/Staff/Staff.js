@@ -7,6 +7,7 @@ import { FaEye, FaEdit } from "react-icons/fa";
 // import Delete from "../../components/common/Delete";
 import api from "../../config/URL";
 import toast from "react-hot-toast";
+import DeleteModel from "../../components/common/DeleteModel";
 // import { SCREENS } from "../../config/ScreenFilter";
 
 const Staff = () => {
@@ -120,14 +121,14 @@ const Staff = () => {
                           {data.userAccountInfoModels?.length > 0 &&
                             data.userAccountInfoModels[0].teacherId}
                         </td>
-                        {/* <td>{data.teacherId}</td> */} 
+                        {/* <td>{data.teacherId}</td> */}
                         <td>{data.teacherName}</td>
                         <td>
-                        {data.userAccountInfoModels?.length > 0 &&
+                          {data.userAccountInfoModels?.length > 0 &&
                             data.userAccountInfoModels[0].teacherType}
                         </td>
                         <td>
-                        {data.userContactInfoModels?.length > 0 &&
+                          {data.userContactInfoModels?.length > 0 &&
                             data.userContactInfoModels[0].contactNumber}
                         </td>
                         <td>
@@ -141,25 +142,25 @@ const Staff = () => {
                         <td>
                           <div className="d-flex">
                             {/* {storedScreens?.staffRead && ( */}
-                              <Link to={`/staff/view/${data.id}`}>
-                                <button className="btn btn-sm">
-                                  <FaEye />
-                                </button>
-                              </Link>
+                            <Link to={`/staff/view/${data.id}`}>
+                              <button className="btn btn-sm">
+                                <FaEye />
+                              </button>
+                            </Link>
                             {/* )}
                             {storedScreens?.staffUpdate && ( */}
-                              <Link to={`/staff/edit/${data.id}`}>
-                                <button className="btn btn-sm">
-                                  <FaEdit />
-                                </button>
-                              </Link>
+                            <Link to={`/staff/edit/${data.id}`}>
+                              <button className="btn btn-sm">
+                                <FaEdit />
+                              </button>
+                            </Link>
                             {/* )} */}
-                            {/* {storedScreens?.staffDelete && (
-                        <Delete
-                          onSuccess={refreshData}
-                          path={`/deleteUser/${data.id}`}
-                        />
-                      )} */}
+                            {/* {storedScreens?.staffDelete && ( */}
+                            <DeleteModel
+                              onSuccess={refreshData}
+                              path={`/deleteUser/${data.id}`}
+                            />
+                            {/* )} */}
                           </div>
                         </td>
                       </tr>

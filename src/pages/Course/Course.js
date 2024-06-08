@@ -9,6 +9,7 @@ import api from "../../config/URL";
 import { FaFileInvoice } from "react-icons/fa";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { SCREENS } from "../../config/ScreenFilter";
+import DeleteModel from "../../components/common/DeleteModel";
 
 const Course = () => {
   console.log("Screens : ", SCREENS);
@@ -127,39 +128,39 @@ const Course = () => {
                         </td>
                         <td>
                           {/* {storedScreens?.courseRead && ( */}
-                            <Link to={`/course/view/${data.id}`}>
-                              <button className="btn btn-sm">
-                                <FaEye />
-                              </button>
-                            </Link>
+                          <Link to={`/course/view/${data.id}`}>
+                            <button className="btn btn-sm">
+                              <FaEye />
+                            </button>
+                          </Link>
                           {/* )}
                           {storedScreens?.courseUpdate && ( */}
-                            <Link to={`/course/edit/${data.id}`}>
-                              <button className="btn btn-sm">
-                                <FaEdit />
-                              </button>
-                            </Link>
+                          <Link to={`/course/edit/${data.id}`}>
+                            <button className="btn btn-sm">
+                              <FaEdit />
+                            </button>
+                          </Link>
                           {/* )} */}
-                          {/* {storedScreens?.courseDelete && (
-                    <Delete
-                      onSuccess={refreshData}
-                      path={`/deleteCourse/${data.id}`}
-                    />
-                  )} */}
+                          {/* {storedScreens?.courseDelete && ( */}
+                          <DeleteModel
+                            onSuccess={refreshData}
+                            path={`/deleteCourse/${data.id}`}
+                          />
+                          {/* )} */}
 
                           {/* {storedScreens?.curriculumIndex && ( */}
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={
-                                <Tooltip id="tooltip-top">Curriculum</Tooltip>
-                              }
-                            >
-                              <Link to={`/course/curriculum/${data.id}`}>
-                                <button className="btn btn-sm">
-                                  <FaFileInvoice />
-                                </button>
-                              </Link>
-                            </OverlayTrigger>
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={
+                              <Tooltip id="tooltip-top">Curriculum</Tooltip>
+                            }
+                          >
+                            <Link to={`/course/curriculum/${data.id}`}>
+                              <button className="btn btn-sm">
+                                <FaFileInvoice />
+                              </button>
+                            </Link>
+                          </OverlayTrigger>
                           {/* )} */}
                         </td>
                       </tr>

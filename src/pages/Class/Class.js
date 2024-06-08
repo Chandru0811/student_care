@@ -8,6 +8,7 @@ import { FaEye, FaEdit } from "react-icons/fa";
 import api from "../../config/URL";
 import toast from "react-hot-toast";
 import { SCREENS } from "../../config/ScreenFilter";
+import DeleteModel from "../../components/common/DeleteModel";
 
 const Class = () => {
   const tableRef = useRef(null);
@@ -117,25 +118,25 @@ const Class = () => {
                         <td>{data.remark}</td>
                         <td>
                           {/* {storedScreens?.classRead && ( */}
-                            <Link to={`/class/view/${data.id}`}>
-                              <button className="btn btn-sm">
-                                <FaEye />
-                              </button>
-                            </Link>
+                          <Link to={`/class/view/${data.id}`}>
+                            <button className="btn btn-sm">
+                              <FaEye />
+                            </button>
+                          </Link>
                           {/* )}
                           {storedScreens?.classUpdate && ( */}
-                            <Link to={`/class/edit/${data.id}`}>
-                              <button className="btn btn-sm">
-                                <FaEdit />
-                              </button>
-                            </Link>
+                          <Link to={`/class/edit/${data.id}`}>
+                            <button className="btn btn-sm">
+                              <FaEdit />
+                            </button>
+                          </Link>
                           {/* )} */}
-                          {/* {storedScreens?.classDelete && (
-                    <Delete
-                      onSuccess={refreshData}
-                      path={`/deleteCourseClassListing/${data.id}`}
-                    />
-                  )} */}
+                          {/* {storedScreens?.classDelete && ( */}
+                          <DeleteModel
+                            onSuccess={refreshData}
+                            path={`/deleteCourseClassListing/${data.id}`}
+                          />
+                          {/* )} */}
                         </td>
                       </tr>
                     ))}
