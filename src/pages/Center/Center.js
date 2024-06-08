@@ -12,6 +12,7 @@ import AddPackage from "./Add/AddPackage";
 // import Delete from "../../components/common/Delete";
 import api from "../../config/URL";
 import toast from "react-hot-toast";
+import DeleteModel from "../../components/common/DeleteModel";
 
 const Center = () => {
   const tableRef = useRef(null);
@@ -64,7 +65,7 @@ const Center = () => {
     destroyDataTable();
     setLoading(true);
     try {
-      const response = await api.get("/getAllCenter");
+      const response = await api.get("/getAllStudentCares");
       setDatas(response.data);
       initializeDataTable(); // Reinitialize DataTable after successful data update
     } catch (error) {
@@ -188,11 +189,11 @@ const Center = () => {
                             </Link>
                             {/* )} */}
                             {/* {storedScreens?.centerListingDelete && ( */}
-                            {/* <Delete
-                        onSuccess={refreshData}
-                        path={`/deleteCenter/${data.id}`}
-                        style={{ display: "inline-block" }}
-                      /> */}
+                              <DeleteModel
+                                onSuccess={refreshData}
+                                path={`/deleteStudentCare/${data.id}`}
+                                style={{ display: "inline-block" }}
+                              />
                             {/* )} */}
                           </div>
                         </td>

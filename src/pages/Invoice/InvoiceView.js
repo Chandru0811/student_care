@@ -39,7 +39,7 @@ function InvoiceView() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getGenerateInvoiceById/${id}`);
+        const response = await api.get(`getGenerateInvoiceById/${id}`);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

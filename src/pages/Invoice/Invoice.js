@@ -7,9 +7,10 @@ import { FaEye, FaEdit } from "react-icons/fa";
 import Delete from "../../components/common/DeleteModel";
 import api from "../../config/URL";
 import fetchAllCoursesWithIds from "../List/CourseList";
-import fetchAllCentersWithIds from "../List/CenterList";
+// import fetchAllCentersWithIds from "../List/CenterList";
 import fetchAllStudentsWithIds from "../List/StudentList";
 import toast from "react-hot-toast";
+import fetchAllStudentCaresWithIds from "../List/CenterList";
 // import { SCREENS } from "../../config/ScreenFilter";
 
 const Invoice = () => {
@@ -26,7 +27,7 @@ const Invoice = () => {
 
   const fetchData = async () => {
     try {
-      const centerData = await fetchAllCentersWithIds();
+      const centerData = await fetchAllStudentCaresWithIds();
       const courseData = await fetchAllCoursesWithIds();
       const studentData = await fetchAllStudentsWithIds();
       const packageData = await api.get("getAllCentersPackageWithIds");
@@ -42,7 +43,7 @@ const Invoice = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get("getAllGenerateInvoices");
+        const response = await api.get("getGenerateInvoices");
         setDatas(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -85,7 +86,7 @@ const Invoice = () => {
     destroyDataTable();
     setLoading(true);
     try {
-      const response = await api.get("getAllGenerateInvoices");
+      const response = await api.get("getGenerateInvoices");
       setDatas(response.data);
       initializeDataTable();
     } catch (error) {
@@ -173,25 +174,25 @@ const Invoice = () => {
                       <td>
                         <div className="d-flex">
                           {/* {storedScreens?.invoiceRead && ( */}
-                            <Link to={`/invoice/view/${data.id}`}>
-                              <button className="btn btn-sm">
-                                <FaEye />
-                              </button>
-                            </Link>
+                          <Link to={`/invoice/view/${data.id}`}>
+                            <button className="btn btn-sm">
+                              <FaEye />
+                            </button>
+                          </Link>
                           {/* )}  */}
                           {/* {storedScreens?.invoiceUpdate && (  */}
-                            <Link to={`/invoice/edit/${data.id}`}>
-                              <button className="btn btn-sm">
-                                <FaEdit />
-                              </button>
-                            </Link>
+                          <Link to={`/invoice/edit/${data.id}`}>
+                            <button className="btn btn-sm">
+                              <FaEdit />
+                            </button>
+                          </Link>
                           {/* )}  */}
-                          {storedScreens?.invoiceDelete && (
+                          {/* {storedScreens?.invoiceDelete && ( */}
                             <Delete
                               onSuccess={refreshData}
                               path={`/deleteGenerateInvoice/${data.id}`}
                             />
-                          )}
+                          {/* )} */}
                         </div>
                       </td>
                     </tr>

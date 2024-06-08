@@ -8,6 +8,7 @@ import LevelEdit from "./LevelEdit";
 // import Delete from "../../components/common/Delete";
 import api from "../../config/URL";
 import LevelAdd from "./LevelAdd";
+import DeleteModel from "../../components/common/DeleteModel";
 
 const Level = () => {
   const tableRef = useRef(null);
@@ -87,7 +88,7 @@ const Level = () => {
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
                 {/* {storedScreens?.levelCreate && ( */}
                 <h2>Level</h2>
-                <LevelAdd onSuccess={refreshData}/>
+                <LevelAdd onSuccess={refreshData} />
                 {/* )} */}
               </div>
               <hr />
@@ -117,21 +118,21 @@ const Level = () => {
                         </td>
                         <td>
                           {/* {storedScreens?.levelRead && ( */}
-                            <Link to={`/level/view/${data.id}`}>
-                              <button className="btn btn-sm">
-                                <FaEye />
-                              </button>
-                            </Link>
+                          <Link to={`/level/view/${data.id}`}>
+                            <button className="btn btn-sm">
+                              <FaEye />
+                            </button>
+                          </Link>
                           {/* )}
                           {storedScreens?.levelUpdate && ( */}
-                            <LevelEdit id={data.id} onSuccess={refreshData} />
+                          <LevelEdit id={data.id} onSuccess={refreshData} />
                           {/* )} */}
-                          {/* {storedScreens?.levelDelete && (
-                    <Delete
-                      onSuccess={refreshData}
-                      path={`/deleteCourseLevel/${data.id}`}
-                    />
-                  )} */}
+                          {/* {storedScreens?.levelDelete && ( */}
+                          <DeleteModel
+                            onSuccess={refreshData}
+                            path={`/deleteCourseLevel/${data.id}`}
+                          />
+                          {/* )} */}
                         </td>
                       </tr>
                     ))}

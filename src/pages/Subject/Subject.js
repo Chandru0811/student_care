@@ -10,6 +10,7 @@ import SubjectEdit from "./SubjectEdit";
 import api from "../../config/URL";
 import { SCREENS } from "../../config/ScreenFilter";
 import toast from "react-hot-toast";
+import DeleteModel from "../../components/common/DeleteModel";
 
 const Subject = () => {
   const tableRef = useRef(null);
@@ -91,7 +92,7 @@ const Subject = () => {
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
                 {/* {storedScreens?.subjectCreate && ( */}
                 <h2>Subject</h2>
-                <SubjectAdd onSuccess={refreshData}/>
+                <SubjectAdd onSuccess={refreshData} />
                 {/* )} */}
               </div>
               <hr />
@@ -126,26 +127,23 @@ const Subject = () => {
                         <td>
                           <div className="d-flex">
                             {/* {storedScreens?.subjectRead && ( */}
-                              <Link to={`/subject/view/${data.id}`}>
-                                <button className="btn btn-sm">
-                                  <FaEye />
-                                </button>
-                              </Link>
+                            <Link to={`/subject/view/${data.id}`}>
+                              <button className="btn btn-sm">
+                                <FaEye />
+                              </button>
+                            </Link>
                             {/* )}
 
                             {storedScreens?.subjectUpdate && ( */}
-                              <SubjectEdit
-                                id={data.id}
-                                onSuccess={refreshData}
-                              />
+                            <SubjectEdit id={data.id} onSuccess={refreshData} />
                             {/* )} */}
 
-                            {/* {storedScreens?.subjectDelete && (
-                      <Delete
-                        onSuccess={refreshData}
-                        path={`/deleteCourseSubject/${data.id}`}
-                      />
-                    )} */}
+                            {/* {storedScreens?.subjectDelete && ( */}
+                              <DeleteModel
+                                onSuccess={refreshData}
+                                path={`/deleteCourseSubject/${data.id}`}
+                              />
+                            {/* )} */}
                           </div>
                         </td>
                       </tr>
