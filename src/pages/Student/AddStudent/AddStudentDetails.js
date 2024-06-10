@@ -126,7 +126,7 @@ const AddStudentDetails = forwardRef(
           );
 
           if (response.status === 201) {
-            const student_id = response.data.student_id;
+            const student_id = response.data.studentId;
             toast.success(response.data.message);
             setFormData((prv) => ({ ...prv, ...values, student_id }));
             handleNext();

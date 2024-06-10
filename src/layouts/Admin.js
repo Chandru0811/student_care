@@ -109,6 +109,9 @@ import StaffingAttendance from "../pages/StaffingAttendance/StaffingAttendance";
 import StaffingAttendanceAdd from "../pages/StaffingAttendance/StaffingAttendanceAdd";
 import StaffingAttendanceEdit from "../pages/StaffingAttendance/StaffingAttendanceEdit";
 import StaffingAttendanceView from "../pages/StaffingAttendance/StaffingAttendanceView";
+import AddPayroll from "../pages/Payroll/PayrollAdmin/AddPayroll";
+import EditPayroll from "../pages/Payroll/PayrollAdmin/EditPayroll";
+import ViewPayroll from "../pages/Payroll/PayrollAdmin/ViewPayroll";
 
 function Admin({ handleLogout }) {
   return (
@@ -274,7 +277,11 @@ function Admin({ handleLogout }) {
               />
               <Route path="/payment" element={<Payment />} />
               <Route path="/role/add" element={<Roll />} />
-              <Route path="/adminpayroll" element={<Payroll />} />
+
+              <Route path="/payrolladmin" element={<Payroll />} />
+              <Route path="/payrolladmin/add" element={<AddPayroll />} />
+              <Route path="/payrolladmin/edit/:id" element={<EditPayroll />} />
+              <Route path="/payrolladmin/view/:id" element={<ViewPayroll />} />
 
               <Route path="/sendNotification" element={<SendNotification />} />
               <Route path="/sendNotification/add" element={<SendNotificationAdd />} />

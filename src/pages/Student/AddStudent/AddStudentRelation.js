@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import api from "../../../config/URL";
-import fetchAllCentersWithIds from "../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 
 const validationSchema = Yup.object().shape({
   studentRelationStudentName: Yup.string().required(
@@ -21,10 +21,10 @@ const Addrelation = forwardRef(
     const [centerData, setCenterData] = useState(null);
     const fetchData = async () => {
       try {
-        const centerData = await fetchAllCentersWithIds();
+        const centerData = await fetchAllStudentCaresWithIds();
         setCenterData(centerData);
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message);
       }
     };
 
@@ -44,7 +44,7 @@ const Addrelation = forwardRef(
         try {
           const requestData = { ...data, studentId: formData.student_id };
           const response = await api.post(
-            `/createStudentRelations`,
+            `/createStudentRelation`,
             requestData,
             {
               headers: {
@@ -61,7 +61,7 @@ const Addrelation = forwardRef(
             toast.error(response.data.message);
           }
         } catch (error) {
-          toast.error(error);
+          toast.error(error.message);
         } finally {
           setLoadIndicators(false);
         }
@@ -100,7 +100,7 @@ const Addrelation = forwardRef(
                                 key={studentRelationCenter.id}
                                 value={studentRelationCenter.id}
                               >
-                                {studentRelationCenter.centerNames}
+                                {studentRelationCenter.studentCareName}
                               </option>
                             ))}
                         </select>

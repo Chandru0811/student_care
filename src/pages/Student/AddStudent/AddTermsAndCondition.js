@@ -49,12 +49,12 @@ const AddTermsAndCondition = forwardRef(
           if (response.status === 201) {
             toast.success(response.data.message);
             setFormData((prv) => ({ ...prv, ...data }));
-            navigate("/student");
+            navigate("/studentlisting");
           } else {
             toast.error(response.data.message);
           }
         } catch (error) {
-          toast.error(error);
+          toast.error(error.message);
         } finally {
           setLoadIndicators(false);
         }

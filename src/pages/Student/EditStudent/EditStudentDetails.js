@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import fetchAllCentersWithIds from "../../List/CenterList";
 
 const validationSchema = Yup.object().shape({
-  centerId: Yup.string().required("*Centre is required!"),
+  studentCareId: Yup.string().required("*Centre is required!"),
   studentName: Yup.string().required("*Student Name is required!"),
   dateOfBirth: Yup.date()
     .required("*Date of Birth is required!")
@@ -57,7 +57,7 @@ const Edi = forwardRef(
 
     const formik = useFormik({
       initialValues: {
-        centerId: formData.centerId || "",
+        studentCareId: formData.studentCareId || "",
         studentName: formData.studentName || "",
         studentChineseName: formData.studentChineseName || "",
         profileImage: null || "",
@@ -162,23 +162,23 @@ const Edi = forwardRef(
                       </label>
                       <br />
                       <select
-                        name="centerId"
+                        name="studentCareId"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        value={formik.values.centerId}
+                        value={formik.values.studentCareId}
                         className="form-select form-select-sm"
                       >
                         <option selected></option>
                         {centerData &&
-                          centerData.map((centerId) => (
-                            <option key={centerId.id} value={centerId.id}>
-                              {centerId.centerNames}
+                          centerData.map((studentCareId) => (
+                            <option key={studentCareId.id} value={studentCareId.id}>
+                              {studentCareId.studentCareName}
                             </option>
                           ))}
                       </select>
-                      {formik.touched.centerId && formik.errors.centerId && (
+                      {formik.touched.studentCareId && formik.errors.studentCareId && (
                         <div className="text-danger">
-                          <small>{formik.errors.centerId}</small>
+                          <small>{formik.errors.studentCareId}</small>
                         </div>
                       )}
                     </div>

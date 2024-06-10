@@ -167,8 +167,8 @@ function StudentView() {
                             <b className="mx-2">:</b>
                             {centerData &&
                               centerData.map((center) =>
-                                parseInt(data.centerId) === center.id
-                                  ? center.centerNames || "--"
+                                parseInt(data.studentCareId) === center.id
+                                  ? center.studentCareName || "--"
                                   : ""
                               )}
                           </p>

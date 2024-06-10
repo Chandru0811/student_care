@@ -62,7 +62,7 @@ const AddcourseDetail = forwardRef(
             toast.error(response.data.message);
           }
         } catch (error) {
-          toast.error(error);
+          toast.error(error.message);
         } finally {
           setLoadIndicators(false);
         }
@@ -74,7 +74,7 @@ const AddcourseDetail = forwardRef(
         const courseData = await fetchAllCoursesWithIds();
         setCourseData(courseData);
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message);
       }
     };
 

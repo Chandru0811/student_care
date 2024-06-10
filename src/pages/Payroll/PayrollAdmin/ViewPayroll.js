@@ -12,10 +12,10 @@ function Viewpayroll() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`getAllUserPayrollById/${id}`);
+        const response = await api.get(`getAllPayrollById/${id}`);
         setData(response.data);
       } catch (error) {
-        toast.error("Error Fetching Data ", error);
+        toast.error("Error Fetching Data ", error.message);
       }
     };
     getData();
@@ -23,16 +23,30 @@ function Viewpayroll() {
 
   return (
     <div className="container">
-      <div className="row mt-3">
-        <div className="col-12 text-end">
-          <Link to="/payrolladmin">
-            <button type="button" className="btn btn-sm btn-border">
-              Back
-            </button>
-          </Link>
+      <div className="card shadow border-0 mb-2 top-header">
+        <div className="container-fluid py-4">
+          <div className="row align-items-center">
+            <div className="col">
+              <div className="d-flex align-items-center gap-4">
+                <h2 className="h2 ls-tight headingColor">View Payroll</h2>
+              </div>
+            </div>
+            <div className="col-auto">
+              <div className="hstack gap-2 justify-content-end">
+                <Link to="/payrolladmin">
+                  <button type="submit" className="btn btn-sm btn-light">
+                    <span>Back</span>
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="container">
+      <div
+        className="container card shadow border-0 mb-2 top-header"
+        style={{ height: "70vh" }}
+      >
         <div className="row mt-5">
           <div className="col-md-6 col-12">
             <div className="row mb-2">
@@ -41,7 +55,7 @@ function Viewpayroll() {
               </div>
               <div className="col-6">
                 <p className="text-muted text-sm">
-                  : {data.centerName || "--"}
+                  : {data.studentCareName || "--"}
                 </p>
               </div>
             </div>
@@ -76,9 +90,7 @@ function Viewpayroll() {
                 <p className="fw-medium">Gross Pay</p>
               </div>
               <div className="col-6">
-                <p className="text-muted text-sm">
-                  : {data.grossPay || "--"}
-                </p>
+                <p className="text-muted text-sm">: {data.grossPay || "--"}</p>
               </div>
             </div>
           </div>

@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddEmergencyContact = forwardRef(
-  ({ formData, setLoadIndicators, setFormData, handleNext }, ref) => {
+  ({ formData,setLoadIndicators, setFormData, handleNext }, ref) => {
     const [rows, setRows] = useState([{}]);
 
     const formik = useFormik({
@@ -34,8 +34,8 @@ const AddEmergencyContact = forwardRef(
             name: formData.name || "",
             emergencyRelation: formData.emergencyRelation || "",
             contactNo: formData.contactNo || "",
-            postalCode: formData.postalCode || "",
-            emergencyContactAddress: formData.emergencyContactAddress || "",
+            postalCode:formData.postalCode || "",
+            emergencyContactAddress:formData.emergencyContactAddress || "",
             files: null || "",
           },
         ],
@@ -56,11 +56,8 @@ const AddEmergencyContact = forwardRef(
           formDatas.append("name", contact.name);
           formDatas.append("contactNo", contact.contactNo);
           formDatas.append("authorizedRelation", contact.authorizedRelation);
-          formDatas.append("postalCode", contact.postalCode);
-          formDatas.append(
-            "emergencyContactAddress",
-            contact.emergencyContactAddress
-          );
+          formDatas.append("postalCode",contact.postalCode);
+          formDatas.append("emergencyContactAddress",contact.emergencyContactAddress);
           formDatas.append("files", contact.files);
         });
         console.log(formDatas);
@@ -82,8 +79,8 @@ const AddEmergencyContact = forwardRef(
             toast.error(response.data.message);
           }
         } catch (error) {
-          toast.error(error);
-        } finally {
+          toast.error(error.message);
+        }finally {
           setLoadIndicators(false);
         }
       },
@@ -121,7 +118,7 @@ const AddEmergencyContact = forwardRef(
                               </label>
                               <br />
                               <input
-                                className="form-control form-control-sm"
+                                className="form-control "
                                 type="text"
                                 name="emergencyContactName"
                                 onChange={formik.handleChange}
@@ -139,7 +136,7 @@ const AddEmergencyContact = forwardRef(
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.emergencyRelation}
-                                className="form-select form-select-sm"
+                                className="form-select "
                                 aria-label="example"
                               >
                                 <option value=""></option>
@@ -156,7 +153,7 @@ const AddEmergencyContact = forwardRef(
                               </label>
                               <br />
                               <input
-                                className="form-control form-control-sm"
+                                className="form-control "
                                 type="text"
                                 name="emergencyContactNo"
                                 onChange={formik.handleChange}
@@ -198,7 +195,7 @@ const AddEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control form-control-sm"
+                              className="form-control "
                               type="text"
                               name={`emergencyContactInformation[${index}].name`}
                               onChange={formik.handleChange}
@@ -218,7 +215,7 @@ const AddEmergencyContact = forwardRef(
                               name={`emergencyContactInformation[${index}].authorizedRelation`}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
-                              className="form-select form-select-sm"
+                              className="form-select "
                               aria-label=" example"
                               value={
                                 formik.values.emergencyContactInformation[index]
@@ -238,7 +235,7 @@ const AddEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control form-control-sm"
+                              className="form-control "
                               type="text"
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -257,7 +254,7 @@ const AddEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control form-control-sm"
+                              className="form-control "
                               type="text"
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -274,7 +271,7 @@ const AddEmergencyContact = forwardRef(
                             </label>
                             <br />
                             <input
-                              className="form-control form-control-sm"
+                              className="form-control "
                               type="text"
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -294,7 +291,7 @@ const AddEmergencyContact = forwardRef(
                               className="form-control"
                               type="file"
                               name="files"
-                              // name={`emergencyContactInformation[${index}].files`}
+                               // name={`emergencyContactInformation[${index}].files`}
                               // onChange={(event) => {
                               //   const fileName = event.target.files[0].name;
                               //   event.target.parentNode.querySelector(

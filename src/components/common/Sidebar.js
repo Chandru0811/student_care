@@ -28,7 +28,7 @@ function Sidebar({ onLogout }) {
       leaveIndex: true,
       holidayIndex: true,
       deductionIndex: true,
-      payrollIndex: false,
+      payrollIndex: true,
       payslipIndex: true,
       rolesMatrixIndex: true,
       studentListingIndex: true,

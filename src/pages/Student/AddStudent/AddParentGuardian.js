@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../../../config/URL";
@@ -39,18 +39,18 @@ const AddParentGuardian = forwardRef(
       initialValues: {
         parentInformation: formData.parentInformation
           ? formData.parentInformation.map((parent) => ({
-              parentNames: parent.parentNames || "",
-              parentDateOfBirths: parent.parentDateOfBirths || "",
-              emails: parent.emails || "",
-              relations: parent.relations || "",
-              occupations: parent.occupations || "",
-              files: null || "",
-              passwords: parent.passwords || "",
-              mobileNumbers: parent.mobileNumbers || "",
-              postalCodes: parent.postalCodes || "",
-              addresses: parent.addresses || "",
-              primaryContacts: parent.primaryContacts || "",
-            }))
+            parentNames: parent.parentNames || "",
+            parentDateOfBirths: parent.parentDateOfBirths || "",
+            emails: parent.emails || "",
+            relations: parent.relations || "",
+            occupations: parent.occupations || "",
+            files: null || "",
+            passwords: parent.passwords || "",
+            mobileNumbers: parent.mobileNumbers || "",
+            postalCodes: parent.postalCodes || "",
+            addresses: parent.addresses || "",
+            primaryContacts: parent.primaryContacts || "",
+          }))
           : [],
       },
       validationSchema: validationSchema,
@@ -103,6 +103,10 @@ const AddParentGuardian = forwardRef(
         }
       },
     });
+
+    useEffect(() => {
+      formik.setFieldValue(`parentInformation[0].primaryContacts`, true);
+    }, []);
 
     useImperativeHandle(ref, () => ({
       ParentGuardian: formik.handleSubmit,

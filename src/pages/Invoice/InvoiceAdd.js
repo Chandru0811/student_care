@@ -22,12 +22,12 @@ export default function InvoiceAdd() {
   const validationSchema = Yup.object({
     studentCareId: Yup.string().required("*Select a Centre"),
     parent: Yup.string().required("*Parent is required"),
-    // studentId: Yup.string().required("*Select a Student"),
+    studentId: Yup.string().required("*Select a Student"),
     course: Yup.string().required("*Select a course"),
     schedule: Yup.string().required("*Select a schedule"),
     invoiceDate: Yup.string().required("*Invoice Date is required"),
     dueDate: Yup.string().required("*Due Date is required"),
-    // packageId: Yup.string().required("*Package is required"),
+    packageId: Yup.string().required("*Package is required"),
     invoicePeriodTo: Yup.string().required("*Invoice Period To is required"),
     invoicePeriodFrom: Yup.string().required(
       "*Invoice Period From is required"
