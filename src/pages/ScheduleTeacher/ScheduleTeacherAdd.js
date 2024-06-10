@@ -85,7 +85,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
     courseId: Yup.string().required("*Course  is required"),
     classId: Yup.string().required("*Class is required"),
     days: Yup.string().required("*Days is required"),
-    userId: Yup.string().required("*Teacher is required"),
+    // userId: Yup.string().required("*Teacher is required"),
     // batch: Yup.string().required("*From Time is required"),
   });
 
@@ -150,7 +150,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
       // console.log(requestBody);
       try {
         const response = await api.post(
-          "/createMultipleSchedulesWithBatches",
+          "createMultipleSchedulesWithBatches",
           requestBody,
           {
             headers: {
@@ -160,13 +160,13 @@ function ScheduleTeacherAdd({ onSuccess }) {
         );
         if (response.status === 201) {
           toast.success(response.data.message);
-          onSuccess();
+          // onSuccess();
           handleClose();
         } else {
           toast.error(response.data.message);
         }
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message);
       } finally {
         setLoadIndicator(false);
       }

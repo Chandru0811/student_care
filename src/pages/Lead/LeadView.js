@@ -276,7 +276,7 @@ function Leadview() {
                       <span>Summary</span>
                     </button> */}
 
-                        <button
+                        {/* <button
                           type="button"
                           onClick={handlePaymentStatusShow}
                           class="btn btn-border btn-sm"
@@ -287,7 +287,7 @@ function Leadview() {
                           <button type="button" class="btn btn-border btn-sm">
                             <span>Do Assessment</span>
                           </button>
-                        </Link>
+                        </Link> */}
                       </div>
                     </div>
                   </div>

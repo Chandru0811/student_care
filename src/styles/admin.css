@@ -9650,7 +9650,7 @@ fieldset:disabled .btn {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #525f7f;
+  color: #fff;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 }
@@ -9659,10 +9659,17 @@ fieldset:disabled .btn {
     transition: none;
   }
 }
-.nav-link:hover,
+
 .nav-link:focus {
-  color: #0b061c;
+  background-color: #024166b7;
+  color: #fff;
 }
+
+.nav-link:hover {
+  background-color: #f3f3f367;
+}
+
+
 .nav-link.disabled {
   color: #abb6c5;
   pointer-events: none;

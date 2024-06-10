@@ -6,39 +6,18 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEdit } from "react-icons/fa";
 import Delete from "../../components/common/DeleteModel";
 import api from "../../config/URL";
-import fetchAllCoursesWithIds from "../List/CourseList";
-// import fetchAllCentersWithIds from "../List/CenterList";
-import fetchAllStudentsWithIds from "../List/StudentList";
 import toast from "react-hot-toast";
-import fetchAllStudentCaresWithIds from "../List/CenterList";
 // import { SCREENS } from "../../config/ScreenFilter";
 
 const Invoice = () => {
   const tableRef = useRef(null);
   const [datas, setDatas] = useState([]);
+  console.log("name :", datas);
   const [loading, setLoading] = useState(true);
-  const [centerData, setCenterData] = useState(null);
-  const [courseData, setCourseData] = useState(null);
-  const [studentData, setStudentData] = useState(null);
-  const [packageData, setPackageData] = useState(null);
 
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
   // console.log("Screens : ", SCREENS);
 
-  const fetchData = async () => {
-    try {
-      const centerData = await fetchAllStudentCaresWithIds();
-      const courseData = await fetchAllCoursesWithIds();
-      const studentData = await fetchAllStudentsWithIds();
-      const packageData = await api.get("getAllCentersPackageWithIds");
-      setPackageData(packageData.data);
-      setCenterData(centerData);
-      setCourseData(courseData);
-      setStudentData(studentData);
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
 
   useEffect(() => {
     const getData = async () => {
@@ -53,7 +32,6 @@ const Invoice = () => {
       }
     };
     getData();
-    fetchData();
   }, []);
 
   useEffect(() => {
@@ -140,36 +118,16 @@ const Invoice = () => {
                     <tr key={index}>
                       <th scope="row">{index + 1}</th>
                       <td>
-                        {courseData &&
-                          courseData.map((courseId) =>
-                            parseInt(data.courseId) === courseId.id
-                              ? courseId.course || "--"
-                              : ""
-                          )}
+                       {data.course}
                       </td>
                       <td>
-                        {centerData &&
-                          centerData.map((studentCareId) =>
-                            parseInt(data.studentCareId) === studentCareId.id
-                              ? studentCareId.studentCareName || "--"
-                              : ""
-                          )}
+                      {data.center}
                       </td>
                       <td>
-                        {studentData &&
-                          studentData.map((studentId) =>
-                            parseInt(data.studentId) === studentId.id
-                              ? studentId.student || "--"
-                              : ""
-                          )}
+                      {data.student}
                       </td>
                       <td>
-                        {packageData &&
-                          packageData.map((packageId) =>
-                            parseInt(data.packageId) === packageId.id
-                              ? packageId.package || "--"
-                              : ""
-                          )}
+                      {data.package}
                       </td>
                       <td>
                         <div className="d-flex">

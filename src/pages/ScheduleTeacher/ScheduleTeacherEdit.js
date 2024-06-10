@@ -52,9 +52,9 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
     }
   };
 
-  const fetchCourses = async (centerId) => {
+  const fetchCourses = async (studentCareId) => {
     try {
-      const courses = await fetchAllCoursesWithIdsC(centerId);
+      const courses = await fetchAllCoursesWithIdsC(studentCareId);
       setCourseData(courses);
     } catch (error) {
       toast.error(error);
@@ -84,17 +84,17 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
   }, []);
 
   const validationSchema = Yup.object({
-    centerId: Yup.string().required("*Centre is required"),
+    studentCareId: Yup.string().required("*Centre is required"),
     courseId: Yup.string().required("*Course  is required"),
     classId: Yup.string().required("*Class is required"),
     days: Yup.string().required("*Days is required"),
-    userId: Yup.string().required("*Teacher is required"),
+    // userId: Yup.string().required("*Teacher is required"),
     // batch: Yup.string().required("From Time is required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      centerId: "",
+      studentCareId: "",
       courseId: "",
       classId: "",
       centerName: "",
@@ -112,10 +112,10 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
       let selectedCenterName = "";
       let selectedClassName = "";
       let selectedCourseName = "";
-      let selectedTeacherName = "";
+      // let selectedTeacherName = "";
 
       centerData.forEach((center) => {
-        if (parseInt(values.centerId) === center.id) {
+        if (parseInt(values.studentCareId) === center.id) {
           selectedCenterName = center.centerNames || "--";
         }
       });
@@ -134,14 +134,14 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
         }
       });
 
-      teacherData.forEach((teacher) => {
-        if (parseInt(values.userId) === teacher.id) {
-          selectedTeacherName = teacher.teacherNames || "--";
-        }
-      });
+      // teacherData.forEach((teacher) => {
+      //   if (parseInt(values.userId) === teacher.id) {
+      //     selectedTeacherName = teacher.teacherNames || "--";
+      //   }
+      // });
 
       let requestBody = {
-        centerId: values.centerId,
+        studentCareId: values.studentCareId,
         centerName: selectedCenterName,
         className: selectedClassName,
         classId: values.classId,
@@ -149,7 +149,7 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
         courseId: values.courseId,
         // batch: values.batch || batch12hr,
         userId: values.userId,
-        teacher: selectedTeacherName,
+        // teacher: selectedTeacherName,
         days: values.days,
       };
 
@@ -180,9 +180,9 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
   });
 
   const handleCenterChange = (event) => {
-    const centerId = event.target.value;
-    formik.setFieldValue("centerId", centerId);
-    fetchCourses(centerId); // Fetch courses for the selected center
+    const studentCareId = event.target.value;
+    formik.setFieldValue("studentCareId", studentCareId);
+    fetchCourses(studentCareId); // Fetch courses for the selected center
   };
 
   const handleCourseChange = (event) => {
@@ -229,26 +229,25 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
                     Centre<span className="text-danger">*</span>
                   </label>
                   <select
-                    {...formik.getFieldProps("centerId")}
+                    {...formik.getFieldProps("studentCareId")}
                     className={`form-select form-select-sm ${
-                      formik.touched.centerId && formik.errors.centerId
+                      formik.touched.studentCareId && formik.errors.studentCareId
                         ? "is-invalid"
                         : ""
                     }`}
                     aria-label="Default select example"
                     onChange={handleCenterChange}
                   >
-                    <option disabled></option>
                     {centerData &&
                       centerData.map((center) => (
                         <option key={center.id} value={center.id}>
-                          {center.centerNames}
+                          {center.studentCareName}
                         </option>
                       ))}
                   </select>
-                  {formik.touched.centerId && formik.errors.centerId && (
+                  {formik.touched.studentCareId && formik.errors.studentCareId && (
                     <div className="invalid-feedback">
-                      {formik.errors.centerId}
+                      {formik.errors.studentCareId}
                     </div>
                   )}
                 </div>

@@ -83,7 +83,7 @@ function Login({ onLogin }) {
           height="50"
         />
         <span className="text-white fs-2 fw-bolder mx-3" style={{ textShadow: '1px 1px 2px black' }}>
-          Enrichment Care
+          Student Care
         </span>
       </div>
       <form onSubmit={formik.handleSubmit}>

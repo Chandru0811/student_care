@@ -50,7 +50,7 @@ function ScheduleTeacherView({ id, onSuccess }) {
                     <p className="fw-bold">Centre</p>
                   </div>
                   <div className="col-7">
-                    <p>:&nbsp;{data.centerName}</p>
+                    <p>:&nbsp;{data.studentCareName}</p>
                   </div>
                 </div>
               </div>

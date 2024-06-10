@@ -12,6 +12,7 @@ import AddBreak from "../../Center/Add/AddBreak";
 import AddClass from "../../Center/Add/AddClass";
 import AddPackage from "../../Center/Add/AddPackage";
 import api from "../../../config/URL";
+import DeleteModel from "../../../components/common/DeleteModel";
 
 const StudentListing = () => {
   const tableRef = useRef(null);
@@ -168,32 +169,32 @@ const StudentListing = () => {
                               </div>
                             )}
                             {/* {storedScreens?.centerListingRead && ( */}
-                              <Link
-                                to={`/center/view/${data.id}`}
-                                style={{ display: "inline-block" }}
-                              >
-                                <button className="btn btn-sm">
-                                  <FaEye />
-                                </button>
-                              </Link>
+                            <Link
+                              to={`/studentlisting/view/${data.id}`}
+                              style={{ display: "inline-block" }}
+                            >
+                              <button className="btn btn-sm">
+                                <FaEye />
+                              </button>
+                            </Link>
                             {/* )}
                             {storedScreens?.centerListingUpdate && ( */}
-                              <Link
-                                to={`/studentlisting/edit/${data.id}`}
-                                style={{ display: "inline-block" }}
-                              >
-                                <button className="btn btn-sm">
-                                  <FaEdit />
-                                </button>
-                              </Link>
+                            <Link
+                              to={`/studentlisting/edit/${data.id}`}
+                              style={{ display: "inline-block" }}
+                            >
+                              <button className="btn btn-sm">
+                                <FaEdit />
+                              </button>
+                            </Link>
                             {/* )} */}
-                            {/* {storedScreens?.centerListingDelete && (
-                      <Delete
-                        onSuccess={refreshData}
-                        path={`/deleteCenter/${data.id}`}
-                        style={{ display: "inline-block" }}
-                      />
-                    )} */}
+                            {/* {storedScreens?.centerListingDelete && ( */}
+                              <DeleteModel
+                                onSuccess={refreshData}
+                                path={`/deleteCenter/${data.id}`}
+                                style={{ display: "inline-block" }}
+                              />
+                            {/* )}  */}
                           </div>
                         </td>
                       </tr>

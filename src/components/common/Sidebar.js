@@ -23,7 +23,7 @@ function Sidebar({ onLogout }) {
       enrollmentIndex: true,
       staffIndex: true,
       teacherIndex: true,
-      staffAttendanceIndex: false,
+      staffAttendanceIndex: true,
       leaveAdminIndex: true,
       leaveIndex: true,
       holidayIndex: true,
@@ -91,11 +91,11 @@ function Sidebar({ onLogout }) {
             path: "lead/lead",
             access: storedScreens.leadListingIndex,
           },
-          {
-            title: "Enrollment",
-            path: "/lead/enrollment",
-            access: storedScreens.enrollmentIndex,
-          },
+          // {
+          //   title: "Enrollment",
+          //   path: "/lead/enrollment",
+          //   access: storedScreens.enrollmentIndex,
+          // },
         ],
       },
       {
@@ -320,7 +320,7 @@ function Sidebar({ onLogout }) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <NavLink
-          style={{ background: "#DFCCFB" }}
+          // style={{ background: "#024166b7" }}
           className="navbar-brand logo_ats py-lg-2 px-lg-6 m-0 d-flex align-items-center justify-content-center"
           to="/"
         >
@@ -345,9 +345,9 @@ function Sidebar({ onLogout }) {
               <li className="py-2 px-4 nav-link">
                 <i
                   className="bx bx-grid-alt me-3"
-                  style={{ color: "#303030" }}
+                  style={{ color: "#ffff" }}
                 ></i>
-                <span className="links_name" style={{ color: "#6a5b7a" }}>
+                <span className="links_name" style={{ color: "#fff" }}>
                   Home
                 </span>
               </li>
@@ -413,11 +413,9 @@ function Sidebar({ onLogout }) {
               to="/sendNotification"
               onClick={() => handleMenuClick(null)}
             >
-              <li className="py-2 px-4 nav-link">
-                <i className="bx bx-send me-3" style={{ color: "#303030" }}></i>
-                <span className="links_name" style={{ color: "#6a5b7a" }}>
-                  Send Notification
-                </span>
+              <li className="nav-link py-2 px-4">
+                <i className="bx bx-send me-3"></i>
+                <span className="links_name">Send Notification</span>
               </li>
             </NavLink>
           </ul>

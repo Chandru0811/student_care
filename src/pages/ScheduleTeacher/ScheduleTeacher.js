@@ -152,7 +152,7 @@ const ScheduleTeacher = () => {
                     {datas.map((data, index) => (
                       <tr key={index}>
                         <th scope="row">{index + 1}</th>
-                        <td>{data.centerName}</td>
+                        <td>{data.studentCareName}</td>
                         <td>{data.teacher}</td>
                         <td>{data.course}</td>
                         <td>{data.className}</td>
@@ -162,12 +162,12 @@ const ScheduleTeacher = () => {
                             {/* {storedScreens?.scheduleTeacherRead && ( */}
                             <ScheduleTeacherView id={data.id} />
                             {/* )} */}
-                            {/* {storedScreens?.scheduleTeacherUpdate && ( */}
-                            <ScheduleTeacherEdit
-                              id={data.id}
-                              onSuccess={refreshData}
-                            />
-                            {/* )} */}
+                            {/* {storedScreens?.scheduleTeacherUpdate && (
+                              <ScheduleTeacherEdit
+                                id={data.id}
+                                onSuccess={refreshData}
+                              />
+                            )} */}
                             {/* {storedScreens?.scheduleTeacherDelete && ( */}
                             <button
                               className="btn btn-sm"
