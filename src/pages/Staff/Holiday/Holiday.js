@@ -111,8 +111,8 @@ const Holiday = () => {
               </div>
             </div>
           ) : (
-            <div className="table-response px-4">
-              <table ref={tableRef} className="display minHeight">
+            <div className="table-response px-4 minHeight">
+              <table ref={tableRef} className="display ">
                 <thead>
                   <tr>
                     <th scope="col" style={{ whiteSpace: "nowrap" }}>

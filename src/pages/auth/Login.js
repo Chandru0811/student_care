@@ -52,7 +52,7 @@ function Login({ onLogin }) {
             sessionStorage.setItem("loginUserId", response.data.loginUserId);
             sessionStorage.setItem("enrichmentCareId", response.data.enrichmentCareId);
             onLogin(response.data.roleId);
-            navigate("/dashboard");
+            navigate("/");
           }
         } else {
           toast.error(response.data.message);

@@ -468,22 +468,22 @@ table.dataTable thead > tr {
 }
 
 .headColor {
-  color: #987df9;
+  color: #024166b7;
   font-weight: 400 !important;
   font-size: 19px;
   margin-bottom: 0px;
 }
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root {
-  color: #beadfa !important;
+  color: #024166b7 !important;
 }
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
-  color: #beadfa !important;
+  color: #024166b7 !important;
 }
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
-  color: #beadfa !important;
+  color: #024166b7 !important;
 }
 
 /* thead tr th {

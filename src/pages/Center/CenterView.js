@@ -11,7 +11,7 @@ function CenterView() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get(`/getAllStudentCareById/${id}`);
+        const response = await api.get(`/getAllCenterById/${id}`);
         setData(response.data);
       } catch (error) {
         toast.error("Error Fetching Data", error);
@@ -263,8 +263,8 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.studentCareRegistrationModels &&
-                    data.studentCareRegistrationModels.map((registration, index) => (
+                  {data.studentCareRegistrationModel &&
+                    data.studentCareRegistrationModel.map((registration, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>
@@ -299,8 +299,8 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.studentCareBreakModels &&
-                    data.studentCareBreakModels.map((centerBreak, index) => (
+                  {data.studentCareBreakModel &&
+                    data.studentCareBreakModel.map((centerBreak, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{centerBreak.breakName}</td>
@@ -358,8 +358,8 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.studentCareClassRoomModels &&
-                    data.studentCareClassRoomModels.map((centerClassRoom, index) => (
+                  {data.studentCareClassRoomModel &&
+                    data.studentCareClassRoomModel.map((centerClassRoom, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{centerClassRoom.classRoomName}</td>
@@ -390,8 +390,8 @@ function CenterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.studentCarePackageModels &&
-                    data.studentCarePackageModels.map((centerPackage, index) => (
+                  {data.studentCarePackageModel &&
+                    data.studentCarePackageModel.map((centerPackage, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{centerPackage.packageName || "--"}</td>

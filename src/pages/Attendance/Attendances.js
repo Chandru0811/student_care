@@ -3,7 +3,7 @@ import "../../styles/sidebar.css";
 import api from "../../config/URL";
 import AddMore from "./AddMore";
 import toast from "react-hot-toast";
-import fetchAllCentersWithIds from "../List/CenterList";
+import fetchAllStudentCaresWithIds from "../List/CenterList";
 import WebSocketService from "../../config/WebSocketService";
 import fetchAllCoursesWithIds from "../List/CourseList";
 
@@ -12,7 +12,7 @@ function Attendances() {
   console.log("Attendance Data Reload again", attendanceData);
   const [centerData, setCenterData] = useState(null);
   const [courseData, setCourseData] = useState(null);
-  const [selectedCenter, setSelectedCenter] = useState("1");
+  const [selectedStudentCare, setselectedStudentCare] = useState("1");
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedBatch, setSelectedBatch] = useState("1");
   const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
@@ -31,12 +31,12 @@ function Attendances() {
 
   const fetchListData = async () => {
     try {
-      const centerData = await fetchAllCentersWithIds();
+      const centerData = await fetchAllStudentCaresWithIds();
       const courseData = await fetchAllCoursesWithIds();
 
       setCenterData(centerData);
       // setCourseData(courseData);
-      setSelectedCenter(centerData[0].id);
+      setselectedStudentCare(centerData[0].id);
     } catch (error) {
       toast.error(error);
     }
@@ -50,7 +50,7 @@ function Attendances() {
     // setLoadIndicator(true);
     try {
       const requestBody = {
-        studentCareId: selectedCenter,
+        studentCareId: selectedStudentCare,
         batchId: selectedBatch,
         date: selectedDate,
       };
@@ -161,7 +161,7 @@ function Attendances() {
                 <select
                   className="form-select form-select-sm"
                   aria-label="Default select example"
-                  onChange={(e) => setSelectedCenter(e.target.value)}
+                  onChange={(e) => setselectedStudentCare(e.target.value)}
                 >
                   {centerData &&
                     centerData.map((studentCareId) => (
@@ -301,7 +301,7 @@ function Attendances() {
                                     paddingLeft: "10px",
                                   }}
                                 >
-                                  {attendanceItem.center}
+                                  {attendanceItem.studentCare}
                                 </p>
                               </div>
                               <div

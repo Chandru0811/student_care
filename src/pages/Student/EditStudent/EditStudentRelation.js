@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import api from "../../../config/URL";
-import fetchAllCentersWithIds from "../../List/CenterList";
+import fetchAllStudentCaresWithIds from "../../List/CenterList";
 
 const validationSchema = Yup.object().shape({
   studentRelationStudentName: Yup.string().required(
@@ -21,7 +21,7 @@ const EditStudentRelation = forwardRef(
     const [centerData, setCenterData] = useState(null);
     const fetchData = async () => {
       try {
-        const centerData = await fetchAllCentersWithIds();
+        const centerData = await fetchAllStudentCaresWithIds();
         setCenterData(centerData);
       } catch (error) {
         toast.error(error);

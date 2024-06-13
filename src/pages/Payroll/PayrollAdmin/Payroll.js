@@ -105,7 +105,7 @@ const Payroll = () => {
                 {/* )} */}
               </div>
               <hr />
-              <div className="table-responsive px-4">
+              <div className="table-responsive px-4 minHeight">
                 <table ref={tableRef} className="display">
                   <thead>
                     <tr>

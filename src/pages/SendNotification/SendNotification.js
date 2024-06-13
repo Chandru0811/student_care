@@ -78,10 +78,7 @@ const SendNotification = () => {
 
   return (
     <div className="container">
-      {storedScreens?.sendNotificationCreate && (
-        <SendNotificationAdd onSuccess={refreshData} />
-      )}
-
+      
       {loading ? (
         <div className="loader-container">
           <div className="loading">

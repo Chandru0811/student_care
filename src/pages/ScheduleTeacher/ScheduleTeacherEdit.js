@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 // import { useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
-import fetchAllCentersWithIds from "../List/CenterList";
+import fetchAllStudentCaresWithIds from "../List/CenterList";
 import toast from "react-hot-toast";
 import fetchAllCoursesWithIdsC from "../List/CourseListByCenter";
 import fetchAllClassesWithIdsC from "../List/ClassListByCourse";
@@ -43,7 +43,7 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
 
   const fetchData = async () => {
     try {
-      const centers = await fetchAllCentersWithIds();
+      const centers = await fetchAllStudentCaresWithIds();
       const teacher = await fetchAllTeachersWithIds();
       setCenterData(centers);
       setTeacherData(teacher);
@@ -97,7 +97,7 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
       studentCareId: "",
       courseId: "",
       classId: "",
-      centerName: "",
+      studentCareName: "",
       className: "",
       course: "",
       days: "",
@@ -109,14 +109,14 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
       setLoadIndicator(true);
       // const batch12hr = convertTo12Hour(values.batch);
       // values.batch = batch12hr;
-      let selectedCenterName = "";
+      let selectedstudentCareName = "";
       let selectedClassName = "";
       let selectedCourseName = "";
       // let selectedTeacherName = "";
 
       centerData.forEach((center) => {
         if (parseInt(values.studentCareId) === center.id) {
-          selectedCenterName = center.centerNames || "--";
+          selectedstudentCareName = center.studentCareName || "--";
         }
       });
 
@@ -142,7 +142,7 @@ function ScheduleTeacherEdit({ id, onSuccess }) {
 
       let requestBody = {
         studentCareId: values.studentCareId,
-        centerName: selectedCenterName,
+        studentCareName: selectedstudentCareName,
         className: selectedClassName,
         classId: values.classId,
         course: selectedCourseName,

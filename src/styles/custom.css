@@ -44,11 +44,11 @@
 }
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
-  color: #beadfa !important;
+  color: #024166b7 !important;
 }
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root {
-  color: #beadfa !important;
+  color: #024166b7 !important;
 }
 
 .linkPadding {
@@ -153,11 +153,11 @@
 /* All save , update some buttons custom css */
 
 .btn-button {
-  color: #000 !important;
+  color: #fff !important;
   padding: 0.5rem 0.9rem;
   font-weight: 600;
-  background-color: #beadfa !important;
-  border-color: #beadfa;
+  background-color: #024166b7 !important;
+  border-color: #024166b7;
 }
 
 .btn-button i {
@@ -252,7 +252,9 @@ div.dt-container select.dt-input {
   margin-right: 10px;
   padding: 3px;
 }
-
+.logo_ats{
+  background: #024166f1 !important;
+}
 @media (min-width: 992px) {
   .logo_ats {
     position: sticky !important;

@@ -7,7 +7,7 @@ import { FaTrash } from "react-icons/fa";
 import api from "../../config/URL";
 import toast from "react-hot-toast";
 import ScheduleTeacherAdd from "../ScheduleTeacher/ScheduleTeacherAdd";
-import ScheduleTeacherEdit from "../ScheduleTeacher/ScheduleTeacherEdit";
+// import ScheduleTeacherEdit from "../ScheduleTeacher/ScheduleTeacherEdit";
 import ScheduleTeacherView from "../ScheduleTeacher/ScheduleTeacherView";
 import { Link } from "react-router-dom";
 import { BsTable } from "react-icons/bs";
@@ -31,16 +31,16 @@ const ScheduleTeacher = () => {
 
   const handelDelete = async (rowData) => {
     try {
-      const { centerId, userId, courseId, classId, days } = rowData;
+      const { studentCareId, userId, courseId, classId, days } = rowData;
       const formData = new FormData();
-      formData.append("centerId", centerId);
+      formData.append("studentCareId", studentCareId);
       formData.append("userId", userId);
       formData.append("courseId", courseId);
       formData.append("classId", classId);
       formData.append("dayOfWeek", days);
 
       // const requestBody = {
-      //   centerId: 8,
+      //   studentCareId: 8,
       //   userId,
       //   courseId: 11,
       //   classId: 20,
@@ -162,12 +162,12 @@ const ScheduleTeacher = () => {
                             {/* {storedScreens?.scheduleTeacherRead && ( */}
                             <ScheduleTeacherView id={data.id} />
                             {/* )} */}
-                            {/* {storedScreens?.scheduleTeacherUpdate && (
-                              <ScheduleTeacherEdit
+                            {/* {storedScreens?.scheduleTeacherUpdate && ( */}
+                              {/* <ScheduleTeacherEdit
                                 id={data.id}
                                 onSuccess={refreshData}
-                              />
-                            )} */}
+                              /> */}
+                            {/* )} */}
                             {/* {storedScreens?.scheduleTeacherDelete && ( */}
                             <button
                               className="btn btn-sm"
@@ -178,7 +178,7 @@ const ScheduleTeacher = () => {
                             {/* )} */}
                             {/* {storedScreens?.timeScheduleIndex && ( */}
                             <Link
-                              to={`/scheduleteacher/scheduletime/${data.userId}?centerId=${data.centerId}`}
+                              to={`/scheduleteacher/scheduletime/${data.userId}?studentCareId=${data.studentCareId}`}
                             >
                               <button className="btn">
                                 <BsTable className="text-dark" />

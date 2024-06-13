@@ -7,7 +7,7 @@ function InvoicePayment() {
   const validationSchema = Yup.object({
     studentname: Yup.string().required("*Select a student name"),
     studentid: Yup.string().required("*Select a Student ID"),
-    center: Yup.string().required("*Select a Centre"),
+    studentCare: Yup.string().required("*Select a Centre"),
     student: Yup.string().required("*Select a Student"),
     paymentdate: Yup.string().required("*Payment Date"),
     paymentmethod: Yup.string().required("*Select a Payment Method"),
@@ -18,7 +18,7 @@ function InvoicePayment() {
     initialValues: {
       studentname: "",
       studentid: "",
-      center: "",
+      studentCare: "",
       student: "",
       paymentdate: "",
       paymentmethod: "",
@@ -85,10 +85,10 @@ function InvoicePayment() {
                 Centre<span class="text-danger">*</span>
                 </label>
                 <select
-                  {...formik.getFieldProps("center")}
-                  name="center"
+                  {...formik.getFieldProps("studentCare")}
+                  name="studentCare"
                   className={`form-select   ${
-                    formik.touched.center && formik.errors.center
+                    formik.touched.studentCare && formik.errors.studentCare
                       ? "is-invalid"
                       : ""
                   }`}
@@ -100,8 +100,8 @@ function InvoicePayment() {
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
-                {formik.touched.center && formik.errors.center && (
-                  <div className="invalid-feedback">{formik.errors.center}</div>
+                {formik.touched.studentCare && formik.errors.studentCare && (
+                  <div className="invalid-feedback">{formik.errors.studentCare}</div>
                 )}
               </div>
               <div class="col-md-6 col-12 mb-4">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../config/URL";
-import fetchAllCentersWithIds from "../List/CenterList";
+import fetchAllStudentCaresWithIds from "../List/CenterList";
 import toast from "react-hot-toast";
 import fetchAllCoursesWithIds from "../List/CourseList";
 import StudentSummary from "./StudentSummary";
@@ -25,7 +25,7 @@ function StudentView() {
 
   const fetchData = async () => {
     try {
-      const centerData = await fetchAllCentersWithIds();
+      const centerData = await fetchAllStudentCaresWithIds();
       const courseData = await fetchAllCoursesWithIds();
       setCenterData(centerData);
       setCourseData(courseData);
@@ -464,12 +464,12 @@ function StudentView() {
                         <div className="col-6">
                           <p className="text-muted text-sm">
                             <b className="mx-2">:</b>
-                            {data.studentEmergencyContacts &&
-                            data.studentEmergencyContacts.length > 0 &&
-                            data.studentEmergencyContacts[0]
-                              .emergencyContactName
-                              ? data.studentEmergencyContacts[0]
-                                  .emergencyContactName
+                            {data.studentEmergencyContactModels &&
+                              data.studentEmergencyContactModels.length > 0 &&
+                              data.studentEmergencyContactModels[0]
+                                .emergencyContactName
+                              ? data.studentEmergencyContactModels[0]
+                                .emergencyContactName
                               : "--"}
                           </p>
                         </div>
@@ -483,11 +483,11 @@ function StudentView() {
                         <div className="col-6">
                           <p className="text-muted text-sm">
                             <b className="mx-2">:</b>
-                            {data.studentEmergencyContacts &&
-                            data.studentEmergencyContacts.length > 0 &&
-                            data.studentEmergencyContacts[0].emergencyContactNo
-                              ? data.studentEmergencyContacts[0]
-                                  .emergencyContactNo
+                            {data.studentEmergencyContactModels &&
+                              data.studentEmergencyContactModels.length > 0 &&
+                              data.studentEmergencyContactModels[0].emergencyContactNo
+                              ? data.studentEmergencyContactModels[0]
+                                .emergencyContactNo
                               : "--"}
                           </p>
                         </div>
@@ -501,11 +501,11 @@ function StudentView() {
                         <div className="col-6">
                           <p className="text-muted text-sm">
                             <b className="mx-2">:</b>
-                            {data.studentEmergencyContacts &&
-                            data.studentEmergencyContacts.length > 0 &&
-                            data.studentEmergencyContacts[0].emergencyRelation
-                              ? data.studentEmergencyContacts[0]
-                                  .emergencyRelation
+                            {data.studentEmergencyContactModels &&
+                              data.studentEmergencyContactModels.length > 0 &&
+                              data.studentEmergencyContactModels[0].emergencyRelation
+                              ? data.studentEmergencyContactModels[0]
+                                .emergencyRelation
                               : "--"}
                           </p>
                         </div>
@@ -527,7 +527,7 @@ function StudentView() {
                     <h5 className="my-4">
                       Authorized Person to take Child From Home
                     </h5>
-                    {data?.studentEmergencyContacts?.[0]?.emergencyAuthorizedContactModels?.map(
+                    {data?.studentEmergencyContactModels?.[0]?.emergencyAuthorizedContactModels?.map(
                       (emergency, index) => (
                         <div className="row" key={index}>
                           <div className="d-flex align-items-center justify-content-between">
@@ -638,8 +638,8 @@ function StudentView() {
                         </div>
                       )
                     )}
-                    {/* {(!data.studentEmergencyContacts.emergencyAuthorizedContactModels ||
-                      data.studentEmergencyContacts.emergencyAuthorizedContactModels.length === 0) && (
+                    {/* {(!data.studentEmergencyContactModels.emergencyAuthorizedContactModels ||
+                      data.studentEmergencyContactModels.emergencyAuthorizedContactModels.length === 0) && (
                       <div className="text-muted">
                         No parent/guardian information available
                       </div>
@@ -664,9 +664,9 @@ function StudentView() {
                 Parent / Guardian
               </button>
             </h2>
-            {data.studentParentsDetails &&
-              data.studentParentsDetails.length > 0 &&
-              data.studentParentsDetails.map((parent, index) => (
+            {data.studentParentsDetailsModels &&
+              data.studentParentsDetailsModels.length > 0 &&
+              data.studentParentsDetailsModels.map((parent, index) => (
                 <div
                   id="panelsStayOpen-collapseThree"
                   class="accordion-collapse collapse"
@@ -809,10 +809,10 @@ function StudentView() {
                                   />
                                 )}
                               </p> */}
-                              {/* {data.studentParentsDetails &&
-                          data.studentParentsDetails.length > 0 &&
-                          data.studentParentsDetails[0].profileImage
-                            ? data.studentParentsDetails[0].profileImage
+                              {/* {data.studentParentsDetailsModels &&
+                          data.studentParentsDetailsModels.length > 0 &&
+                          data.studentParentsDetailsModels[0].profileImage
+                            ? data.studentParentsDetailsModels[0].profileImage
                             : "--"} */}
                             </p>
                           </div>
@@ -826,10 +826,10 @@ function StudentView() {
                           <div className="col-6">
                             <p className="text-muted text-sm">
                               <b className="mx-2">:</b>
-                              {data.studentParentsDetails &&
-                              data.studentParentsDetails.length > 0 &&
-                              data.studentParentsDetails[0].address
-                                ? data.studentParentsDetails[0].address
+                              {data.studentParentsDetailsModels &&
+                                data.studentParentsDetailsModels.length > 0 &&
+                                data.studentParentsDetailsModels[0].address
+                                ? data.studentParentsDetailsModels[0].address
                                 : "--"}
                             </p>
                           </div>
@@ -967,19 +967,19 @@ function StudentView() {
                   </div>
                 </div>
               ))}
-            {(!data.studentParentsDetails ||
-              data.studentParentsDetails.length === 0) && (
-              <div
-                id="panelsStayOpen-collapseThree"
-                class="accordion-collapse collapse"
-              >
-                <div class="accordion-body">
-                  <div className="text-muted">
-                    No parent/guardian information available
+            {(!data.studentParentsDetailsModels ||
+              data.studentParentsDetailsModels.length === 0) && (
+                <div
+                  id="panelsStayOpen-collapseThree"
+                  class="accordion-collapse collapse"
+                >
+                  <div class="accordion-body">
+                    <div className="text-muted">
+                      No parent/guardian information available
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
 
           {/* Relation */}
@@ -1148,13 +1148,13 @@ function StudentView() {
                   ))}
                 {(!data.studentCourseDetailModels ||
                   data.studentCourseDetailModels.length === 0) && (
-                  <img
-                    // src={BlockImg}
-                    className="img-fluid rounded"
-                    style={{ width: "20%" }}
-                    alt="Parent Signature Img"
-                  />
-                )}
+                    <img
+                      // src={BlockImg}
+                      className="img-fluid rounded"
+                      style={{ width: "20%" }}
+                      alt="Parent Signature Img"
+                    />
+                  )}
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ export default function ScheduleTime() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const centerId = searchParams.get("centerId");
+  const studentCareId = searchParams.get("studentCareId");
 
   // const [selectedDay, setSelectedDay] = useState(null);
   // const [selectedClass, setSelectedClass] = useState(null);
@@ -204,7 +204,7 @@ export default function ScheduleTime() {
                                             <DayTableAdd
                                               id={student.id}
                                               onSuccess={refreshData}
-                                              centerId={centerId}
+                                              studentCareId={studentCareId}
                                               day={data.day}
                                             />
                                           )}
@@ -220,7 +220,7 @@ export default function ScheduleTime() {
                                           {storedScreens?.timeScheduleAdd && (
                                             <DayTableAdd
                                               onSuccess={refreshData}
-                                              centerId={centerId}
+                                              studentCareId={studentCareId}
                                               day={data.day}
                                             />
                                           )}

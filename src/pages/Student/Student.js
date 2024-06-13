@@ -99,7 +99,7 @@ const Student = () => {
             {/ )} /} */}
           </div>
           <hr/>
-          <div className="px-4">
+          <div className="table-response px-4 minHeight">
           <table ref={tableRef} className="display">
             <thead>
               <tr>

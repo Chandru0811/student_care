@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import fetchAllCoursesWithIdsC from "../List/CourseListByCenter";
 import fetchAllClassesWithIdsC from "../List/ClassListByCourse";
 import api from "../../config/URL";
-import fetchAllTeacherListByCenter from "../List/TeacherListByCenter";
+import fetchAllTeachersWithIds from "../List/TeacherList";
 
 function ScheduleTeacherAdd({ onSuccess }) {
   const [show, setShow] = useState(false);
@@ -44,18 +44,18 @@ function ScheduleTeacherAdd({ onSuccess }) {
     }
   };
 
-  const fetchCourses = async (centerId) => {
+  const fetchCourses = async (studentCareId) => {
     try {
-      const courses = await fetchAllCoursesWithIdsC(centerId);
+      const courses = await fetchAllCoursesWithIdsC(studentCareId);
       setCourseData(courses);
     } catch (error) {
       toast.error(error.message);
     }
   };
 
-  const fetchTeacher = async (centerId) => {
+  const fetchTeacher = async (studentCareId) => {
     try {
-      const teacher = await fetchAllTeacherListByCenter(centerId);
+      const teacher = await fetchAllTeachersWithIds(studentCareId);
       setTeacherData(teacher);
     } catch (error) {
       toast.error(error.message);
@@ -85,7 +85,7 @@ function ScheduleTeacherAdd({ onSuccess }) {
     courseId: Yup.string().required("*Course  is required"),
     classId: Yup.string().required("*Class is required"),
     days: Yup.string().required("*Days is required"),
-    // userId: Yup.string().required("*Teacher is required"),
+    userId: Yup.string().required("*Teacher is required"),
     // batch: Yup.string().required("*From Time is required"),
   });
 
