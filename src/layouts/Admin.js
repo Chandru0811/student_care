@@ -243,7 +243,7 @@ function Admin({ handleLogout }) {
 
               <Route path="/teacher" element={<Teacher />} />
               <Route path="/teacher/add" element={<TeacherAdd />} />
-              <Route path="/teacher/edit/:id" element={<TeacherEdit />} />
+              <Route path="/teacher/edit/:staff_id" element={<TeacherEdit />} />
               <Route path="/teacher/view/:id" element={<TeacherView />} />
               <Route path="/teacher/leave" element={<TeacherLeave />} />
               <Route

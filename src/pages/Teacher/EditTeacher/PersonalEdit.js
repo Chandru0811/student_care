@@ -44,7 +44,7 @@ const PersonalEdit = forwardRef(
           formDatas.append("gender", data.gender);
           formDatas.append("role", data.role);
           const response = await api.put(
-            `/updateUser/${formData.id}`,
+            `/updateUser/${formData.staff_id}`,
             formDatas,
             {
               headers: {
@@ -71,7 +71,7 @@ const PersonalEdit = forwardRef(
       const getData = async () => {
         try {
           const response = await api.get(
-            `/getAllUserById/${formData.id}`
+            `/getAllUserById/${formData.staff_id}`
           );
           const dateOfBirth = response.data.dateOfBirth.substring(0, 10);
           // console.log(response)
