@@ -91,14 +91,15 @@ const Center = () => {
           <div className="card shadow border-0 mb-2 top-header">
             <div className="container-fluid px-0">
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
-                {/* {storedScreens?.centreCreate && ( */}
-                <h2>Centre</h2>
+              <h2>Centre</h2>
+               {storedScreens?.studentCareListingCreate && ( 
+             
                 <Link to="/center/add">
                   <button type="button" className="btn btn-button btn-sm">
                     Add <i class="bx bx-plus"></i>
                   </button>
                 </Link>
-                {/* )} */}
+                 )} 
               </div>
               <hr />
               <div className="table-responsive px-4 minHeight">
@@ -127,7 +128,7 @@ const Center = () => {
                         <td>{data.mobile}</td>
                         <td>
                           <div className="d-flex justify-content-center align-items-center ">
-                            {/* {storedScreens?.centerListingCreate && ( */}
+                           {storedScreens?.studentCareListingCreate && ( 
                             <div
                               class="dropdown"
                               style={{ display: "inline-block" }}
@@ -167,8 +168,8 @@ const Center = () => {
                                 </li>
                               </ul>
                             </div>
-                            {/* )}
-                            {storedScreens?.centerListingRead && ( */}
+                           )}
+                            {storedScreens?.studentCareListingRead && ( 
                             <Link
                               to={`/center/view/${data.id}`}
                               style={{ display: "inline-block" }}
@@ -177,8 +178,8 @@ const Center = () => {
                                 <FaEye />
                               </button>
                             </Link>
-                            {/* )}
-                            {storedScreens?.centerListingUpdate && ( */}
+                         )}
+                            {storedScreens?.studentCareListingUpdate && ( 
                             <Link
                               to={`/center/edit/${data.id}`}
                               style={{ display: "inline-block" }}
@@ -187,14 +188,14 @@ const Center = () => {
                                 <FaEdit />
                               </button>
                             </Link>
-                            {/* )} */}
-                            {/* {storedScreens?.centerListingDelete && ( */}
+                            )} 
+                            {storedScreens?.studentCareListingDelete && ( 
                               <DeleteModel
                                 onSuccess={refreshData}
                                 path={`/deleteStudentCare/${data.id}`}
                                 style={{ display: "inline-block" }}
                               />
-                            {/* )} */}
+                             )}
                           </div>
                         </td>
                       </tr>

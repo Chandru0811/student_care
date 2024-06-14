@@ -88,14 +88,15 @@ const Course = () => {
           <div className="card shadow border-0 mb-2 top-header">
             <div className="container-fluid px-0">
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
-                {/* {storedScreens?.subjectCreate && ( */}
-                <h2>Course</h2>
+              <h2>Course</h2>
+                {storedScreens?.subjectCreate && ( 
+                
                 <Link to="/course/add">
                   <button type="button" className="btn btn-button btn-sm">
                     Add <i className="bx bx-plus"></i>
                   </button>
                 </Link>
-                {/* )} */}
+               )} 
               </div>
               <hr />
               <div className="table-responsive px-4 minHeight">
@@ -127,28 +128,28 @@ const Course = () => {
                           )}
                         </td>
                         <td>
-                          {/* {storedScreens?.courseRead && ( */}
+                           {storedScreens?.courseRead && ( 
                           <Link to={`/course/view/${data.id}`}>
                             <button className="btn btn-sm">
                               <FaEye />
                             </button>
                           </Link>
-                          {/* )}
-                          {storedScreens?.courseUpdate && ( */}
+                           )}
+                          {storedScreens?.courseUpdate && ( 
                           <Link to={`/course/edit/${data.id}`}>
                             <button className="btn btn-sm">
                               <FaEdit />
                             </button>
                           </Link>
-                          {/* )} */}
-                          {/* {storedScreens?.courseDelete && ( */}
+                           )} 
+                          {storedScreens?.courseDelete && ( 
                           <DeleteModel
                             onSuccess={refreshData}
                             path={`/deleteCourse/${data.id}`}
                           />
-                          {/* )} */}
+                           )} 
 
-                          {/* {storedScreens?.curriculumIndex && ( */}
+                           {storedScreens?.curriculumIndex && ( 
                           <OverlayTrigger
                             placement="top"
                             overlay={
@@ -161,7 +162,7 @@ const Course = () => {
                               </button>
                             </Link>
                           </OverlayTrigger>
-                          {/* )} */}
+                          )} 
                         </td>
                       </tr>
                     ))}

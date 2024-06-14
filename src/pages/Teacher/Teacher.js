@@ -87,14 +87,15 @@ const Teacher = () => {
           <div className="card shadow border-0 mb-2 top-header">
             <div className="container-fluid px-0">
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
-                {/* {storedScreens?.staffCreate && ( */}
-                <h2>Teacher</h2>
+              <h2>Teacher</h2>
+                 {storedScreens?.teacherCreate && ( 
+               
                 <Link to="/teacher/add">
                   <button type="button" className="btn btn-button btn-sm">
                     Add <i class="bx bx-plus"></i>
                   </button>
                 </Link>
-                {/* )} */}
+                 )} 
               </div>
               <hr />
               <div className="table-response px-4 minHeight">
@@ -140,26 +141,26 @@ const Teacher = () => {
                         </td>
                         <td>
                           <div className="d-flex">
-                            {/* {storedScreens?.teacherRead && ( */}
+                             {storedScreens?.teacherRead && ( 
                             <Link to={`/teacher/view/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEye />
                               </button>
                             </Link>
-                            {/* )}
-                            {storedScreens?.teacherUpdate && ( */}
+                            )}
+                            {storedScreens?.teacherUpdate && (
                             <Link to={`/teacher/edit/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEdit />
                               </button>
                             </Link>
-                            {/* )}
-                            {storedScreens?.teacherDelete && ( */}
+                            )}
+                            {storedScreens?.teacherDelete && ( 
                             <Delete
                               onSuccess={refreshData}
                               path={`/deleteUser/${data.id}`}
                             />
-                            {/* )} */}
+                             )} 
                           </div>
                         </td>
                       </tr>

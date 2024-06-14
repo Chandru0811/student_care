@@ -36,11 +36,11 @@ function RolesAdd() {
       curriculumCreate: true,
       curriculumUpdate: true,
       curriculumDelete: true,
-      centerListingIndex: true,
-      centerListingRead: true,
-      centerListingCreate: true,
-      centerListingUpdate: true,
-      centerListingDelete: true,
+      studentCareListingIndex: true,
+      studentCareListingRead: true,
+      studentCareListingCreate: true,
+      studentCareListingUpdate: true,
+      studentCareListingDelete: true,
       leadListingIndex: true,
       leadListingRead: true,
       leadListingCreate: true,
@@ -231,7 +231,7 @@ function RolesAdd() {
           toast.error(response.data.message);
         }
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message);
       }
     },
   });
@@ -258,7 +258,7 @@ function RolesAdd() {
   };
 
   return (
-    <div className="container-fluid center">
+    <div className="container-fluid studentCare">
       <form onSubmit={formik.handleSubmit}>
         <div className="card shadow border-0 mb-2 top-header">
           <div className="container-fluid py-4">
@@ -593,45 +593,45 @@ function RolesAdd() {
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          name="centerListingIndex"
-                          checked={formik.values.centerListingIndex}
-                          onChange={handleCheckboxChange(`centerListingIndex`)}
+                          name="studentCareListingIndex"
+                          checked={formik.values.studentCareListingIndex}
+                          onChange={handleCheckboxChange(`studentCareListingIndex`)}
                         />
                       </td>
                       <td>
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          name="centerListingRead"
-                          checked={formik.values.centerListingRead}
-                          onChange={handleCheckboxChange(`centerListingRead`)}
+                          name="studentCareListingRead"
+                          checked={formik.values.studentCareListingRead}
+                          onChange={handleCheckboxChange(`studentCareListingRead`)}
                         />
                       </td>
                       <td>
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          name="centerListingCreate"
-                          checked={formik.values.centerListingCreate}
-                          onChange={handleCheckboxChange(`centerListingCreate`)}
+                          name="studentCareListingCreate"
+                          checked={formik.values.studentCareListingCreate}
+                          onChange={handleCheckboxChange(`studentCareListingCreate`)}
                         />
                       </td>
                       <td>
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          name="centerListingUpdate"
-                          checked={formik.values.centerListingUpdate}
-                          onChange={handleCheckboxChange(`centerListingUpdate`)}
+                          name="studentCareListingUpdate"
+                          checked={formik.values.studentCareListingUpdate}
+                          onChange={handleCheckboxChange(`studentCareListingUpdate`)}
                         />
                       </td>
                       <td>
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          name="centerListingDelete"
-                          checked={formik.values.centerListingDelete}
-                          onChange={handleCheckboxChange(`centerListingDelete`)}
+                          name="studentCareListingDelete"
+                          checked={formik.values.studentCareListingDelete}
+                          onChange={handleCheckboxChange(`studentCareListingDelete`)}
                         />
                       </td>
                     </tr>

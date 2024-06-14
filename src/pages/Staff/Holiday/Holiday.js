@@ -91,13 +91,13 @@ const Holiday = () => {
         <div className="container-fluid px-0">
           <div className="my-5 px-4 d-flex justify-content-between">
             <h2>Holiday</h2>
-            {/* {storedScreens?.holidayCreate && ( */}
+            {storedScreens?.holidayCreate && ( 
             <Link to="/holiday/add">
               <button type="button" className="btn btn-sm btn-button">
                 Add <i class="bx bx-plus"></i>
               </button>
             </Link>
-            {/* )} */}
+          )} 
           </div>
           <hr />
           {loading ? (
@@ -140,7 +140,7 @@ const Holiday = () => {
                       <td>{data.startDate.substring(0, 10)}</td>
                       <td>
                         <div className="d-flex justify-content-center align-items-center ">
-                          {/* {storedScreens?.holidayRead && ( */}
+                           {storedScreens?.holidayRead && ( 
                             <Link
                               to={`/holiday/view/${data.id}`}
                               style={{ display: "inline-block" }}
@@ -149,8 +149,8 @@ const Holiday = () => {
                                 <FaEye />
                               </button>
                             </Link>
-                          {/* )} */}
-                          {/* {storedScreens?.holidayUpdate && ( */}
+                          )} 
+                           {storedScreens?.holidayUpdate && ( 
                             <Link
                               to={`/holiday/edit/${data.id}`}
                               style={{ display: "inline-block" }}
@@ -159,14 +159,14 @@ const Holiday = () => {
                                 <FaEdit />
                               </button>
                             </Link>
-                          {/* )} */}
-                          {/* {storedScreens?.holidayDelete && (  */}
+                           )} 
+                         {storedScreens?.holidayDelete && ( 
                             <DeleteModel
                               onSuccess={refreshData}
                               path={`deleteHolidayModel/${data.id}`}
                               style={{ display: "inline-block" }}
                             />
-                          {/*  )}  */}
+                            )}  
                         </div>
                       </td>
                     </tr>

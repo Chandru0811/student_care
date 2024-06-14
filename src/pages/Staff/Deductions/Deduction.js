@@ -4,7 +4,7 @@ import "datatables.net-responsive-dt";
 import $ from "jquery";
 import { Link } from "react-router-dom";
 import { FaEye, FaEdit } from "react-icons/fa";
-// import Delete from "../../../components/common/Delete";
+import Delete from "../../../components/common/DeleteModel";
 import api from "../../../config/URL";
 
 const Deduction = () => {
@@ -70,14 +70,15 @@ const Deduction = () => {
       <div className="card shadow border-0 mb-2 top-header">
         <div className="container-fluid px-0">
           <div className="my-3 d-flex align-items-end justify-content-end">
-            {/* {storedScreens?.deductionCreate && ( */}
-            <h2>Deduction</h2>
+          <h2>Deduction</h2>
+             {storedScreens?.deductionCreate && ( 
+            
             <Link to="/deduction/add">
               <button type="button" className="btn btn-button btn-sm">
                 Add <i class="bx bx-plus"></i>
               </button>
             </Link>
-            {/* )} */}
+             )} 
           </div>
           <hr />
           {loading ? (
@@ -112,27 +113,27 @@ const Deduction = () => {
                       <td>{data.deductionName}</td>
                       <td>{data.deductionAmount}</td>
                       <td>
-                        {/* {storedScreens?.deductionRead && ( */}
+                        {storedScreens?.deductionRead && ( 
                         <Link to={`/deduction/view/${data.id}`}>
                           <button className="btn btn-sm">
                             <FaEye />
                           </button>
                         </Link>
-                        {/* )}
-                        {storedScreens?.deductionUpdate && ( */}
+                        )}
+                        {storedScreens?.deductionUpdate && ( 
                         <Link to={`/deduction/edit/${data.id}`}>
                           <button className="btn btn-sm">
                             <FaEdit />
                           </button>
                         </Link>
-                        {/* )} */}
+                     )}
 
-                        {/* {storedScreens?.deductionDelete && (
+                        {storedScreens?.deductionDelete && (
                     <Delete
                       onSuccess={refreshData}
                       path={`/deleteUserDeduction/${data.id}`}
                     />
-                  )} */}
+                  )}
                       </td>
                     </tr>
                   ))}

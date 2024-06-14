@@ -96,7 +96,7 @@ const SendNotification = () => {
               <div>
                 <h2>Send Notification</h2>
               </div>
-              <SendNotificationAdd onSuccess={refreshData} />
+              {storedScreens?.sendNotificationCreate && (  <SendNotificationAdd onSuccess={refreshData} /> )}
             </div>
             <hr />
             <div className="table-response px-4 minHeight">
@@ -118,12 +118,12 @@ const SendNotification = () => {
                       <td>{data.messageDescription}</td>
                       <td>{data.datePosted}</td>
                       <td>
-                        {/* {storedScreens?.sendNotificationUpdate && ( */}
+                        {storedScreens?.sendNotificationUpdate && ( 
                           <SendNotificationEdit
                             id={data.id}
                             onSuccess={refreshData}
                           />
-                        {/* )} */}
+                        )} 
                       </td>
                     </tr>
                   ))}

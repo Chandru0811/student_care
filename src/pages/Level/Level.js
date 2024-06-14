@@ -86,10 +86,11 @@ const Level = () => {
           <div className="card shadow border-0 mb-2 top-header">
             <div className="container-fluid px-0">
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
-                {/* {storedScreens?.levelCreate && ( */}
-                <h2>Level</h2>
+              <h2>Level</h2>
+                {storedScreens?.levelCreate && ( 
+               
                 <LevelAdd onSuccess={refreshData} />
-                {/* )} */}
+                 )} 
               </div>
               <hr />
               <div className="table-responsive px-4 minHeight">
@@ -117,22 +118,22 @@ const Level = () => {
                           )}
                         </td>
                         <td>
-                          {/* {storedScreens?.levelRead && ( */}
+                          {storedScreens?.levelRead && ( 
                           <Link to={`/level/view/${data.id}`}>
                             <button className="btn btn-sm">
                               <FaEye />
                             </button>
                           </Link>
-                          {/* )}
-                          {storedScreens?.levelUpdate && ( */}
+                         )}
+                          {storedScreens?.levelUpdate && (
                           <LevelEdit id={data.id} onSuccess={refreshData} />
-                          {/* )} */}
-                          {/* {storedScreens?.levelDelete && ( */}
+                           )} 
+                           {storedScreens?.levelDelete && ( 
                           <DeleteModel
                             onSuccess={refreshData}
                             path={`/deleteCourseLevel/${data.id}`}
                           />
-                          {/* )} */}
+                         )}
                         </td>
                       </tr>
                     ))}

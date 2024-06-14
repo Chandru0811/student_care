@@ -8,6 +8,7 @@ import api from "../../config/URL";
 import { useParams } from "react-router-dom";
 import fetchAllCoursesWithIds from "../List/CourseList";
 import toast from "react-hot-toast";
+import Delete from "../../components/common/DeleteModel";
 
 const Curriculum = () => {
   const { id } = useParams();
@@ -106,9 +107,9 @@ const Curriculum = () => {
         </div>
       ) : (
         <>
-          {/* {storedScreens?.curriculumCreate && ( */}
+           {storedScreens?.curriculumCreate && ( 
             <CurriculumAdd onSuccess={refreshData} course_id={id} />
-          {/* )} */}
+          )} 
           <table ref={tableRef} className="display">
             <thead>
               <tr>
@@ -146,15 +147,15 @@ const Curriculum = () => {
                     </td>
                   </td>
                   <td>
-                    {/* {storedScreens?.curriculumUpdate && ( */}
+                    {storedScreens?.curriculumUpdate && ( 
                       <CurriculumEdit id={data.id} onSuccess={refreshData} />
-                    {/* )}
-                    {storedScreens?.curriculumDelete && ( */}
-                      {/* <Delete
+                   )}
+                   {storedScreens?.curriculumDelete && ( 
+                      <Delete
                         onSuccess={refreshData}
                         path={`/deleteCourseCurriculumCode/${data.id}`}
-                      /> */}
-                    {/* )} */}
+                      />
+                   )} 
                   </td>
                 </tr>
               ))}

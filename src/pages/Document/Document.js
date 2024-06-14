@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import fetchAllStudentsWithIds from "../List/StudentList";
 import DocumentEdit from "./DocumentEdit";
 // import { SCREENS } from "../../config/ScreenFilter";
+// import { SCREENS } from "../../config/ScreenFilter";
+// import DeleteModel from "../../components/common/DeleteModel";
 
 const Document = () => {
   const tableRef = useRef(null);
@@ -20,24 +22,24 @@ const Document = () => {
   const [loading, setLoading] = useState(true);
   const [studentData, setStudentData] = useState(null);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const studentData = await fetchAllStudentsWithIds();
-  //     setStudentData(studentData);
-  //   } catch (error) {
-  //     toast.error(error);
-  //   }
-  // };
+  const fetchData = async () => {
+    try {
+      const studentData = await fetchAllStudentsWithIds();
+      setStudentData(studentData);
+    } catch (error) {
+      toast.error(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const response = await api.get("/getAllDocumentFolder");
-  //     setDatas(response.data);
-  //     setLoading(false);
-  //   };
-  //   getData();
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await api.get("/getAllDocumentFolder");
+      setDatas(response.data);
+      setLoading(false);
+    };
+    getData();
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (!loading) {

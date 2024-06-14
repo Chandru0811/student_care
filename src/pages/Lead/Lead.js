@@ -102,14 +102,15 @@ const Lead = () => {
           <div className="card shadow border-0 mb-2 top-header">
             <div className="container-fluid px-0">
               <div className="my-3 d-flex justify-content-between px-4 mb-5">
-                {/* {storedScreens?.leadCreate && ( */}
-                <h2>Lead Listing</h2>
+              <h2>Lead Listing</h2>
+                 {storedScreens?.leadCreate && (
+               
                 <Link to="/lead/add">
                   <button type="button" className="btn btn-button btn-sm">
                     Add <i className="bx bx-plus"></i>
                   </button>
                 </Link>
-                {/* )} */}
+                 )} 
               </div>
               <hr />
               <div className="table-responsive px-4 minHeight">
@@ -183,26 +184,26 @@ const Lead = () => {
 
                         <td>
                           <div className="d-flex">
-                            {/* {storedScreens?.leadListingRead && ( */}
+                             {storedScreens?.leadListingRead && ( 
                             <Link to={`/lead/view/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEye />
                               </button>
                             </Link>
-                            {/* )} */}
-                            {/* {storedScreens?.leadListingUpdate && ( */}
+                          )} 
+                            {storedScreens?.leadListingUpdate && (
                             <Link to={`/lead/edit/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEdit />
                               </button>
                             </Link>
-                            {/* )} */}
-                            {/* {storedScreens?.leadListingDelete && ( */}
+                         )} 
+                            {storedScreens?.leadListingDelete && ( 
                             <Delete
                               onSuccess={refreshData}
                               path={`/deleteLeadInfo/${data.id}`}
                             />
-                            {/* )} */}
+                       )} 
                           </div>
                         </td>
                         {/* <td className="text-center">

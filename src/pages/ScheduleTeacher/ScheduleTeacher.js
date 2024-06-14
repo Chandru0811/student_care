@@ -118,7 +118,8 @@ const ScheduleTeacher = () => {
         <div className="container-fluid px-0">
           <div className="d-flex justify-content-between px-4 mb-5 my-3">
             <h2>Schedule Teacher</h2>
-            <ScheduleTeacherAdd />
+
+            {storedScreens?.scheduleTeacherCreate && ( <ScheduleTeacherAdd /> )}
           </div>
           <hr />
           {loading ? (
@@ -159,24 +160,24 @@ const ScheduleTeacher = () => {
                         <td>{data.days}</td>
                         <td>
                           <div className="d-flex justify-content-center align-item-center">
-                            {/* {storedScreens?.scheduleTeacherRead && ( */}
+                            {storedScreens?.scheduleTeacherRead && (
                             <ScheduleTeacherView id={data.id} />
-                            {/* )} */}
+                           )} 
                             {/* {storedScreens?.scheduleTeacherUpdate && ( */}
                               {/* <ScheduleTeacherEdit
                                 id={data.id}
                                 onSuccess={refreshData}
                               /> */}
                             {/* )} */}
-                            {/* {storedScreens?.scheduleTeacherDelete && ( */}
+                           {storedScreens?.scheduleTeacherDelete && ( 
                             <button
                               className="btn btn-sm"
                               onClick={() => handleShow(data)}
                             >
                               <FaTrash />
                             </button>
-                            {/* )} */}
-                            {/* {storedScreens?.timeScheduleIndex && ( */}
+                             )} 
+                            {storedScreens?.timeScheduleIndex && ( 
                             <Link
                               to={`/scheduleteacher/scheduletime/${data.userId}?studentCareId=${data.studentCareId}`}
                             >
@@ -184,7 +185,7 @@ const ScheduleTeacher = () => {
                                 <BsTable className="text-dark" />
                               </button>
                             </Link>
-                            {/* )} */}
+                             )} 
                           </div>
                         </td>
                       </tr>

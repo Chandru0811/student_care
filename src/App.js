@@ -6,6 +6,7 @@ import Auth from "./layouts/Auth";
 import toast from "react-hot-toast";
 import api from "./config/URL";
 import { updateScreens } from "./config/ScreenFilter";
+import { FiAlertTriangle } from "react-icons/fi";
 // import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -15,16 +16,17 @@ function App() {
 
   const handleLogin = async (id) => {
     setIsLoading(true);
-    sessionStorage.setItem("isAuthenticated", true); 
-    console.log("object",isAuthenticated)   
+    setIsAuthenticated(true);
+    sessionStorage.setItem("isAuthenticated", true);
     try {
       if (id) {
         const response = await api.get(`/getAllRoleInfoById/${id}`);
         const rolePermissions = response.data;
-        updateScreens(rolePermissions);
-        setIsAuthenticated(true);
+        sessionStorage.setItem("screens", JSON.stringify(rolePermissions));
+
+        // Delay the execution by 2 seconds
         sessionStorage.setItem("isAuthenticated", true);
-        // sessionStorage.setItem("userName", userName);
+        setIsAuthenticated(true);
       } else {
         setIsLoading(false);
         toast.error("Invalid email or password");
@@ -36,6 +38,7 @@ function App() {
     }
   };
 
+
   const handleLogout = () => {
     setIsAuthenticated(false);
     sessionStorage.removeItem("isAuthenticated");
@@ -45,12 +48,13 @@ function App() {
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("userName");
     sessionStorage.removeItem("loginUserId");
-    sessionStorage.removeItem("centerId");
+    sessionStorage.removeItem("studentCareId");
   };
 
-
   useEffect(() => {
+
     const isAdminFromStorage = sessionStorage.getItem("isAuthenticated");
+
     const isAdminBoolean = isAdminFromStorage === "true";
     if (isAuthenticated !== isAdminBoolean) {
       setIsAuthenticated(isAdminBoolean);
@@ -62,7 +66,9 @@ function App() {
       (error) => {
         console.log("Error is", error.response);
         if (error.response?.status === 401) {
-          toast("Session Experied!! Please Login");
+          toast("Session Experied!! Please Login", {
+            icon: <FiAlertTriangle className="text-warning" />,
+          });
           handleLogout();
         }
         return Promise.reject(error);
@@ -77,12 +83,22 @@ function App() {
 
   return (
     <div>
-      <div>
-      {isAuthenticated ? (
-        <Admin handleLogout={handleLogout} />
-      ) : (
-        <Auth handleLogin={handleLogin} />
-      )}
+     <div>
+        {isLoading ? (
+          <div className="loader-container">
+            <div class="loading">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        ) : isAuthenticated ? (
+          <Admin handleLogout={handleLogout} />
+        ) : (
+          <Auth handleLogin={handleLogin} />
+        )}
       </div>
     </div>
   );

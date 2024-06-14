@@ -38,7 +38,7 @@ function Login({ onLogin }) {
 
         if (response.status === 200) {
          const { role } = response.data;
-          if (role === "SMS_PARENT") {
+          if (role === "STUDENTCARE_PARENT") {
             toast.warning(
               "You don't have access to the website. Please log in using Artylearning mobile app."
             );
@@ -50,7 +50,7 @@ function Login({ onLogin }) {
             sessionStorage.setItem("userId", response.data.userId);
             sessionStorage.setItem("userName", response.data.role);
             sessionStorage.setItem("loginUserId", response.data.loginUserId);
-            sessionStorage.setItem("enrichmentCareId", response.data.enrichmentCareId);
+            sessionStorage.setItem("studentCareId", response.data.studentCareId);
             onLogin(response.data.roleId);
             navigate("/");
           }

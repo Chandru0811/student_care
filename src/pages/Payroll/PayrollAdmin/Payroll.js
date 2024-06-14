@@ -95,14 +95,15 @@ const Payroll = () => {
           <div className="card shadow border-0 mb-2 top-header minHeight">
             <div className="container-fluid px-0">
               <div className="my-3 d-flex justify-content-between mb-5 px-4">
-                {/* {storedScreens?.subjectCreate && ( */}
-                <h2>Class</h2>
+              <h2>Class</h2>
+                {storedScreens?.payrollCreate && ( 
+               
                 <Link to="/payrolladmin/add">
                   <button type="button" className="btn btn-button btn-sm">
                     Add <i class="bx bx-plus"></i>
                   </button>
                 </Link>
-                {/* )} */}
+               )} 
               </div>
               <hr />
               <div className="table-responsive px-4 minHeight">
@@ -147,27 +148,27 @@ const Payroll = () => {
                           )}
                         </td>
                         <td>
-                          {/* {storedScreens?.payrollRead && ( */}
+                           {storedScreens?.payrollRead && ( 
                             <Link to={`/payrolladmin/view/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEye />
                               </button>
                             </Link>
-                          {/* )}
-                          {storedScreens?.payrollUpdate && ( */}
+                           )}
+                          {storedScreens?.payrollUpdate && ( 
                             <Link to={`/payrolladmin/edit/${data.id}`}>
                               <button className="btn btn-sm">
                                 <FaEdit />
                               </button>
                             </Link>
-                          {/* )}
-                          {storedScreens?.payrollDelete && ( */}
+                   )}
+                          {storedScreens?.payrollDelete && ( 
                             <Delete
                               onSuccess={refreshData}
                               path={`/deleteUserPayroll/${data.id}`}
                               style={{ display: "inline-block" }}
                             />
-                          {/* )} */}
+                          )} 
                         </td>
                       </tr>
                     ))}

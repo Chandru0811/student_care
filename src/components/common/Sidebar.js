@@ -13,41 +13,7 @@ function Sidebar({ onLogout }) {
   const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
-    const storedScreens = {
-      centerListingIndex: true,
-      levelIndex: true,
-      subjectIndex: true,
-      courseIndex: true,
-      classIndex: true,
-      leadListingIndex: true,
-      enrollmentIndex: true,
-      staffIndex: true,
-      teacherIndex: true,
-      staffAttendanceIndex: true,
-      leaveAdminIndex: true,
-      leaveIndex: true,
-      holidayIndex: true,
-      deductionIndex: true,
-      payrollIndex: true,
-      payslipIndex: true,
-      rolesMatrixIndex: true,
-      studentListingIndex: true,
-      attendanceIndex: true,
-      scheduleTeacherIndex: true,
-      documentListingIndex: true,
-      documentFileIndex: true,
-      invoiceIndex: true,
-      paymentIndex: true,
-      documentReportIndex: true,
-      attendanceReportIndex: true,
-      studentReportIndex: false,
-      assessmentReportIndex: true,
-      enrollmentReportIndex: true,
-      feeCollectionReportIndex: true,
-      packageBalanceReportIndex: true,
-      salesRevenueReportindex: true,
-      replaceClassLessonListindex: false,
-    };
+    const storedScreens = JSON.parse(sessionStorage.getItem("screens") || "{}");
 
     const updatedMenuItems = [
       {
@@ -58,7 +24,7 @@ function Sidebar({ onLogout }) {
           {
             title: "Centre Listing",
             path: "/center",
-            access: storedScreens.centerListingIndex,
+            access: storedScreens.studentCareListingIndex,
           },
         ],
       },

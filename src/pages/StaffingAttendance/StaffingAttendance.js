@@ -84,13 +84,13 @@ const StaffingAttendance = () => {
       <div className="card shadow border-0 mb-2 top-header">
         <div className="container-fluid px-0">
           <div className="my-3 d-flex align-items-end justify-content-end">
-            {/* {storedScreens?.staffAttendanceCreate && ( */}
+          {storedScreens?.staffAttendanceCreate && ( 
             <Link to="/staffing/attendance/add">
               <button type="button" className="btn btn-button btn-sm">
                 Add <i className="bx bx-plus"></i>
               </button>
             </Link>
-            {/* )} */}
+             )} 
           </div>
           <hr />
           {loading ? (
@@ -141,7 +141,7 @@ const StaffingAttendance = () => {
                       </td>
                       <td>
                         <div className="d-flex justify-content-center align-items-center ">
-                          {/* {storedScreens?.staffAttendanceRead && ( */}
+                           {storedScreens?.staffAttendanceRead && ( 
                           <Link
                             to={`/staffing/attendance/view/${data.id}`}
                             style={{ display: "inline-block" }}
@@ -150,8 +150,8 @@ const StaffingAttendance = () => {
                               <FaEye />
                             </button>
                           </Link>
-                          {/* )}
-                    {storedScreens?.staffAttendanceUpdate && ( */}
+                          )}
+                    {storedScreens?.staffAttendanceUpdate && ( 
                           <Link
                             to={`/staffing/attendance/edit/${data.id}`}
                             style={{ display: "inline-block" }}
@@ -160,14 +160,14 @@ const StaffingAttendance = () => {
                               <FaEdit />
                             </button>
                           </Link>
-                          {/* )}
-                    {storedScreens?.staffAttendanceDelete && ( */}
+                           )}
+                    {storedScreens?.staffAttendanceDelete && ( 
                           <DeleteModel
                             onSuccess={refreshData}
                             path={`/deleteUserAttendance/${data.id}`}
                             style={{ display: "inline-block" }}
                           />
-                          {/* )} */}
+                           )} 
                         </div>
                       </td>
                     </tr>
